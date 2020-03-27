@@ -1,0 +1,252 @@
+@import '../node_modules/tippy.js/dist/tippy.css';
+@import '../node_modules/c3/c3.min.css';
+
+
+$primary-black: #000a12;
+
+body {
+  margin: 0px;
+  font-family: 'Open Sans', helvetica, sans-serif;
+  line-height: 25px;
+  color: $primary-black;
+  font-size: 16px;
+
+  .embed-show {
+    display: none;
+  }
+}
+h1 {
+  font-size: 48px;
+  font-weight: 800;
+}
+h4 {
+  font-size: 21px;
+  margin-bottom: 20px;
+}  
+h5 {
+  font-weight: 400;
+  font-size: 15px;
+  padding-left: 5px;
+  font-style: italic;
+  text-align: right;
+  margin: 5px auto 0px auto;
+  max-width: 650px;
+}
+section, header, footer {
+  padding: 30px 10px;
+  max-width: 650px;
+  margin: 0px auto;
+}
+.center-offset {
+  max-width: 650px;
+  margin: 0px auto;
+  padding: 0px 10px;
+}
+header {
+  padding-top: 10px;
+  
+  .lang-picker {
+    text-align: right;
+    
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+a, a:hover, a:visited {
+  color: #000a12;
+}
+h1 {
+  font-size: 24px;
+}
+.text-center {
+  text-align: center;
+}
+
+#kpi {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+
+ 
+  >div {
+    width: 30%;
+    margin-bottom: 35px;
+    
+    .diff {
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .value {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .label {
+      color: $primary-black;
+      font-weight: 700;
+    }
+  }
+  
+  #kpi-confirmed {
+    color: rgb(244,67,52);
+  }
+  #kpi-recovered {
+    color: rgb(24,118,211);
+  }
+  #kpi-deceased {
+    color: rgb(54,72,79);
+  }
+  #kpi-critical {
+    color:  rgb(114,4,5);
+  }
+  #kpi-tested {
+    color: rgb(164,173,192);
+  }
+  #kpi-active {
+    color: rgb(223,14,31);
+  }
+  
+  
+  table {
+    text-align: center;
+    width: 100%;
+    border-spacing: 0px 10px;
+  }
+
+  .kpi-metrics {
+    font-size: 28px;
+   font-weight: 800;
+  }
+
+  .kpi-labels {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+#map-container {
+  width: 100%;
+  height: 400px;
+  background: #cad2d3;
+  max-width: 650px;
+  margin: 0px auto;
+  border-radius: 6px;
+}
+
+#map-legend {
+  padding-top: 0px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > div {
+    display: inline-block;
+  }
+  
+  span.one {
+    color: #fdeacb;
+  }
+  
+  span.two {
+    color: #fb9b7f;
+  }
+
+  span.three {
+    color: #f44336;
+  }
+
+  span.four {
+    color: #ba000d;
+  }
+}
+
+#trend-chart-container, #daily-increase-container {
+  //padding: 0px 10px;
+  
+  path.c3-line {
+    stroke-width: 2px;
+  }
+  line.c3-xgrid, line.c3-ygrid {
+    stroke-dasharray: 0 0;
+    stroke: #f0f0f0 !important;
+  }
+}
+
+#prefectures-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px;
+  font-size: 14px;
+
+  tr:nth-child(even) {
+    background-color: rgb(244,247,248);
+  }
+  th {
+    text-align: left;
+    font-size: 12px;
+  }
+  td {
+    padding: 5px 0px;
+  }
+  td:first-child {
+    padding: 5px;
+  }
+  .totals {
+    font-weight: bold;
+  }
+  .loading td {
+    text-align: center;
+    padding: 30px 0px;
+  }
+}
+
+#helpful-links {
+  li {
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
+}
+
+footer {
+  line-height: 34px;
+  a, a:active {
+    color: #1976d2 !important;
+  }
+}
+
+// Loading Icon
+.lds-dual-ring {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 4px solid #f44336;
+  border-color: #f44336 transparent #f44336 transparent;
+  animation: lds-dual-ring 1.6s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+body.embed {
+  .embed-hide { display: none; }
+  .embed-show { display: block; }
+  span.embed-show { display: inline; }
+}
