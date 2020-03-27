@@ -133,17 +133,19 @@ function drawMap() {
   map = new mapboxgl.Map({
     container: 'map-container',
     style: 'mapbox://styles/mapbox/light-v10',
-    zoom: 4,
+    zoom: 6.5,
     minZoom: 3.5,
     maxZoom: 7,
     center: {
-      lng: 139.11792973051274,
-      lat: 38.52245616545571
+      lng: 77,
+      lat: 10
     },
+    /*
     maxBounds: [
       {lat: 12.118318014416644, lng: 100.01240618330542}, // SW
       {lat: 59.34721256263214, lng: 175.3273570446982} // NE
     ]
+    */
   })
 
   map.dragRotate.disable()
@@ -436,7 +438,7 @@ function drawMapPrefectures(pageDraws) {
   // Start the Mapbox search expression
   let prefecturePaint = [
     'match',
-    ['get', 'NAME_1'],
+    ['get', 'DISTRICT'],
   ]
 
   // Go through all prefectures looking for cases
@@ -446,13 +448,13 @@ function drawMapPrefectures(pageDraws) {
     if(cases > 0){
       prefecturePaint.push(prefecture.prefecture)
       
-      if(cases <= 50){
+      if(cases <= 1){
         // 1-50 cases
         prefecturePaint.push('rgb(253,234,203)')
-      }else if(cases <= 100){
+      }else if(cases <= 5){
         // 51-100 cases
         prefecturePaint.push('rgb(251,155,127)')
-      }else if(cases <= 200){
+      }else if(cases <= 10){
         // 101-200 cases
         prefecturePaint.push('rgb(244,67,54)')
       }else{
