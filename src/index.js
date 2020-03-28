@@ -369,7 +369,7 @@ function drawPrefectureTable(prefectures, totals) {
 
   let totalStr = 'Total'
   if(LANG == 'ja'){
-    totalStr = '計'
+    totalStr = 'ആകെ '
   }
 
   dataTableFoot.innerHTML = "<tr class='totals'><td>" + totalStr + "</td><td>" + totals.confirmed + "</td><td>" + totals.recovered + "</td><td>" + totals.deceased + "</td></tr>"
