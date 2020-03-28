@@ -134,16 +134,16 @@ function drawMap() {
     container: 'map-container',
     style: 'mapbox://styles/mapbox/light-v10',
     zoom: 6.5,
-    minZoom: 3.5,
-    maxZoom: 7,
+    minZoom: 6.5,
+    maxZoom: 6.5,
     center: {
       lng: 76.2926027,
       lat: 10.6321557
     },
     /*
     maxBounds: [
-      {lat: 12.118318014416644, lng: 100.01240618330542}, // SW
-      {lat: 59.34721256263214, lng: 175.3273570446982} // NE
+      {lat: 14.118318014416644, lng: 74.01240618330542}, // SW
+      {lat: 14.34721256263214, lng: 78.3273570446982} // NE
     ]
     */
   })
