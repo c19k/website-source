@@ -22,7 +22,7 @@ const COLOR_DECEASED = 'rgb(55,71,79)'
 const COLOR_TESTED = 'rgb(164,173,192)'
 const COLOR_INCREASE = 'rgb(163,172,191)'
 const PAGE_TITLE = 'Coronavirus Disease (COVID-19) Kerala Tracker'
-let LANG = 'ja'
+let LANG = 'en'
 
 
 // Global vars
