@@ -13,7 +13,7 @@ import * as c3 from 'c3'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw'
 const PREFECTURE_JSON_PATH = 'static/prefectures.geojson'
-const JSON_PATH = 'https://covid19-kerala.s3.ap-south-1.amazonaws.com/data.json'
+const JSON_PATH = 'https://data.covid19kerala.info/summary/latest.json'
 const TIME_FORMAT = 'YYYY-MM-DD'
 const COLOR_ACTIVE = 'rgb(223,14,31)'
 const COLOR_CONFIRMED = 'rgb(244,67,54)'
