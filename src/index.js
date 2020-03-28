@@ -137,8 +137,8 @@ function drawMap() {
     minZoom: 3.5,
     maxZoom: 7,
     center: {
-      lng: 77,
-      lat: 10
+      lng: 76.2926027,
+      lat: 10.6321557
     },
     /*
     maxBounds: [
