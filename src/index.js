@@ -539,7 +539,7 @@ function initDataTranslate() {
       // Update the map
       map.getStyle().layers.forEach(function(thisLayer){
         if(thisLayer.type == 'symbol'){
-          map.setLayoutProperty(thisLayer.id, 'text-field', ['get','name_' + LANG])
+          map.setLayoutProperty(thisLayer.id, 'text-field', ['get','name_' + 'en'])
         }
       })
   
