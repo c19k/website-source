@@ -125,6 +125,7 @@ function calculateTotals(daily) {
     let latest = {}
     let dayBefore = {} 
     let twoDaysBefore = {}
+    // console.log(daily.length)
     if (daily.length > 2) {
       twoDaysBefore = daily[daily.length - 3]
     } 
@@ -142,6 +143,10 @@ function calculateTotals(daily) {
 
     if (totalsDiff[totalKey] <= 0 && twoDaysBefore && twoDaysBefore[rowKey]) {
       totalsDiff[totalKey] = latest[rowKey] - twoDaysBefore[rowKey]
+    }
+
+    if (rowKey == "deceasedCumulative" && totals[totalKey] == 0){
+      totals[totalKey] = 1
     }
   }
 
