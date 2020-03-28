@@ -11,7 +11,7 @@ import * as d3 from 'd3'
 import * as c3 from 'c3'
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicmV1c3RsZSIsImEiOiJjazZtaHE4ZnkwMG9iM3BxYnFmaDgxbzQ0In0.nOiHGcSCRNa9MD9WxLIm7g'
+mapboxgl.accessToken = 'pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGFocmx1cTAyazIzZW0zaGYxMXFocnoifQ.6dJz9z7wUxh5RHOmO39B9w'
 const PREFECTURE_JSON_PATH = 'static/prefectures.geojson'
 const JSON_PATH = 'https://covid19-kerala.s3.ap-south-1.amazonaws.com/data.json'
 const TIME_FORMAT = 'YYYY-MM-DD'
