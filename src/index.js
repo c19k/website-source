@@ -172,7 +172,7 @@ function drawMap() {
     center: {
       lng: 76.2926027,
       lat: 10.6321557
-    }, interactive: false
+    }, interactive: false, zoomControl: false
     /* maxBounds: [
       {lat: 14.118318014416644, lng: 74.01240618330542}, // SW
       {lat: 14.34721256263214, lng: 78.3273570446982} // NE
@@ -184,7 +184,7 @@ function drawMap() {
   map.scrollZoom.disable()
   map.addControl(new mapboxgl.NavigationControl({
     showCompass: false,
-    showZoom: true
+    showZoom: false, zoomControl: false
   }))
 }
 
