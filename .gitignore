@@ -1,3 +1,6 @@
+# Ignoring Docs, and a suitable docs repo should be cloned in here.
+docs
+
 # Logs
 logs
 *.log
