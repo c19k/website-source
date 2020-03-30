@@ -992,8 +992,9 @@ function drawLastUpdated(lastUpdated) {
 
   // TODO we should be parsing the date, but I
   // don't trust the user input on the sheet
+  // console.log(lastUpdated.slice(0, -4))
   const lastUpdatedMoment = moment(
-    lastUpdated.slice(0, -4),
+    lastUpdated, //lastUpdated.slice(0, -4)
     "YYYY-MM-DD HH:mm"
   ).utcOffset(330, true); // IST offset
   if (!lastUpdatedMoment.isValid()) {
