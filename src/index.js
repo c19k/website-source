@@ -480,7 +480,7 @@ function drawTrendChart(sheetTrend) {
               index === cols.Date.length - 2
                 ? LANG === "en"
                   ? "Provisional"
-                  : "അന്തിമല്"
+                  : "ഇതേവരെ"
                 : ""
             }`;
           } else {
@@ -600,7 +600,7 @@ function drawDailyIncreaseChart(sheetTrend) {
             index === cols.Date.length - 2
               ? LANG === "en"
                 ? "Provisional"
-                : "അന്തിമമല്"
+                : "ഇതേവരെ"
               : ""
           }`;
         },
@@ -1116,7 +1116,7 @@ function initDataTranslate() {
         if (thisLayer.type == "symbol") {
           map.setLayoutProperty(thisLayer.id, "text-field", [
             "get",
-            "name_" + "EN",
+            "name_" + "en",
           ]);
         }
       });
