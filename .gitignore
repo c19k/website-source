@@ -1,6 +1,16 @@
 # Ignoring Docs, and a suitable docs repo should be cloned in here.
 docs
 
+# Gitignore from original project
+.DS_Store
+_site/
+*.sqlite3
+
+node_modules
+.jekyll-cache/
+
+.eslintcache
+
 # Logs
 logs
 *.log

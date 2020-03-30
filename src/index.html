@@ -107,7 +107,7 @@
     <div><span class="four">▉</span> <span data-ja="50+ രോഗികൾ">50+ cases</span></div>
   </section>
   <div id="map-container"></div>
-  <h5 class="embed-show">powered by <a href="https://covid19Kerala.info" target="_blank">Covid19Kerala.info</a></h5>
+  <h5 class="embed-show footnote">powered by <a href="https://covid19Kerala.info" target="_blank">Covid19Kerala.info</a></h5>
 
   <section id="trend-chart-container" class="embed-hide">
     <h4 data-ja="രോഗം പരക്കുന്നതിന്റെ ഗതി ">Outbreak Spread Trend</h4>
@@ -122,16 +122,25 @@
         <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
-  
+
+  <section id="prefecture-trajectory-container" class="embed-hide">
+    <h4 data-ja="ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന റ്റ്രജക്റ്ററി (10 അധികം രോഗികൾ)">Confirmed Case Trajectories by Disctricts (> 10 Cases)</h4>
+    <div id="prefecture-trajectory">
+        <div class="text-center"><div class="lds-dual-ring"></div></div>
+    </div>
+  </section>
+
   <section class="embed-hide">
     <h4 data-ja="ജില്ല തിരിച്ചുള്ള വിവരം ">District Data</h4>
     <table id="prefectures-table">
       <thead>
         <tr>
-          <th data-ja="ജില്ലാ">District</th>
-          <th data-ja="കേസ്">Cases</th>
-          <th data-ja="സുഖപ്പെട്ടവർ">Recovered</th>
-          <th data-ja="ജീവഹാനി">Deaths</th>
+          <th data-ja="ജില്ല"class="prefecture">District</th>
+		<th class="trend"><div id="sparkline-chart"></div>
+          </th>
+          <th data-ja="കേസ്" class="count">Confirmed</th>
+          <th data-ja="സുഖപ്പെട്ടവർ" class="count">Recovered</th>
+          <th data-ja="ജീവഹാനി"class="count">Deaths</th>
         </tr>
       </thead>
       <tbody>
