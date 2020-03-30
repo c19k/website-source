@@ -5,7 +5,7 @@ This project is a clone of [https://covid19japan.com/](https://covid19japan.com/
 
 Team CODD-K
 ----
- * Dr. Jijo P. U.
+ * Dr. Jijo P. Ulahannan
  * Nishad Thalhath
  * Jeevan U.
  * Nikhil Narayanan
@@ -15,3 +15,5 @@ Team CODD-K
  * Sooraj P Suresh
  * Sreekanth C
  * Dr. A.V. Pradeep
+ * Musfir
+ * Jaleel K.
