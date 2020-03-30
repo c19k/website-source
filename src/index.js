@@ -994,8 +994,8 @@ function drawLastUpdated(lastUpdated) {
   // don't trust the user input on the sheet
   const lastUpdatedMoment = moment(
     lastUpdated.slice(0, -4),
-    "MMM DD YYYY, HH:mm"
-  ).utcOffset(9, true); // JST offset
+    "YYYY-MM-DD HH:mm"
+  ).utcOffset(330, true); // IST offset
   if (!lastUpdatedMoment.isValid()) {
     // Fall back to raw value on failed parse
     display.textContent = lastUpdated;
