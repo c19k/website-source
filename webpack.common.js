@@ -21,7 +21,7 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*', '!CNAME', '!.git', '!.git/**/*', '!.gitignore', '!LICENSE', '!README.md']}),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
@@ -33,9 +33,9 @@ module.exports = {
       template: 'src/index.html',
       chunks: ['index']
     }),
-    new CopyPlugin([
+    /* new CopyPlugin([
       { from: 'CNAME', to: '.', flatten: false }
-    ]),
+    ]), */
     new CopyPlugin([
       { from: 'static/**', to: '.', flatten: false }
     ]),
