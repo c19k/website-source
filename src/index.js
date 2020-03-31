@@ -316,7 +316,7 @@ function calculateTotals(daily) {
     }
 
     if (rowKey == "deceasedCumulative" && totals[totalKey] == 0) {
-      totals[totalKey] = 1;
+      totals[totalKey] = 2;
     }
   }
 
