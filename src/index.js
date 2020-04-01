@@ -480,7 +480,7 @@ function drawTrendChart(sheetTrend) {
               index === cols.Date.length - 2
                 ? LANG === "en"
                   ? "Provisional"
-                  : "ഇതേവരെ"
+                  : "അന്തിമമല്ല"
                 : ""
             }`;
           } else {
@@ -600,7 +600,7 @@ function drawDailyIncreaseChart(sheetTrend) {
             index === cols.Date.length - 2
               ? LANG === "en"
                 ? "Provisional"
-                : "ഇതേവരെ"
+                : "അന്തിമമല്ല"
               : ""
           }`;
         },
