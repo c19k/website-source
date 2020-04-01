@@ -315,7 +315,7 @@ function calculateTotals(daily) {
       totalsDiff[totalKey] = latest[rowKey] - twoDaysBefore[rowKey];
     }
 
-    if (rowKey == "deceasedCumulative" && totals[totalKey] == 0) {
+    if (rowKey == "deceasedCumulative" && totals[totalKey] == 1) {
       totals[totalKey] = 2;
     }
   }
