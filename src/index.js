@@ -360,6 +360,29 @@ function drawMap() {
       zoomControl: false,
     })
   );
+
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+  });
+
+  map.on("mousemove", function (e) {
+    const feature = map.queryRenderedFeatures(e.point, {
+      layers: ["prefecture-layer"],
+    })[0];
+    if (feature) {
+      const thisDistrict = ddb.prefectures.filter((p) => {
+        return p.name === feature.properties.DISTRICT;
+      });
+      const confirmed = thisDistrict[0].confirmed;
+      const deaths = thisDistrict[0].deaths;
+      const recovered = thisDistrict[0].recovered;
+      const html = `<h3>${feature.properties.DISTRICT}</h3>Confirmed: ${confirmed}<br />Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
+    } else {
+      popup.remove();
+    }
+  });
 }
 
 function getRGBColor(color) {
