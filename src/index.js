@@ -913,7 +913,7 @@ function drawPrefectureTable(prefectures, totals) {
         <td class="trend"></td>
         <td class="count">${totals.confirmed}</td>
         <td class="count">${totals.recovered}</td>
-        <td class="count">${totals.deceased}</td> 
+        <td class="count">${totals.deceased}</td>
         </tr>`;
 }
 
@@ -1059,15 +1059,18 @@ function drawMapPrefectures(pageDraws) {
       if (cases <= 10) {
         // 1-10 cases
         prefecturePaint.push("rgb(253,234,203)");
-      } else if (cases <= 25) {
+      } else if (cases <= 50) {
         // 11-25 cases
         prefecturePaint.push("rgb(251,155,127)");
-      } else if (cases <= 50) {
+      } else if (cases <= 75) {
         // 26-50 cases
         prefecturePaint.push("rgb(244,67,54)");
+      } else if (cases <= 100) {
+        // 26-50 cases
+        prefecturePaint.push("rgb(186,0,13)");
       } else {
         // 50+ cases
-        prefecturePaint.push("rgb(186,0,13)");
+        prefecturePaint.push("rgb(102,0,0)");
       }
     }
   });
