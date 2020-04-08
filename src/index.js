@@ -1060,17 +1060,14 @@ function drawMapPrefectures(pageDraws) {
         // 1-10 cases
         prefecturePaint.push("rgb(253,234,203)");
       } else if (cases <= 50) {
-        // 11-25 cases
+        // 11-50 cases
         prefecturePaint.push("rgb(251,155,127)");
-      } else if (cases <= 75) {
-        // 26-50 cases
-        prefecturePaint.push("rgb(244,67,54)");
       } else if (cases <= 100) {
-        // 26-50 cases
-        prefecturePaint.push("rgb(186,0,13)");
+        // 50-100 cases
+        prefecturePaint.push("rgb(244,67,54)");
       } else {
-        // 50+ cases
-        prefecturePaint.push("rgb(102,0,0)");
+        // 100+ cases
+        prefecturePaint.push("rgb(186,0,13)");
       }
     }
   });
