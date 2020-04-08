@@ -645,15 +645,23 @@ function drawPrefectureTrend(elementId, seriesData, maxConfirmedIncrease) {
   var options = {
     series: [{ data: last30days }],
     chart: {
-      type: "bar",
+      type: "area",
       height: 30,
       sparkline: { enabled: true },
       animations: { enabled: false },
     },
     colors: [COLOR_CONFIRMED],
-    plotOptions: { bar: { columnWidth: "95%" } },
+    /*plotOptions: { bar: { columnWidth: "95%" } },*/
     xaxis: { crosshairs: { width: 1 } },
     yaxis: { max: yMax },
+    stroke: {
+      show: true,
+      curve: "smooth",
+      lineCap: "butt",
+      colors: undefined,
+      width: 0.75,
+      dashArray: 0,
+    },
     tooltip: {
       fixed: { enabled: false },
       x: { show: false },
