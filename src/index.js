@@ -1095,6 +1095,34 @@ function drawAgeTrendChart(age) {
   chart.render();
 }
 
+function drawGenderChart(gender) {
+  var options = {
+    series: [gender.female, gender.male, gender.unspecified],
+    colors: ["#57a998", "#c8e6bc", "#85cb9c"],
+    chart: {
+      width: 400,
+      type: "pie",
+    },
+    labels: ["Female", "Male", "Unspecified"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 400,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
+  };
+
+  var chart = new ApexCharts(document.querySelector("#gender-chart"), options);
+  chart.render();
+}
+
 /**
  * @param {string} lastUpdated - MMM DD YYYY, HH:mm JST (e.g. Mar 29 2020, 15:53 JST)
  */
@@ -1295,6 +1323,7 @@ function loadDataOnPage() {
     ddb.lastUpdated = jsonData.updated;
 
     ddb.age = jsonData.age;
+    ddb.gender = jsonData.gender;
 
     drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
@@ -1306,6 +1335,7 @@ function loadDataOnPage() {
       drawDailyIncreaseChart(ddb.trend);
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
+      drawGenderChart(ddb.gender);
     }
 
     whenMapAndDataReady();
