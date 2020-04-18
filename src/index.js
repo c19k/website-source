@@ -841,6 +841,8 @@ function drawPrefectureTable(prefectures, totals) {
     pref.recovered = pref.recovered ? parseInt(pref.recovered) : 0;
     // TODO change to deceased
     pref.deceased = pref.deaths ? parseInt(pref.deaths) : 0;
+    pref.active =
+      pref.confirmed - ((pref.recovered || 0) + (pref.deceased || 0));
   });
 
   // Iterate through and render table rows
