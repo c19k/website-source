@@ -4,8 +4,9 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-  <title>Kerala COVID-19 Coronavirus Tracker</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800&display=swap" rel="stylesheet">
+  <title>Kerala COVID-19 Tracker</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700,700i,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet"> 
 
   <link
     rel="icon"
@@ -116,6 +117,19 @@
     </div>
   </section>
 
+    <section id="patients—age-breakup-container" class="embed-hide">
+    <h4 data-ja="രോഗികൾ—പ്രായാടിസ്ഥാനത്തിൽ">Patients—Age breakup</h4>
+    <div id="age-trend-chart"> </div>
+  </section>
+
+  <section id="patients—gender-breakup-container" class="embed-hide">
+    <h4 data-ja="രോഗികൾ—ലിംഗാടിസ്ഥാനത്തിൽ">Patients—Gender breakup</h4>
+    <div>
+    <img src="https://plotly.com/~srkc95/52.png" alt="Patients—Gender breakup" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plotly.com/404.png';" />
+    <script data-plotly="srkc95:52" src="https://plotly.com/embed.js" async></script>
+</div>
+</section>
+
   <section id="prefecture-trajectory-container" class="embed-hide">
     <h4 data-ja="ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന ട്രാജക്ടറി (10 രോഗികളിലധികം )">Confirmed Case Trajectories by Districts (> 10 Cases)</h4>
     <div id="prefecture-trajectory">
@@ -158,25 +172,6 @@
   </section>
 
   <section id="helpful-links" class="embed-hide">
-    <a name="links"></a>
-    <h4 data-ja="സഹായകരമായ ലിങ്കുകൾ">Helpful Links</h4>
-    <ul>
-
-
-      <li>
-        <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">
-          WHO COVID-19 Information Page
-        </a>
-      </li>
-      <li> <a href="http://dhs.kerala.gov.in/public-health-2019-n-corona-virus/"> Kerala Fights Corona </a> </li>
-      <li> <a href="https://nhm.gov.in/"> India Fights Corona </a> </li>
-      <li> <a href="https://www.unicef.org/coronavirus/covid-19">Unicef for Every Child </a> </li>
-      <li><a href="https://www.covid19india.org/" target="_blank">CoVID-19 India Project</a></li>
-      <li><a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6" target="_blank">COVID-19 Global Cases by CSSE at Johns Hopkins University</a></li>
-
-    </ul>
-
-    <br/>
     <h4 data-ja="പ്രാഥമിക ഡാറ്റ ഉറവിടങ്ങൾ">Primary Data Sources</h4>
     <ul>
       <li><a href="https://www.mohfw.gov.in/">Ministry of Health and Family Welfare, Govt of India</a></li>
@@ -191,7 +186,7 @@
     </p>
 
     <p>
-       Maintained by Volunteers at <a href="https://team.covid19kerala.info/" target="_blank"></a>CODD-K Team. Supported by <a href="https://www.gck.ac.in/" target="_blank">Government College Kasaragod</a>.
+       Maintained by Volunteers at <a href="https://team.covid19kerala.info/" target="_blank">CODD-K Team</a>. Supported by <a href="https://www.gck.ac.in/" target="_blank">Government College Kasaragod</a>.
     </p>
 
     <p>

@@ -997,6 +997,104 @@ function drawKpis(totals, totalsDiff) {
   );
 }
 
+function drawAgeTrendChart(age) {
+  let female = [];
+  let male = [];
+  let ageGroups = [];
+  var totalUnspecified;
+  for (let ageGroup of age) {
+    if (ageGroup.ageGroup != "Unspecified") {
+      female.push(ageGroup.female);
+      male.push(ageGroup.male);
+      ageGroups.push(ageGroup.ageGroup);
+    }
+
+    if (ageGroup.ageGroup == "Unspecified") {
+      totalUnspecified = ageGroup.total;
+    }
+  }
+
+  var options = {
+    series: [
+      {
+        name: "Male",
+        data: male,
+      },
+      {
+        name: "Female",
+        data: female,
+      },
+    ],
+    colors: ["#f5935d", "#a58e9e"],
+    chart: {
+      type: "bar",
+      height: 400,
+      stacked: true,
+      toolbar: {
+        show: false,
+      },
+
+      zoom: {
+        enabled: false,
+      },
+      download: false,
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+      },
+    },
+    stroke: {
+      width: 0.5,
+      colors: ["#fff"],
+    },
+    /*title: {
+          text: 'Age Group'
+        },*/
+    subtitle: {
+      text: "Avaiting details for " + totalUnspecified + " patients",
+      align: "right",
+    },
+    xaxis: {
+      categories: ageGroups,
+      labels: {
+        formatter: function (val) {
+          return val;
+        },
+      },
+      title: {
+        text: "Age Group",
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Number of patients",
+      },
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val;
+        },
+      },
+    },
+    fill: {
+      opacity: 1,
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "left",
+      offsetX: 40,
+    },
+  };
+
+  var chart = new ApexCharts(
+    document.querySelector("#age-trend-chart"),
+    options
+  );
+  chart.render();
+}
+
 /**
  * @param {string} lastUpdated - MMM DD YYYY, HH:mm JST (e.g. Mar 29 2020, 15:53 JST)
  */
@@ -1008,7 +1106,7 @@ function drawLastUpdated(lastUpdated) {
     return;
   }
 
-  // TODO we should be parsing the date, but I
+  // TODO we should be parsing the datlastUpdatede, but I
   // don't trust the user input on the sheet
   // console.log(lastUpdated.slice(0, -4))
   const lastUpdatedMoment = moment(
@@ -1148,6 +1246,8 @@ function initDataTranslate() {
       e.preventDefault();
       LANG = e.target.dataset.langPicker;
 
+      document.documentElement.setAttribute("lang", LANG);
+
       // Toggle the html lang tags
       parseNode(function (el) {
         if (!el.dataset[LANG]) return;
@@ -1194,6 +1294,8 @@ function loadDataOnPage() {
     ddb.trend = jsonData.daily;
     ddb.lastUpdated = jsonData.updated;
 
+    ddb.age = jsonData.age;
+
     drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
       drawLastUpdated(ddb.lastUpdated);
@@ -1203,6 +1305,7 @@ function loadDataOnPage() {
       drawTrendChart(ddb.trend);
       drawDailyIncreaseChart(ddb.trend);
       drawPrefectureTrajectoryChart(ddb.prefectures);
+      drawAgeTrendChart(ddb.age);
     }
 
     whenMapAndDataReady();
