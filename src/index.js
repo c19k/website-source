@@ -1148,6 +1148,8 @@ function initDataTranslate() {
       e.preventDefault();
       LANG = e.target.dataset.langPicker;
 
+      document.documentElement.setAttribute("lang", LANG);
+
       // Toggle the html lang tags
       parseNode(function (el) {
         if (!el.dataset[LANG]) return;
