@@ -1340,7 +1340,7 @@ function loadDataOnPage() {
 
     drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
-      /*      drawLastUpdated(ddb.lastUpdated);
+      drawLastUpdated(ddb.lastUpdated);
       drawPageTitleCount(ddb.totals.confirmed);
       drawPrefectureTable(ddb.prefectures, ddb.totals);
       drawTravelRestrictions();
@@ -1348,7 +1348,7 @@ function loadDataOnPage() {
       drawDailyIncreaseChart(ddb.trend);
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
-      drawGenderChart(ddb.gender);*/
+      drawGenderChart(ddb.gender);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
     }
 
