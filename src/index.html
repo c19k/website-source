@@ -117,7 +117,14 @@
     </div>
   </section>
 
-    <section id="patients—age-breakup-container" class="embed-hide">
+  <section id="testing-trend-container" class="embed-hide">
+    <h4 data-ja="പരിശോധന ഗതി (30 ദിവസങ്ങൾ)">Testing Trend (30 Days)</h4>
+    <div id="testing-trend-chart">
+        <div class="text-center"><div class="lds-dual-ring"></div></div>
+    </div>
+  </section>
+
+  <section id="patients—age-breakup-container" class="embed-hide">
     <h4 data-ja="രോഗികൾ—പ്രായാടിസ്ഥാനത്തിൽ">Patients—Age breakup</h4>
     <div id="age-trend-chart"> </div>
   </section>
@@ -126,13 +133,6 @@
     <h4 data-ja="രോഗികൾ—ലിംഗാടിസ്ഥാനത്തിൽ">Patients—Gender breakup</h4>
     <div id="gender-chart"> </div>
 </section>
-
-<section id="testing-trend-container" class="embed-hide">
-    <h4><!-- data-i18n="new-cases-by-day" -->Testing Trend</h4>
-    <div id="testing-trend-chart">
-        <div class="text-center"><div class="lds-dual-ring"></div></div>
-    </div>
-  </section>
 
   <section id="prefecture-trajectory-container" class="embed-hide">
     <h4 data-ja="ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന ട്രാജക്ടറി (10 രോഗികളിലധികം )">Confirmed Case Trajectories by Districts (> 10 Cases)</h4>
@@ -147,9 +147,8 @@
       <thead>
         <tr>
           <th data-ja="ജില്ല"class="prefecture">District</th>
-		<th class="trend"><div id="sparkline-chart"></div>
-          </th>
-          <th data-ja="കേസ്" class="count">Confirmed</th>
+		      <th class="trend" data-ja="ഗതി">Trend</th>
+          <th data-ja="സ്ഥിരീകരണം" class="count">Confirmed</th>
           <th data-ja="സുഖപ്പെട്ടവർ" class="count">Recovered</th>
           <th data-ja="ജീവഹാനി"class="count">Deaths</th>
           <th data-ja="സജീവം"class="count">Active</th>
