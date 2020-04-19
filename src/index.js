@@ -10,6 +10,11 @@ import * as c3 from "c3";
 import ApexCharts from "apexcharts";
 import moment from "moment";
 
+import drawTestingTrendChart from "./components/TestingTrendChart";
+
+// Keep reference to current chart in order to clean up when redrawing.
+let testingTrendChart = null;
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
 const PREFECTURE_JSON_PATH = "static/prefectures.geojson";
@@ -1344,6 +1349,7 @@ function loadDataOnPage() {
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
       drawGenderChart(ddb.gender);
+      testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
     }
 
     whenMapAndDataReady();

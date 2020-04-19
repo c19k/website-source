@@ -8,33 +8,44 @@
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700,700i,800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet"> 
 
-  <link
-    rel="icon"
-    type="image/png"
-    href="/static/favicon.png"
-  />
+  
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png?v=QEG2dqq48P">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png?v=QEG2dqq48P">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png?v=QEG2dqq48P">
+  <link rel="manifest" href="/static/icons/site.webmanifest?v=QEG2dqq48P">
+  <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg?v=QEG2dqq48P" color="#5bbad5">
+  <link rel="shortcut icon" href="/static/icons/favicon.ico?v=QEG2dqq48P">
+  <meta name="msapplication-TileColor" content="#8ecafb">
+  <meta name="msapplication-config" content="/static/icons/browserconfig.xml?v=QEG2dqq48P">
+  <meta name="theme-color" content="#8ecafb">
+
+
+
+
   <meta
-    name="description"
-    content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
+  name="description"
+  content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
   />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://covid19kerala.info/" />
   <meta name="twitter:title" content="Kerala COVID-19 Coronavirus Tracker" />
 
   <meta
-    name="twitter:description"
-    content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
+  name="twitter:description"
+  content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
   />
   <meta property="og:title" content="Kerala COVID-19 Coronavirus Tracker" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://covid19Kerala.info/" />
   <meta
-    property="og:image"
-    content="https://covid19Kerala.info/static/map.jpg"
+  property="og:image"
+  content="https://covid19Kerala.info/static/map.jpg"
   />
   <meta
-    property="og:description"
-    content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
+  property="og:description"
+  content="Live updates of the Coronavirus COVID-19 outbreak in Kerala"
   />
 
 </head>
@@ -106,18 +117,25 @@
   <section id="trend-chart-container" class="embed-hide">
     <h4 data-ja="രോഗം പരക്കുന്നതിന്റെ ഗതി ">Outbreak Spread Trend</h4>
     <div id="trend-chart">
-        <div class="text-center"><div class="lds-dual-ring"></div></div>
+      <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
 
   <section id="daily-increase-container" class="embed-hide">
     <h4 data-ja="ഓരോ ദിവസത്തെയും പുതിയ രോഗികൾ">New Cases By Day</h4>
     <div id="daily-increase-chart">
-        <div class="text-center"><div class="lds-dual-ring"></div></div>
+      <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
 
-    <section id="patients—age-breakup-container" class="embed-hide">
+  <section id="testing-trend-container" class="embed-hide">
+    <h4 data-ja="പരിശോധന ഗതി (30 ദിവസങ്ങൾ)">Testing Trend (30 Days)</h4>
+    <div id="testing-trend-chart">
+      <div class="text-center"><div class="lds-dual-ring"></div></div>
+    </div>
+  </section>
+
+  <section id="patients—age-breakup-container" class="embed-hide">
     <h4 data-ja="രോഗികൾ—പ്രായാടിസ്ഥാനത്തിൽ">Patients—Age breakup</h4>
     <div id="age-trend-chart"> </div>
   </section>
@@ -125,12 +143,12 @@
   <section id="patients—gender-breakup-container" class="embed-hide">
     <h4 data-ja="രോഗികൾ—ലിംഗാടിസ്ഥാനത്തിൽ">Patients—Gender breakup</h4>
     <div id="gender-chart"> </div>
-</section>
+  </section>
 
   <section id="prefecture-trajectory-container" class="embed-hide">
     <h4 data-ja="ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന ട്രാജക്ടറി (10 രോഗികളിലധികം )">Confirmed Case Trajectories by Districts (> 10 Cases)</h4>
     <div id="prefecture-trajectory">
-        <div class="text-center"><div class="lds-dual-ring"></div></div>
+      <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
 
@@ -140,9 +158,8 @@
       <thead>
         <tr>
           <th data-ja="ജില്ല"class="prefecture">District</th>
-		<th class="trend"><div id="sparkline-chart"></div>
-          </th>
-          <th data-ja="കേസ്" class="count">Confirmed</th>
+          <th class="trend" data-ja="ഗതി">Trend</th>
+          <th data-ja="സ്ഥിരീകരണം" class="count">Confirmed</th>
           <th data-ja="സുഖപ്പെട്ടവർ" class="count">Recovered</th>
           <th data-ja="ജീവഹാനി"class="count">Deaths</th>
           <th data-ja="സജീവം"class="count">Active</th>
@@ -161,50 +178,42 @@
         View our <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQU9eLCMT0XwWnoxV_LkyCkxMcPYO7z7ULdODoUFgcdzp48pgGpGrVZFXvraXYvUioVRsQgQDU_pQyI/pubhtml" target="_blank">Live patient database</a>,
       </em>
       <em>
-         and give us your <a href="https://docs.google.com/forms/d/1DdNDQWkUHYjS07agK04hG0i5VrhvasHRWmBUT1ZxLUA/edit?usp=sharing" target="_blank">feedback and comments. </a>
-      </em>
-      <em>
-         Check our <a href="https://team.covid19kerala.info/faq">FAQ</a> for more information.
-      </em>
-    </div>
-  </section>
+       and give us your <a href="https://docs.google.com/forms/d/1DdNDQWkUHYjS07agK04hG0i5VrhvasHRWmBUT1ZxLUA/edit?usp=sharing" target="_blank">feedback and comments. </a>
+     </em>
+     <em>
+       Check our <a href="https://team.covid19kerala.info/faq">FAQ</a> for more information.
+     </em>
+   </div>
+ </section>
 
-  <section id="helpful-links" class="embed-hide">
-    <h4 data-ja="പ്രാഥമിക ഡാറ്റ ഉറവിടങ്ങൾ">Primary Data Sources</h4>
-    <ul>
-      <li><a href="https://www.mohfw.gov.in/">Ministry of Health and Family Welfare, Govt of India</a></li>
-      <li><a href="http://dhs.kerala.gov.in/">DHS – Directorate of Health Services, Govt of Kerala</a></li>
-    </ul>
-  </section>
+ <footer class="embed-hide">
 
-  <footer class="embed-hide">
+  <p>
+    Data is sourced from <a href="http://dhs.kerala.gov.in/"> Govt of Kerala Directorate of Health Services (DHS)</a> and various news outlets.
 
-    <p>
-      Contribute to <a href="https://github.com/c19k/website" target="_blank">this project on GitHub</a>. Also, give us your <a href="https://docs.google.com/forms/d/1DdNDQWkUHYjS07agK04hG0i5VrhvasHRWmBUT1ZxLUA/edit?usp=sharing" target="_blank">feedback and comments.</a>
-    </p>
+    Contribute to <a href="https://github.com/c19k/website" target="_blank">this project on GitHub</a>. Also, give us your <a href="https://docs.google.com/forms/d/1DdNDQWkUHYjS07agK04hG0i5VrhvasHRWmBUT1ZxLUA/edit?usp=sharing" target="_blank">feedback and comments.</a>
 
-    <p>
-       Maintained by Volunteers at <a href="https://team.covid19kerala.info/" target="_blank">CODD-K Team</a>. Supported by <a href="https://www.gck.ac.in/" target="_blank">Government College Kasaragod</a>.
-    </p>
+    Maintained by Volunteers at <a href="https://team.covid19kerala.info/" target="_blank">CODD-K Team</a>. Supported by <a href="https://www.gck.ac.in/" target="_blank">Government College Kasaragod</a>.
+  </p>
 
-    <p>
-      This project is <a href="https://github.com/c19k" target="_blank">maintained</a> and <a href="https://github.com/c19k/website" target="_blank">hosted</a> in <a href="https://github.com/" target="_blank">GitHub</a>. The dataset is managed with <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQU9eLCMT0XwWnoxV_LkyCkxMcPYO7z7ULdODoUFgcdzp48pgGpGrVZFXvraXYvUioVRsQgQDU_pQyI/pubhtml" target="_blank">Google Sheets</a>. <a href="https://github.com/geohacker/kerala" target="_blank">Kerala GeoJSON</a> is generously provided by <a href="https://github.com/geohacker" target="_blank">Sajjad Anwar</a>. Map is sponsored by the <a href="https://www.mapbox.com/community/" target="_blank">Mapbox Community team</a>.
-    </p>
+  <p class="note">
+    This project is <a href="https://github.com/c19k" target="_blank">maintained</a> and <a href="https://github.com/c19k/website" target="_blank">hosted</a> in <a href="https://github.com/" target="_blank">GitHub</a>. The dataset is managed with <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQU9eLCMT0XwWnoxV_LkyCkxMcPYO7z7ULdODoUFgcdzp48pgGpGrVZFXvraXYvUioVRsQgQDU_pQyI/pubhtml" target="_blank">Google Sheets</a>. <a href="https://github.com/geohacker/kerala" target="_blank">Kerala GeoJSON</a> is generously provided by <a href="https://github.com/geohacker" target="_blank">Sajjad Anwar</a>. Map is sponsored by the <a href="https://www.mapbox.com/community/" target="_blank">Mapbox Community team</a>.
+    
+    This project is adapted from <a href="https://covid19japan.com/" target="_blank">https://covid19japan.com/</a> under MIT license, built and maintained by <a href="https://twitter.com/reustle" target="_blank">Shane Reustle</a> (<a href="https://reustle.co/case-studies/covid19japan" target="_blank">Reustle K.K.</a>) and <a href="https://github.com/reustle/covid19japan/graphs/contributors" target="_blank">many other contributors</a>.
+    Original concept and design by <a href="https://jiahuizhou.design/" target="_blank">Jiahui Zhou</a>.
+  </p>
 
-    <p>
-      This project is cloned from <a href="https://covid19japan.com/" target="_blank">https://covid19japan.com/</a> under MIT license. Built and maintained by <a href="https://twitter.com/reustle" target="_blank">Shane Reustle</a> (<a href="https://reustle.co" target="_blank">Reustle K.K.</a>) and <a href="https://github.com/reustle/covid19japan/graphs/contributors" target="_blank">many other contributors</a>.
-      Original concept and design by <a href="https://jiahuizhou.design/" target="_blank">Jiahui Zhou</a>.
-    </p>
+  <div>
+    <img class="logo" src="static/codd-k_logo.png" alt="CODD-K">
+  </div>
 
-    <p><em>To maintain adaptability with the progress of the original project, some of the source code and data facets are kept as it is. It will be customized and localized in the coming days.</em></p>
+</footer>
 
-  </footer>
+<!-- JS -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet" />
 
-  <!-- JS -->
-  <script src="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet" />
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162158880-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
