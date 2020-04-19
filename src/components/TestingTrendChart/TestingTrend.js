@@ -7,6 +7,7 @@ import {
   COLOR_TESTED,
   COLOR_TESTED_DAILY,
   TIME_PERIOD,
+  COLOR_TESTED_TOTAL_GRAPH,
 } from "../../data/constants";
 
 const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
@@ -66,12 +67,22 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
   testingTrendChart = c3.generate({
     bindto: "#testing-trend-chart",
     data: {
-      color: (color, d) => {
+      /*color: (color, d) => {
         if (d && d.index === cols.Date.length - 2) {
           return COLOR_TESTED_DAILY;
         } else {
           return COLOR_TESTED;
         }
+      },*/
+      colors: {
+        "Tested Total": COLOR_TESTED_TOTAL_GRAPH,
+        "Tested Daily": (color, d) => {
+          if (d && d.index === cols.Date.length - 2) {
+            return COLOR_TESTED_DAILY;
+          } else {
+            return COLOR_TESTED;
+          }
+        },
       },
       columns: [cols.TestedDaily, cols.TestedTotal],
       type: "bar",
@@ -144,7 +155,8 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
       format: {
         value: (value, ratio, id, index) => {
           return `${value} ${
-            index === cols.Date.length - 2 ? i18next.t("provisional") : ""
+            // index === cols.Date.length - 2 ? i18next.t("provisional") : ""
+            index === cols.Date.length - 2 ? "provisional" : ""
           }`;
         },
       },
