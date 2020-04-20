@@ -1,3 +1,4 @@
+import * as d3 from "d3";
 import * as c3 from "c3";
 // import i18next from "i18next";
 import last from "lodash/last";
@@ -146,9 +147,14 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
           ],
         },
         */
+        label: "Tested Daily",
       },
       y2: {
         show: true,
+        label: "Tested Total",
+        tick: {
+          format: d3.format("~s"),
+        },
       },
     },
     tooltip: {
@@ -171,9 +177,6 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
     },
     legend: {
       hide: true,
-    },
-    padding: {
-      right: 24,
     },
   });
   return testingTrendChart;
