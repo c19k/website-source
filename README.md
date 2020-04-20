@@ -14,6 +14,8 @@ This project is a clone of [https://covid19japan.com/](https://covid19japan.com/
 - Sooraj P Suresh
 - Sreekanth C
 - Dr. A.V. Pradeep
+- Musfir
+- Jaleel K.
 
 ## Contributing Code
 
