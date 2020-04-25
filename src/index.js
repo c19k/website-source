@@ -287,6 +287,10 @@ function calculateTotals(daily) {
     deceased: 0,
     critical: 0,
     tested: 0,
+    observation: 0,
+    homeObservation: 0,
+    hosptilised: 0,
+    active: 0,
   };
   let totalsDiff = {
     confirmed: 1,
@@ -294,6 +298,10 @@ function calculateTotals(daily) {
     deceased: 1,
     critical: 1,
     tested: 1,
+    observation: 0,
+    homeObservation: 0,
+    hosptilised: 0,
+    active: 0,
   };
 
   // If there is an empty cell, fall back to the previous row
@@ -330,6 +338,10 @@ function calculateTotals(daily) {
   pullLatestSumAndDiff("confirmedCumulative", "confirmed");
   pullLatestSumAndDiff("recoveredCumulative", "recovered");
   pullLatestSumAndDiff("deceasedCumulative", "deceased");
+  pullLatestSumAndDiff("observationCumulative", "observation");
+  pullLatestSumAndDiff("homeObservationCumulative", "homeObservation");
+  pullLatestSumAndDiff("hosptilisedCumulative", "hosptilised");
+  pullLatestSumAndDiff("activeCumulative", "active");
 
   return [totals, totalsDiff];
 }
@@ -379,10 +391,15 @@ function drawMap() {
       const thisDistrict = ddb.prefectures.filter((p) => {
         return p.name === feature.properties.DISTRICT;
       });
+      const active = parseInt(
+        (thisDistrict[0].active =
+          thisDistrict[0].confirmed -
+          ((thisDistrict[0].recovered || 0) + (thisDistrict[0].deaths || 0)))
+      );
       const confirmed = thisDistrict[0].confirmed;
       const deaths = thisDistrict[0].deaths;
       const recovered = thisDistrict[0].recovered;
-      const html = `<h3>${feature.properties.DISTRICT}</h3>Confirmed: ${confirmed}<br />Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      const html = `<h3>${feature.properties.DISTRICT}</h3><strong>Active: ${active}</strong><br />Confirmed: ${confirmed}<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
       popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
     } else {
       popup.remove();
@@ -999,8 +1016,10 @@ function drawKpis(totals, totalsDiff) {
   setKpiDiff("recovered", totalsDiff.recovered);
   setKpi("deceased", totals.deceased);
   setKpiDiff("deceased", totalsDiff.deceased);
-  setKpi("critical", totals.critical);
-  setKpiDiff("critical", totalsDiff.critical);
+  // setKpi("critical", totals.critical);
+  // setKpiDiff("critical", totalsDiff.critical);
+  setKpi("hosptilised", totals.hosptilised);
+  setKpiDiff("hosptilised", totalsDiff.hosptilised);
   setKpi("tested", totals.tested);
   setKpiDiff("tested", totalsDiff.tested);
   setKpi("active", totals.confirmed - totals.recovered - totals.deceased);
@@ -1199,21 +1218,25 @@ function drawMapPrefectures(pageDraws) {
 
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
-    let cases = parseInt(prefecture.confirmed);
+    let cases = parseInt(
+      (prefecture.active =
+        prefecture.confirmed -
+        ((prefecture.recovered || 0) + (prefecture.deceased || 0)))
+    );
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
 
-      if (cases <= 10) {
-        // 1-10 cases
+      if (cases <= 5) {
+        // 1-5 cases
         prefecturePaint.push("rgb(253,234,203)");
+      } else if (cases <= 10) {
+        // 6-10 cases
+        prefecturePaint.push("rgb(251,155,127)");
       } else if (cases <= 50) {
         // 11-50 cases
-        prefecturePaint.push("rgb(251,155,127)");
-      } else if (cases <= 100) {
-        // 50-100 cases
         prefecturePaint.push("rgb(244,67,54)");
       } else {
-        // 100+ cases
+        // 50+ cases
         prefecturePaint.push("rgb(186,0,13)");
       }
     }
