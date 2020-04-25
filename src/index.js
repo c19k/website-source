@@ -1254,6 +1254,11 @@ function loadDataOnPage() {
       drawAgeTrendChart(ddb.age);
       drawGenderChart(ddb.gender);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
+      dailyIncreaseChart = drawDailyIncreaseChart(
+        ddb.trend,
+        dailyIncreaseChart,
+        LANG
+      );
     }
 
     whenMapAndDataReady();
