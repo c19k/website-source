@@ -287,6 +287,9 @@ function calculateTotals(daily) {
     deceased: 0,
     critical: 0,
     tested: 0,
+    observation: 0,
+    homeObservation: 0,
+    hosptilised: 0,
   };
   let totalsDiff = {
     confirmed: 1,
@@ -294,6 +297,9 @@ function calculateTotals(daily) {
     deceased: 1,
     critical: 1,
     tested: 1,
+    observation: 0,
+    homeObservation: 0,
+    hosptilised: 0,
   };
 
   // If there is an empty cell, fall back to the previous row
@@ -330,6 +336,9 @@ function calculateTotals(daily) {
   pullLatestSumAndDiff("confirmedCumulative", "confirmed");
   pullLatestSumAndDiff("recoveredCumulative", "recovered");
   pullLatestSumAndDiff("deceasedCumulative", "deceased");
+  pullLatestSumAndDiff("observationCumulative", "observation");
+  pullLatestSumAndDiff("homeObservationCumulative", "homeObservation");
+  pullLatestSumAndDiff("hosptilisedCumulative", "hosptilised");
 
   return [totals, totalsDiff];
 }
