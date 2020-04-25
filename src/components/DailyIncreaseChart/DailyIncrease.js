@@ -1,5 +1,5 @@
 import * as c3 from "c3";
-// import i18next from "i18next";
+import i18next from "i18next";
 import { format } from "date-fns";
 import { enUS, ml } from "date-fns/locale";
 
