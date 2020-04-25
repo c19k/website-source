@@ -57,8 +57,8 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
       },
       columns: [cols.Confirmed, cols.ConfirmedAvg],
       names: {
-        Confirmed: i18next.t("daily"),
-        ConfirmedAvg: i18next.t("7-day-average"),
+        Confirmed: i18next.t("Daily"),
+        ConfirmedAvg: i18next.t("7 Day Average"),
       },
       type: "bar",
       types: {
