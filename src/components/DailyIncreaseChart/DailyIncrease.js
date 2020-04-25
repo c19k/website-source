@@ -12,9 +12,9 @@ import {
 
 const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
   let dateLocale = enUS;
-  if (lang == "ja") {
+  /*if (lang == "ja") {
     dateLocale = ml;
-  }
+  }*/
 
   const cols = {
     Date: ["Date"],
@@ -23,12 +23,12 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
   };
 
   for (
-    let i = sheetTrend.length - CHART_TIME_PERIOD;
+    // let i = sheetTrend.length - CHART_TIME_PERIOD;
+    let i = sheetTrend.length - sheetTrend.length;
     i < sheetTrend.length;
     i++
   ) {
     const row = sheetTrend[i];
-
     cols.Date.push(row.date);
     cols.Confirmed.push(row.confirmed);
     cols.ConfirmedAvg.push(row.confirmedAvg7d);

@@ -15,6 +15,7 @@ import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
+let dailyIncreaseChart = null;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";

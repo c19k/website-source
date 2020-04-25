@@ -12,6 +12,8 @@ export const COLOR_TESTED = "rgb(164,173,192)";
 export const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 export const COLOR_TESTED_TOTAL_GRAPH = "rgb(244,69,41)";
 
+export const CHART_TIME_PERIOD = 50;
+
 export const SUPPORTED_LANGS = ["en", "ja"];
 export const COLOR_YELLOW = "rgb(253,234,203)";
 export const COLOR_ORANGE = "rgb(251,155,127)";
