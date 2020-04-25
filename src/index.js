@@ -1008,8 +1008,8 @@ function drawKpis(totals, totalsDiff) {
   setKpiDiff("recovered", totalsDiff.recovered);
   setKpi("deceased", totals.deceased);
   setKpiDiff("deceased", totalsDiff.deceased);
-  setKpi("critical", totals.critical);
-  setKpiDiff("critical", totalsDiff.critical);
+  // setKpi("critical", totals.critical);
+  // setKpiDiff("critical", totalsDiff.critical);
   setKpi("hosptilised", totals.hosptilised);
   setKpiDiff("hosptilised", totalsDiff.hosptilised);
   setKpi("tested", totals.tested);
