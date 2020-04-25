@@ -1214,7 +1214,8 @@ function drawMapPrefectures(pageDraws) {
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
     let cases = parseInt(
-      prefecture.confirmed - prefecture.recovered - prefecture.deceased
+      (pref.active =
+        pref.confirmed - ((pref.recovered || 0) + (pref.deceased || 0)))
     );
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
