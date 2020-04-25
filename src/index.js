@@ -391,10 +391,15 @@ function drawMap() {
       const thisDistrict = ddb.prefectures.filter((p) => {
         return p.name === feature.properties.DISTRICT;
       });
+      const active = parseInt(
+        (thisDistrict[0].active =
+          thisDistrict[0].confirmed -
+          ((thisDistrict[0].recovered || 0) + (thisDistrict[0].deaths || 0)))
+      );
       const confirmed = thisDistrict[0].confirmed;
       const deaths = thisDistrict[0].deaths;
       const recovered = thisDistrict[0].recovered;
-      const html = `<h3>${feature.properties.DISTRICT}</h3>Confirmed: ${confirmed}<br />Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      const html = `<h3>${feature.properties.DISTRICT}</h3>Confirmed: ${confirmed}<br /> <strong>Deaths: ${active}></strong></<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
       popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
     } else {
       popup.remove();
@@ -1214,8 +1219,9 @@ function drawMapPrefectures(pageDraws) {
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
     let cases = parseInt(
-      (pref.active =
-        pref.confirmed - ((pref.recovered || 0) + (pref.deceased || 0)))
+      (prefecture.active =
+        prefecture.confirmed -
+        ((prefecture.recovered || 0) + (prefecture.deceased || 0)))
     );
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
