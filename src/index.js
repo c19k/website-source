@@ -1219,17 +1219,17 @@ function drawMapPrefectures(pageDraws) {
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
 
-      if (cases <= 10) {
-        // 1-10 cases
+      if (cases <= 5) {
+        // 1-5 cases
         prefecturePaint.push("rgb(253,234,203)");
+      } else if (cases <= 10) {
+        // 6-10 cases
+        prefecturePaint.push("rgb(251,155,127)");
       } else if (cases <= 50) {
         // 11-50 cases
-        prefecturePaint.push("rgb(251,155,127)");
-      } else if (cases <= 100) {
-        // 50-100 cases
         prefecturePaint.push("rgb(244,67,54)");
       } else {
-        // 100+ cases
+        // 50+ cases
         prefecturePaint.push("rgb(186,0,13)");
       }
     }
