@@ -290,6 +290,7 @@ function calculateTotals(daily) {
     observation: 0,
     homeObservation: 0,
     hosptilised: 0,
+    active: 0,
   };
   let totalsDiff = {
     confirmed: 1,
@@ -300,6 +301,7 @@ function calculateTotals(daily) {
     observation: 0,
     homeObservation: 0,
     hosptilised: 0,
+    active: 0,
   };
 
   // If there is an empty cell, fall back to the previous row
@@ -339,6 +341,7 @@ function calculateTotals(daily) {
   pullLatestSumAndDiff("observationCumulative", "observation");
   pullLatestSumAndDiff("homeObservationCumulative", "homeObservation");
   pullLatestSumAndDiff("hosptilisedCumulative", "hosptilised");
+  pullLatestSumAndDiff("activeCumulative", "active");
 
   return [totals, totalsDiff];
 }
@@ -1210,7 +1213,9 @@ function drawMapPrefectures(pageDraws) {
 
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
-    let cases = parseInt(prefecture.confirmed);
+    let cases = parseInt(
+      prefecture.confirmed - prefecture.recovered - prefecture.deceased
+    );
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
 
