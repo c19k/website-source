@@ -11,6 +11,7 @@ import ApexCharts from "apexcharts";
 import moment from "moment";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
+import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
@@ -528,126 +529,6 @@ function drawTrendChart(sheetTrend) {
       y: {
         show: true,
       },
-    },
-    padding: {
-      right: 24,
-    },
-  });
-}
-
-function drawDailyIncreaseChart(sheetTrend) {
-  var cols = {
-    Date: ["Date"],
-    Confirmed: ["New Cases"],
-  };
-
-  for (var i = 0; i < sheetTrend.length; i++) {
-    var row = sheetTrend[i];
-
-    /*if (i === 0) {
-      // Skip early feb data point
-      continue;
-    }*/
-
-    cols.Date.push(row.date);
-    cols.Confirmed.push(row.confirmed);
-  }
-
-  var chart = c3.generate({
-    bindto: "#daily-increase-chart",
-    data: {
-      color: function (color, d) {
-        if (d && d.index === cols.Date.length - 2) {
-          return COLOR_TESTED_DAILY;
-        } else {
-          return COLOR_TESTED;
-        }
-      },
-      columns: [cols.Confirmed],
-      type: "bar",
-      regions: {
-        [cols.Confirmed[0]]: [
-          { start: cols.Date[cols.Date.length - 2], style: "dashed" },
-        ],
-      },
-    },
-    bar: {
-      width: {
-        ratio: 0.8,
-      },
-    },
-    axis: {
-      x: {
-        tick: {
-          format: function (x) {
-            var months = [
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
-            ];
-
-            // x+1 because the list is prefixed with the label
-            var xDate = new Date(cols.Date[x + 1]);
-            return months[xDate.getMonth()] + " " + xDate.getDate();
-          },
-        },
-      },
-      y: {
-        tick: {
-          values: [
-            0,
-            25,
-            50,
-            75,
-            100,
-            125,
-            150,
-            175,
-            200,
-            225,
-            250,
-            275,
-            300,
-            325,
-            350,
-            375,
-            400,
-          ],
-        },
-      },
-    },
-    tooltip: {
-      format: {
-        value: function (value, ratio, id, index) {
-          return `${value} ${
-            index === cols.Date.length - 2
-              ? LANG === "en"
-                ? "Provisional"
-                : "അന്തിമമല്ല"
-              : ""
-          }`;
-        },
-      },
-    },
-    grid: {
-      x: {
-        show: true,
-      },
-      y: {
-        show: true,
-      },
-    },
-    legend: {
-      hide: true,
     },
     padding: {
       right: 24,
