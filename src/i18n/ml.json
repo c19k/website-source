@@ -2,7 +2,7 @@
     "covid-19-tracker": "കോവിഡ്-19 ട്രാക്കർ - കേരളം",
     "last-updated": "അവസാന അപ്ഡേറ്റ് :",
     "kpi-active": "സജീവം",
-    "kpi-hospitalised": "ആശുപത്രിയിൽ"
+    "kpi-hospitalised": "ആശുപത്രിയിൽ",
     "kpi-critical": "Critical",
     "kpi-deceased": "ജീവഹാനി",
     "kpi-tested": "പരിശോധന",
@@ -10,7 +10,7 @@
     "kpi-recovered": "സുഖപ്പെട്ടവർ",
     "covid-19": "കോവിഡ്-19",
     "outbreak-map": "സജീവം രോഗ ഭൂപടം",
-    "cases": "cases",
+    "cases": "രോഗികൾ",
     "outbreak-spread-trend": "രോഗം പരക്കുന്നതിന്റെ ഗതി",
     "new-cases-by-day": "New Cases By Day",
     "prefecture-data": "ജില്ല തിരിച്ചുള്ള വിവരം",

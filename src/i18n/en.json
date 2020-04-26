@@ -2,6 +2,7 @@
     "covid-19-tracker": "Japan COVID-19 Coronavirus Tracker",
     "last-updated": "Last Updated:",
     "kpi-active": "Active",
+    "kpi-hospitalised": "Hospitalised",
     "kpi-critical": "Critical",
     "kpi-deceased": "Deaths",
     "kpi-tested": "Tested",

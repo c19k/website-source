@@ -15,7 +15,7 @@ import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import locI18next from "loc-i18next";
 import translationEn from "./i18n/en.json";
-import translationJa from "./i18n/ja.json";
+import translationMl from "./i18n/ml.json";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
@@ -804,7 +804,7 @@ function drawPrefectureTable(prefectures, totals) {
   dataTable.innerHTML = dataTable.innerHTML + portOfEntryRow + unspecifiedRow;
 
   let totalStr = "Total";
-  if (LANG == "ja") {
+  if (LANG == "ml") {
     totalStr = "ആകെ ";
   }
 
@@ -1044,13 +1044,13 @@ function drawLastUpdated(lastUpdated) {
   }
   const relativeTime = {
     en: lastUpdatedMoment.clone().locale("en").fromNow(),
-    ja: lastUpdatedMoment.clone().locale("ml").fromNow(),
+    ml: lastUpdatedMoment.clone().locale("ml").fromNow(),
   };
 
   display.textContent = relativeTime[LANG];
   display.setAttribute("title", lastUpdated);
   display.setAttribute("data-en", relativeTime["en"]);
-  display.setAttribute("data-ja", relativeTime["ja"]);
+  display.setAttribute("data-ja", relativeTime["ml"]);
 }
 
 function drawPageTitleCount(confirmed) {
@@ -1167,8 +1167,8 @@ function initDataTranslate() {
         en: {
           translation: translationEn,
         },
-        ja: {
-          translation: translationJa,
+        ml: {
+          translation: translationMl,
         },
       },
     })

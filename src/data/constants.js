@@ -1,5 +1,5 @@
-//import translationEn from "../i18n/en.json";
-//import translationJa from "../i18n/ja.json";
+import translationEn from "../i18n/en.json";
+import translationJa from "../i18n/ml.json";
 
 export const TIME_FORMAT = "MMMM d yyyy, HH:mm";
 export const TIME_PERIOD = 30;
