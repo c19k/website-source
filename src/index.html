@@ -57,12 +57,11 @@
       <a href="#" data-lang-picker='ja'>മലയാളം</a>
       <a href="#" data-lang-picker='en' style="display:none">English</a>
     </div>
-
-    <h1 data-ja="കോവിഡ്-19 ട്രാക്കർ - കേരളം ">COVID-19 Tracker - Kerala</h1>
-
+    
+    <h1 data-i18n="covid-19-tracker">Kerala COVID-19 Tracker</h1>
     <div>
       <em>
-        <span data-ja="അവസാന അപ്ഡേറ്റ് :">Last Updated:</span> <strong id="last-updated">-</strong>
+        <span data-i18n="last-updated">Last Updated:</span> <strong id="last-updated">-</strong>
       </em>
     </div>
   </header>
@@ -71,58 +70,58 @@
     <div id="kpi-active" data-tippy-content="Confirmed cases minus recovered minus deceased" data-tippy-placement="bottom">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="സജീവം">Active &#9432;</div>
+      <div class="label"><span data-i18n="kpi-active">Active</span> &#9432;</div>
     </div>
     <div id="kpi-hosptilised">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="ആശുപത്രിയിൽ">Hospitalised</div>
+      <div class="label" data-i18n="kpi-hospitalised">Hospitalised</div>
     </div>
     <div id="kpi-deceased">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="ജീവഹാനി">Deaths</div>
+      <div class="label" data-i18n="kpi-deceased">Deaths</div>
     </div>
     <div id="kpi-tested">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="പരിശോധന">Tested</div>
+      <div class="label" data-i18n="kpi-tested">Tested</div>
     </div>
     <div id="kpi-confirmed">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="സ്ഥിരീകരണം">Confirmed</div>
+      <div class="label" data-i18n="kpi-confirmed">Confirmed</div>
     </div>
     <div id="kpi-recovered">
       <div class="diff">&nbsp;</div>
       <div class="value"><div class="lds-dual-ring"></div></div>
-      <div class="label" data-ja="സുഖപ്പെട്ടവർ">Recovered</div>
+      <div class="label" data-i18n="kpi-recovered">Recovered</div>
     </div>
   </section>
 
 
   <a name="map"></a>
   <div class="center-offset">
-    <h4 data-ja="സജീവം രോഗ ഭൂപടം"><span class="embed-show">COVID-19 </span>Active Patients Map</h4>
+    <h4 data-ja-i18n="outbreak-map"><span class="embed-show">COVID-19 </span>Active Patients Map</h4>
   </div>
   <section id="map-legend">
-    <div><span class="one">▉</span> <span data-ja="1-5 രോഗികൾ">1-5 cases</span></div>
-    <div><span class="two">▉</span> <span data-ja="6-10 രോഗികൾ">6-10 cases</span></div>
-    <div><span class="three">▉</span> <span data-ja="11-50 രോഗികൾ">11-50 cases</span></div>
-    <div><span class="four">▉</span> <span data-ja="50+ രോഗികൾ">50+ cases</span></div>
+    <div><span class="one">▉</span> 1-5 <span data-i18n="cases">cases</span></div>
+    <div><span class="two">▉</span> 6-10 <span data-i18n="cases">cases</span></div>
+    <div><span class="three">▉</span> 11-50 <span data-i18n="cases">cases</span></div>
+    <div><span class="four">▉</span> 50+ <span data-i18n="cases">cases</span></div>
   </section>
   <div id="map-container"></div>
   <h5 class="embed-show footnote">powered by <a href="https://covid19Kerala.info" target="_blank">Covid19Kerala.info</a></h5>
 
   <section id="trend-chart-container" class="embed-hide">
-    <h4 data-ja="രോഗം പരക്കുന്നതിന്റെ ഗതി ">Outbreak Spread Trend</h4>
+    <h4 data-i18n="outbreak-spread-trend">Outbreak Spread Trend</h4>
     <div id="trend-chart">
       <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
 
   <section id="daily-increase-container" class="embed-hide">
-    <h4 data-ja="ഓരോ ദിവസത്തെയും പുതിയ രോഗികൾ">New Cases By Day</h4>
+    <h4 data-i18n="new-cases-by-day">New Cases By Day</h4>
     <div id="daily-increase-chart">
       <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
@@ -146,24 +145,24 @@
   </section>
 
   <section id="prefecture-trajectory-container" class="embed-hide">
-    <h4 data-ja="ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന ട്രാജക്ടറി (10 രോഗികളിലധികം )">Confirmed Case Trajectories by Districts (> 10 Cases)</h4>
+    <h4 data-i18n="confirmed-case-trajectories-by-prefecture">Confirmed Case Trajectories by Prefecture (> 50 Cases)</h4>
     <div id="prefecture-trajectory">
       <div class="text-center"><div class="lds-dual-ring"></div></div>
     </div>
   </section>
 
   <section class="embed-hide">
-    <h4 data-ja="ജില്ല തിരിച്ചുള്ള വിവരം ">District Data</h4>
+    <h4 data-i18n="prefecture-data">District Data</h4>
     <div class="table-wrapper">
     <table id="prefectures-table">
       <thead>
         <tr>
-          <th data-ja="ജില്ല"class="prefecture">District</th>
-          <th class="trend" data-ja="ഗതി">Trend</th>
-          <th data-ja="സ്ഥിരീകരണം" class="count">Confirmed</th>
-          <th data-ja="സുഖപ്പെട്ടവർ" class="count">Recovered</th>
-          <th data-ja="ജീവഹാനി"class="count">Deaths</th>
-          <th data-ja="സജീവം"class="count">Active</th>
+          <th data-i18n="prefecture" class="prefecture">District</th>
+          <th class="trend" data-i18n="trend">Trend</th>
+          <th data-i18n="confirmed" class="count">Confirmed</th>
+          <th data-i18n="recovered" class="count">Recovered</th>
+          <th data-i18n="deaths" class="count">Deaths</th>
+          <th data-i18n="active" class="count">Active</th>
         </tr>
       </thead>
       <tbody>
