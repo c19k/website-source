@@ -10,6 +10,13 @@ import * as c3 from "c3";
 import ApexCharts from "apexcharts";
 import moment from "moment";
 
+// Localization deps
+import i18next from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import locI18next from "loc-i18next";
+import translationEn from "./i18n/en.json";
+import translationJa from "./i18n/ja.json";
+
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 
@@ -29,7 +36,7 @@ const COLOR_DECEASED = "rgb(55,71,79)";
 const COLOR_TESTED = "rgb(164,173,192)";
 const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 const COLOR_INCREASE = "rgb(163,172,191)";
-const PAGE_TITLE = "Coronavirus Disease (COVID-19) Kerala Tracker";
+const PAGE_TITLE = "COVID-19 Kerala Tracker";
 let LANG = "en";
 
 // Global vars
@@ -53,123 +60,104 @@ let ddb = {
   travelRestrictions: {
     japan: {
       banned: [
+        // refer to the keys under "countries" in the i18n files for names
         {
-          name: "Andorra",
-          nameJa: "アンドラ",
+          name: "andorra",
           emoji: "🇦🇩",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Austria",
-          nameJa: "オーストリア",
+          name: "austria",
           emoji: "🇦🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Belgium",
-          nameJa: "ベルギー",
+          name: "belgium",
           emoji: "🇧🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "China",
-          nameJa: "中国",
+          name: "china",
           emoji: "🇨🇳",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Estonia",
-          nameJa: "エストニア",
+          name: "estonia",
           emoji: "🇪🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "France",
-          nameJa: "仏国",
+          name: "france",
           emoji: "🇫🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Germany",
-          nameJa: "独国",
+          name: "germany",
           emoji: "🇩🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Iceland",
-          nameJa: "アイスランド",
+          name: "iceland",
           emoji: "🇮🇸",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Iran",
-          nameJa: "イラン",
+          name: "iran",
           emoji: "🇮🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Ireland",
-          nameJa: "アイルランド",
+          name: "ireland",
           emoji: "🇮🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Italy",
-          nameJa: "伊井",
+          name: "italy",
           emoji: "🇮🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Korea",
-          nameJa: "大韓民国",
+          name: "korea",
           emoji: "🇰🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Liechtenstein",
-          nameJa: "リヒテンシュタイン",
+          name: "liechtenstein",
           emoji: "🇱🇮",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Luxembourg",
-          nameJa: "ルクセンブルク",
+          name: "luxembourg",
           emoji: "🇱🇺",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Malta",
-          nameJa: "マルタ",
+          name: "malta",
           emoji: "🇲🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Monaco",
-          nameJa: "モナコ",
+          name: "monaco",
           emoji: "🇲🇨",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Netherlands",
-          nameJa: "オランダ",
+          name: "netherlands",
           emoji: "🇳🇱",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Norway",
-          nameJa: "ノルウェー",
+          name: "norway",
           emoji: "🇳🇴",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Portugal",
-          nameJa: "葡萄牙",
+          name: "portugal",
           emoji: "🇵🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "San Marino",
-          nameJa: "サンマリノ",
+          name: "sanmarino",
           emoji: "🇸🇲",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
@@ -180,32 +168,27 @@ let ddb = {
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Spain",
-          nameJa: "スペイン",
+          name: "spain",
           emoji: "🇪🇸",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Sweden",
-          nameJa: "スウェーデン",
+          name: "sweden",
           emoji: "🇸🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Switzerland",
-          nameJa: "スイス",
+          name: "switzerland",
           emoji: "🇨🇭",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Vatican",
-          nameJa: "バチカン市国",
+          name: "vatican",
           emoji: "🇻🇦",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Westerdam (Cruise Ship)",
-          nameJa: "ウェスターダム（船）",
+          name: "westerdam",
           emoji: "🛳",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
@@ -826,7 +809,7 @@ function drawPrefectureTable(prefectures, totals) {
   }
 
   dataTableFoot.innerHTML = `<tr class='totals'>
-        <td>${totalStr}</td>
+        <td>${i18next.t("total")}</td>
         <td class="trend"></td>
         <td class="count">${totals.confirmed}</td>
         <td class="count">${totals.recovered}</td>
@@ -866,8 +849,7 @@ function travelRestrictionsHelper(elementId, countries) {
   let countryList = [];
   // Iterate through and render country links
   _.orderBy(countries, "name", "desc").map(function (country) {
-    let name = LANG == "en" ? country.name : country.nameJa;
-
+    let name = i18next.t(`countries.${country.name}`);
     countryList.unshift(
       `<a href="${country.link}">${country.emoji}${name}</a>`
     );
@@ -1173,44 +1155,58 @@ function drawMapPrefectures(pageDraws) {
   }
 }
 
+// localize must be accessible globally
+const localize = locI18next.init(i18next);
 function initDataTranslate() {
-  // Handle language switching using data params
-
-  const selector = "[data-ja]";
-  const parseNode = function (cb) {
-    document.querySelectorAll(selector).forEach(cb);
-  };
-
-  // Default website is in English. Extract it as the attr data-en="..."
-  parseNode(function (el) {
-    el.dataset["en"] = el.textContent;
-  });
+  // load translation framework
+  i18next
+    .use(LanguageDetector)
+    .init({
+      fallbackLng: "en",
+      resources: {
+        en: {
+          translation: translationEn,
+        },
+        ja: {
+          translation: translationJa,
+        },
+      },
+    })
+    .then(() => {
+      setLang(i18next.language);
+    });
 
   // Language selector event handler
   document.querySelectorAll("[data-lang-picker]").forEach(function (pick) {
     pick.addEventListener("click", function (e) {
       e.preventDefault();
-      LANG = e.target.dataset.langPicker;
+      setLang(e.target.dataset.langPicker);
+    });
+  });
+}
 
-      document.documentElement.setAttribute("lang", LANG);
+function setLang(lng) {
+  // set global var
+  LANG = lng;
 
-      // Toggle the html lang tags
-      parseNode(function (el) {
-        if (!el.dataset[LANG]) return;
-        el.textContent = el.dataset[LANG];
-      });
+  // toggle picker
+  toggleLangPicker();
 
-      // Update the map
-      map.getStyle().layers.forEach(function (thisLayer) {
-        if (thisLayer.type == "symbol") {
-          map.setLayoutProperty(thisLayer.id, "text-field", [
-            "get",
-            "name_" + "en",
-          ]);
-        }
-      });
+  // set i18n framework lang
+  i18next.changeLanguage(LANG).then(() => {
+    localize("html");
+    // Update the map
+    map.getStyle().layers.forEach(function (thisLayer) {
+      if (thisLayer.type == "symbol") {
+        map.setLayoutProperty(thisLayer.id, "text-field", [
+          "get",
+          "name_" + LANG,
+        ]);
+      }
+    });
 
-      // Redraw the prefectures table
+    // Redraw all components that need rerendering to be localized the prefectures table
+    if (!document.body.classList.contains("embed-mode")) {
       if (document.getElementById("prefectures-table")) {
         drawPrefectureTable(ddb.prefectures, ddb.totals);
       }
@@ -1219,14 +1215,18 @@ function initDataTranslate() {
         drawTravelRestrictions();
       }
 
-      // Toggle the lang picker
-      document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
-        el.style.display = "inline";
-      });
-      document.querySelector("a[data-lang-picker=" + LANG + "]").style.display =
-        "none";
-    });
+      drawPrefectureTrajectoryChart(ddb.prefectures);
+    }
   });
+}
+
+function toggleLangPicker() {
+  // Toggle the lang picker
+  document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
+    el.style.display = "inline";
+  });
+  document.querySelector("a[data-lang-picker=" + LANG + "]").style.display =
+    "none";
 }
 
 function loadDataOnPage() {
