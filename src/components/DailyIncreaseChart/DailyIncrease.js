@@ -38,7 +38,7 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
     dailyIncreaseChart.destroy();
   }
 
-  console.log([cols.Confirmed, cols.ConfirmedAvg]);
+  // console.log([cols.Confirmed, cols.ConfirmedAvg]);
 
   dailyIncreaseChart = c3.generate({
     bindto: "#daily-increase-chart",
