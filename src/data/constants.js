@@ -1,5 +1,4 @@
-import translationEn from "../i18n/en.json";
-import translationJa from "../i18n/ml.json";
+import languageResources, { LANGUAGES } from "../i18n";
 
 export const TIME_FORMAT = "MMMM d yyyy, HH:mm";
 export const TIME_PERIOD = 30;
@@ -14,7 +13,7 @@ export const COLOR_TESTED_TOTAL_GRAPH = "rgb(244,69,41)";
 
 export const CHART_TIME_PERIOD = 50;
 
-export const SUPPORTED_LANGS = ["en", "ja"];
+export const SUPPORTED_LANGS = LANGUAGES;
 export const COLOR_YELLOW = "rgb(253,234,203)";
 export const COLOR_ORANGE = "rgb(251,155,127)";
 export const COLOR_RED = "rgb(244,67,54)";
@@ -44,19 +43,18 @@ export const COLOR_BLACK = "rgba(0,0,0,0)";
   fallbackLng: "en",
   lowerCaseLng: true,
   detection: {
+    detection: {
     order: ["querystring", "navigator"],
+    order: ["querystring", "cookie", "navigator"],
   },
+    caches: ["cookie"],
   resources: {
-    en: {
-      translation: translationEn,
-    },
-    ja: {
-      translation: translationJa,
-    },
+    cookieMinutes: 60 * 24 * 365,
   },
-};
+   resources: languageResources,
+};*/
 
-export const DDB_COMMON = {
+/*export const DDB_COMMON = {
   prefectures: undefined,
   trend: undefined,
   totals: {

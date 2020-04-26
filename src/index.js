@@ -14,8 +14,7 @@ import moment from "moment";
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import locI18next from "loc-i18next";
-import translationEn from "./i18n/en.json";
-import translationMl from "./i18n/ml.json";
+import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
@@ -37,8 +36,19 @@ const COLOR_TESTED = "rgb(164,173,192)";
 const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 const COLOR_INCREASE = "rgb(163,172,191)";
 const PAGE_TITLE = "COVID-19 Kerala Tracker";
-const SUPPORTED_LANGS = ["en", "ml"];
+export const SUPPORTED_LANGS = LANGUAGES;
 let LANG = "en";
+
+export const LANG_CONFIG = {
+  fallbackLng: "en",
+  lowerCaseLng: true,
+  detection: {
+    order: ["querystring", "cookie", "navigator"],
+    caches: ["cookie"],
+    cookieMinutes: 60 * 24 * 365,
+  },
+  resources: languageResources,
+};
 
 // Global vars
 let ddb = {
@@ -1174,21 +1184,7 @@ function initDataTranslate() {
   // load translation framework
   i18next
     .use(LanguageDetector)
-    .init({
-      fallbackLng: "en",
-      lowerCaseLng: true,
-      detection: {
-        order: ["querystring", "navigator"],
-      },
-      resources: {
-        en: {
-          translation: translationEn,
-        },
-        ml: {
-          translation: translationMl,
-        },
-      },
-    })
+    .init(LANG_CONFIG)
     .then(() => {
       setLang(i18next.language);
     });
@@ -1225,7 +1221,8 @@ function setLang(lng) {
       if (thisLayer.type == "symbol") {
         map.setLayoutProperty(thisLayer.id, "text-field", [
           "get",
-          "name_" + LANG,
+          // "name_" + LANG,
+          "name_en",
         ]);
       }
     });
