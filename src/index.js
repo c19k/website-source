@@ -37,6 +37,7 @@ const COLOR_TESTED = "rgb(164,173,192)";
 const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 const COLOR_INCREASE = "rgb(163,172,191)";
 const PAGE_TITLE = "COVID-19 Kerala Tracker";
+const SUPPORTED_LANGS = ["en", "ml"];
 let LANG = "en";
 
 // Global vars
@@ -208,6 +209,7 @@ let ddb = {
   },
 };
 let map = undefined;
+let tippyInstances;
 
 // IE11 forEach Polyfill
 if ("NodeList" in window && !NodeList.prototype.forEach) {
@@ -1049,8 +1051,19 @@ function drawLastUpdated(lastUpdated) {
 
   display.textContent = relativeTime[LANG];
   display.setAttribute("title", lastUpdated);
-  display.setAttribute("data-en", relativeTime["en"]);
-  display.setAttribute("data-ja", relativeTime["ml"]);
+  i18next.addResource(
+    "en",
+    "translation",
+    "last-updated-time",
+    relativeTime["en"]
+  );
+  i18next.addResource(
+    "ml",
+    "translation",
+    "last-updated-time",
+    relativeTime["ml"]
+  );
+  display.setAttribute("data-i18n", "last-updated-time");
 }
 
 function drawPageTitleCount(confirmed) {
@@ -1163,6 +1176,10 @@ function initDataTranslate() {
     .use(LanguageDetector)
     .init({
       fallbackLng: "en",
+      lowerCaseLng: true,
+      detection: {
+        order: ["querystring", "navigator"],
+      },
       resources: {
         en: {
           translation: translationEn,
@@ -1177,17 +1194,25 @@ function initDataTranslate() {
     });
 
   // Language selector event handler
-  document.querySelectorAll("[data-lang-picker]").forEach(function (pick) {
-    pick.addEventListener("click", function (e) {
-      e.preventDefault();
-      setLang(e.target.dataset.langPicker);
+  if (document.querySelectorAll("[data-lang-picker]")) {
+    document.querySelectorAll("[data-lang-picker]").forEach(function (pick) {
+      pick.addEventListener("click", function (e) {
+        e.preventDefault();
+        setLang(e.target.dataset.langPicker);
+      });
     });
-  });
+  }
 }
 
 function setLang(lng) {
-  // set global var
-  LANG = lng;
+  // Clip to first two letters of the language.
+  if (lng && lng.length > 1) {
+    let proposedLng = lng.slice(0, 2);
+    // Don't set the lang if it's not the supported languages.
+    if (SUPPORTED_LANGS.indexOf(proposedLng) != -1) {
+      LANG = proposedLng;
+    }
+  }
 
   // toggle picker
   toggleLangPicker();
@@ -1205,6 +1230,9 @@ function setLang(lng) {
       }
     });
 
+    // Set HTML language tag
+    document.documentElement.setAttribute("lang", LANG);
+
     // Redraw all components that need rerendering to be localized the prefectures table
     if (!document.body.classList.contains("embed-mode")) {
       if (document.getElementById("prefectures-table")) {
@@ -1217,16 +1245,40 @@ function setLang(lng) {
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
     }
+    updateTooltipLang();
   });
+}
+
+function updateTooltipLang() {
+  // Destroy current tooltips
+  if (Array.isArray(tippyInstances)) {
+    tippyInstances.forEach((instance) => instance.destroy());
+  }
+
+  // Set tooltip content to current language
+  document.querySelectorAll(`[data-tippy-i18n]`).forEach((node) => {
+    const i18nKey = node.getAttribute("data-tippy-i18n");
+    const dataTippyContent = i18next.t(i18nKey);
+    node.setAttribute("data-tippy-content", dataTippyContent);
+  });
+
+  // Activate tooltips
+  tippyInstances = tippy("[data-tippy-content]");
 }
 
 function toggleLangPicker() {
   // Toggle the lang picker
-  document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
-    el.style.display = "inline";
-  });
-  document.querySelector("a[data-lang-picker=" + LANG + "]").style.display =
-    "none";
+  if (document.querySelectorAll("a[data-lang-picker]")) {
+    document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
+      el.style.display = "inline";
+    });
+    let currentLangPicker = document.querySelector(
+      "a[data-lang-picker=" + LANG + "]"
+    );
+    if (currentLangPicker) {
+      currentLangPicker.style.display = "none";
+    }
+  }
 }
 
 function loadDataOnPage() {
@@ -1263,6 +1315,7 @@ function loadDataOnPage() {
     }
 
     whenMapAndDataReady();
+    updateTooltipLang();
   });
 }
 
@@ -1281,9 +1334,6 @@ function whenMapAndDataReady() {
 }
 
 window.onload = function () {
-  // Enable tooltips
-  tippy("[data-tippy-content]");
-
   initDataTranslate();
   drawMap();
 

@@ -8,6 +8,7 @@
     "kpi-tested": "Tested",
     "kpi-confirmed": "Confirmed",
     "kpi-recovered": "Recovered",
+    "kpi-active-tooltip": "Confirmed cases minus recovered minus deceased",
     "covid-19": "COVID-19",
     "outbreak-map": "Outbreak Map",
     "cases": "cases",
