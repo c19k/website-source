@@ -398,7 +398,11 @@ function drawMap() {
       const recovered = thisDistrict[0].recovered;
       const html = `<h3>${i18next.t(
         feature.properties.DISTRICT
-      )}</h3><strong>Active: ${active}</strong><br />Confirmed: ${confirmed}<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      )}</h3><strong>${i18next.t(Active)}: ${active}</strong><br />${i18next.t(
+        Confirmed
+      )}: ${confirmed}<br /> ${i18next.t(Deaths)}: ${deaths}<br />${i18next.t(
+        Recovered
+      )}: ${recovered}`;
       popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
     } else {
       popup.remove();
