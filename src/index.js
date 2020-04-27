@@ -484,6 +484,13 @@ function drawTrendChart(sheetTrend) {
         ],
         //[cols.Tested[0]]: [{'start': cols.Date[cols.Date.length-2], 'style':'dashed'}],
       },
+      names: {
+        Date: i18next.t("Date"),
+        Confirmed: i18next.t("Confirmed"),
+        Active: i18next.t("Active"),
+        Recovered: i18next.t("Recovered"),
+        Deceased: i18next.t("Deceased"),
+      },
     },
     color: {
       pattern: [COLOR_CONFIRMED, COLOR_ACTIVE, COLOR_RECOVERED, COLOR_DECEASED],
@@ -1247,6 +1254,8 @@ function setLang(lng) {
       if (document.getElementById("travel-restrictions")) {
         drawTravelRestrictions();
       }
+
+      drawTrendChart(ddb.trend);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
     }
