@@ -396,7 +396,9 @@ function drawMap() {
       const confirmed = thisDistrict[0].confirmed;
       const deaths = thisDistrict[0].deaths;
       const recovered = thisDistrict[0].recovered;
-      const html = `<h3>${feature.properties.DISTRICT}</h3><strong>Active: ${active}</strong><br />Confirmed: ${confirmed}<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      const html = `<h3>${i18next.t(
+        feature.properties.DISTRICT
+      )}</h3><strong>Active: ${active}</strong><br />Confirmed: ${confirmed}<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
       popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
     } else {
       popup.remove();

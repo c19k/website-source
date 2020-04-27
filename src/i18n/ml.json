@@ -3,7 +3,7 @@
   "last-updated": "അവസാന അപ്ഡേറ്റ് :",
   "kpi-active": "സജീവം",
   "kpi-hospitalised": "ആശുപത്രിയിൽ",
-  "kpi-critical": "Critical",
+  "kpi-critical": "ഗുരുതരം",
   "kpi-deceased": "ജീവഹാനി",
   "kpi-tested": "പരിശോധന",
   "kpi-confirmed": "സ്ഥിരീകരണം",
@@ -45,5 +45,12 @@
   "Thiruvananthapuram": "തിരുവനന്തപുരം",
   "Thrissur": "തൃശ്ശൂർ",
   "Wayanad": "വയനാട്",
-  "Unspecified": "വ്യക്തമാക്കാത്ത"
+  "Unspecified": "വ്യക്തമാക്കാത്ത",
+  "Active": "സജീവം",
+  "Hospitalised": "ആശുപത്രിയിൽ",
+  "Critical": "ഗുരുതരം",
+  "Deceased": "ജീവഹാനി",
+  "Tested": "പരിശോധന",
+  "Confirmed": "സ്ഥിരീകരണം",
+  "Recovered": "സുഖപ്പെട്ടവർ"
 }
