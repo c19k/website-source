@@ -1330,7 +1330,13 @@ function whenMapAndDataReady() {
   drawMapPrefectures(pageDraws);
 }
 
+const startReloadTimer = () => {
+  let reloadInterval = 3;
+  setTimeout(() => location.reload(), reloadInterval * 60 * 60 * 1000);
+};
+
 window.onload = function () {
+  startReloadTimer();
   initDataTranslate();
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
