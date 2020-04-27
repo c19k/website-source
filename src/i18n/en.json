@@ -26,6 +26,10 @@
     "provisional": "Provisional",
     "total": "Total",
     "port-of-entry": "Port of Entry",
+    "testing-trend": "Testing Trend",
+    "Patients—Age breakup" : "Patients—Age breakup",
+    "Patients—Gender breakup": "Patients—Gender breakup",
+    
     "countries": {
         "andorra": "Andorra",
         "austria": "Austria",

@@ -1332,6 +1332,8 @@ function whenMapAndDataReady() {
 
 window.onload = function () {
   initDataTranslate();
+  // Set HTML language tag
+  document.documentElement.setAttribute("lang", LANG);
   drawMap();
 
   map.once("style.load", function (e) {

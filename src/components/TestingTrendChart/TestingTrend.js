@@ -18,7 +18,8 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
     TestedTotal: ["Tested Total"],
   };
 
-  for (let i = sheetTrend.length - TIME_PERIOD; i < sheetTrend.length; i++) {
+  // for (let i = sheetTrend.length - TIME_PERIOD; i < sheetTrend.length; i++) {
+  for (let i = 0; i < sheetTrend.length; i++) {
     const row = sheetTrend[i];
 
     if (i === 0) {
