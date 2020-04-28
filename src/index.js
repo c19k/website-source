@@ -10,6 +10,12 @@ import * as c3 from "c3";
 import ApexCharts from "apexcharts";
 import moment from "moment";
 
+// Localization deps
+import i18next from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import locI18next from "loc-i18next";
+import languageResources, { LANGUAGES } from "./i18n";
+
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 
@@ -29,8 +35,20 @@ const COLOR_DECEASED = "rgb(55,71,79)";
 const COLOR_TESTED = "rgb(164,173,192)";
 const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 const COLOR_INCREASE = "rgb(163,172,191)";
-const PAGE_TITLE = "Coronavirus Disease (COVID-19) Kerala Tracker";
+const PAGE_TITLE = "COVID-19 Kerala Tracker";
+export const SUPPORTED_LANGS = LANGUAGES;
 let LANG = "en";
+
+export const LANG_CONFIG = {
+  fallbackLng: "en",
+  lowerCaseLng: true,
+  detection: {
+    order: ["querystring", "cookie", "navigator"],
+    caches: ["cookie"],
+    cookieMinutes: 60 * 24 * 365,
+  },
+  resources: languageResources,
+};
 
 // Global vars
 let ddb = {
@@ -53,123 +71,104 @@ let ddb = {
   travelRestrictions: {
     japan: {
       banned: [
+        // refer to the keys under "countries" in the i18n files for names
         {
-          name: "Andorra",
-          nameJa: "アンドラ",
+          name: "andorra",
           emoji: "🇦🇩",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Austria",
-          nameJa: "オーストリア",
+          name: "austria",
           emoji: "🇦🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Belgium",
-          nameJa: "ベルギー",
+          name: "belgium",
           emoji: "🇧🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "China",
-          nameJa: "中国",
+          name: "china",
           emoji: "🇨🇳",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Estonia",
-          nameJa: "エストニア",
+          name: "estonia",
           emoji: "🇪🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "France",
-          nameJa: "仏国",
+          name: "france",
           emoji: "🇫🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Germany",
-          nameJa: "独国",
+          name: "germany",
           emoji: "🇩🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Iceland",
-          nameJa: "アイスランド",
+          name: "iceland",
           emoji: "🇮🇸",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Iran",
-          nameJa: "イラン",
+          name: "iran",
           emoji: "🇮🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Ireland",
-          nameJa: "アイルランド",
+          name: "ireland",
           emoji: "🇮🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Italy",
-          nameJa: "伊井",
+          name: "italy",
           emoji: "🇮🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Korea",
-          nameJa: "大韓民国",
+          name: "korea",
           emoji: "🇰🇷",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Liechtenstein",
-          nameJa: "リヒテンシュタイン",
+          name: "liechtenstein",
           emoji: "🇱🇮",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Luxembourg",
-          nameJa: "ルクセンブルク",
+          name: "luxembourg",
           emoji: "🇱🇺",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Malta",
-          nameJa: "マルタ",
+          name: "malta",
           emoji: "🇲🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Monaco",
-          nameJa: "モナコ",
+          name: "monaco",
           emoji: "🇲🇨",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Netherlands",
-          nameJa: "オランダ",
+          name: "netherlands",
           emoji: "🇳🇱",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Norway",
-          nameJa: "ノルウェー",
+          name: "norway",
           emoji: "🇳🇴",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Portugal",
-          nameJa: "葡萄牙",
+          name: "portugal",
           emoji: "🇵🇹",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "San Marino",
-          nameJa: "サンマリノ",
+          name: "sanmarino",
           emoji: "🇸🇲",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
@@ -180,32 +179,27 @@ let ddb = {
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Spain",
-          nameJa: "スペイン",
+          name: "spain",
           emoji: "🇪🇸",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Sweden",
-          nameJa: "スウェーデン",
+          name: "sweden",
           emoji: "🇸🇪",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Switzerland",
-          nameJa: "スイス",
+          name: "switzerland",
           emoji: "🇨🇭",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Vatican",
-          nameJa: "バチカン市国",
+          name: "vatican",
           emoji: "🇻🇦",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
         {
-          name: "Westerdam (Cruise Ship)",
-          nameJa: "ウェスターダム（船）",
+          name: "westerdam",
           emoji: "🛳",
           link: "http://www.moj.go.jp/content/001316999.pdf",
         },
@@ -225,6 +219,7 @@ let ddb = {
   },
 };
 let map = undefined;
+let tippyInstances;
 
 // IE11 forEach Polyfill
 if ("NodeList" in window && !NodeList.prototype.forEach) {
@@ -401,7 +396,15 @@ function drawMap() {
       const confirmed = thisDistrict[0].confirmed;
       const deaths = thisDistrict[0].deaths;
       const recovered = thisDistrict[0].recovered;
-      const html = `<h3>${feature.properties.DISTRICT}</h3><strong>Active: ${active}</strong><br />Confirmed: ${confirmed}<br /> Deaths: ${deaths}<br />Recovered: ${recovered}`;
+      const html = `<h3>${i18next.t(
+        feature.properties.DISTRICT
+      )}</h3><strong>${i18next.t(
+        "Active"
+      )}: ${active}</strong><br />${i18next.t(
+        "Confirmed"
+      )}: ${confirmed}<br /> ${i18next.t(
+        "Deceased"
+      )}: ${deaths}<br />${i18next.t("Recovered")}: ${recovered}`;
       popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
     } else {
       popup.remove();
@@ -480,6 +483,13 @@ function drawTrendChart(sheetTrend) {
           { start: cols.Date[cols.Date.length - 2], style: "dashed" },
         ],
         //[cols.Tested[0]]: [{'start': cols.Date[cols.Date.length-2], 'style':'dashed'}],
+      },
+      names: {
+        Date: i18next.t("Date"),
+        Confirmed: i18next.t("Confirmed"),
+        Active: i18next.t("Active"),
+        Recovered: i18next.t("Recovered"),
+        Deceased: i18next.t("Deceased"),
       },
     },
     color: {
@@ -821,12 +831,12 @@ function drawPrefectureTable(prefectures, totals) {
   dataTable.innerHTML = dataTable.innerHTML + portOfEntryRow + unspecifiedRow;
 
   let totalStr = "Total";
-  if (LANG == "ja") {
+  if (LANG == "ml") {
     totalStr = "ആകെ ";
   }
 
   dataTableFoot.innerHTML = `<tr class='totals'>
-        <td>${totalStr}</td>
+        <td>${i18next.t("total")}</td>
         <td class="trend"></td>
         <td class="count">${totals.confirmed}</td>
         <td class="count">${totals.recovered}</td>
@@ -866,8 +876,7 @@ function travelRestrictionsHelper(elementId, countries) {
   let countryList = [];
   // Iterate through and render country links
   _.orderBy(countries, "name", "desc").map(function (country) {
-    let name = LANG == "en" ? country.name : country.nameJa;
-
+    let name = i18next.t(`countries.${country.name}`);
     countryList.unshift(
       `<a href="${country.link}">${country.emoji}${name}</a>`
     );
@@ -1062,13 +1071,24 @@ function drawLastUpdated(lastUpdated) {
   }
   const relativeTime = {
     en: lastUpdatedMoment.clone().locale("en").fromNow(),
-    ja: lastUpdatedMoment.clone().locale("ml").fromNow(),
+    ml: lastUpdatedMoment.clone().locale("ml").fromNow(),
   };
 
   display.textContent = relativeTime[LANG];
   display.setAttribute("title", lastUpdated);
-  display.setAttribute("data-en", relativeTime["en"]);
-  display.setAttribute("data-ja", relativeTime["ja"]);
+  i18next.addResource(
+    "en",
+    "translation",
+    "last-updated-time",
+    relativeTime["en"]
+  );
+  i18next.addResource(
+    "ml",
+    "translation",
+    "last-updated-time",
+    relativeTime["ml"]
+  );
+  display.setAttribute("data-i18n", "last-updated-time");
 }
 
 function drawPageTitleCount(confirmed) {
@@ -1173,44 +1193,60 @@ function drawMapPrefectures(pageDraws) {
   }
 }
 
+// localize must be accessible globally
+const localize = locI18next.init(i18next);
 function initDataTranslate() {
-  // Handle language switching using data params
-
-  const selector = "[data-ja]";
-  const parseNode = function (cb) {
-    document.querySelectorAll(selector).forEach(cb);
-  };
-
-  // Default website is in English. Extract it as the attr data-en="..."
-  parseNode(function (el) {
-    el.dataset["en"] = el.textContent;
-  });
+  // load translation framework
+  i18next
+    .use(LanguageDetector)
+    .init(LANG_CONFIG)
+    .then(() => {
+      setLang(i18next.language);
+    });
 
   // Language selector event handler
-  document.querySelectorAll("[data-lang-picker]").forEach(function (pick) {
-    pick.addEventListener("click", function (e) {
-      e.preventDefault();
-      LANG = e.target.dataset.langPicker;
-
-      document.documentElement.setAttribute("lang", LANG);
-
-      // Toggle the html lang tags
-      parseNode(function (el) {
-        if (!el.dataset[LANG]) return;
-        el.textContent = el.dataset[LANG];
+  if (document.querySelectorAll("[data-lang-picker]")) {
+    document.querySelectorAll("[data-lang-picker]").forEach(function (pick) {
+      pick.addEventListener("click", function (e) {
+        e.preventDefault();
+        setLang(e.target.dataset.langPicker);
       });
+    });
+  }
+}
 
-      // Update the map
-      map.getStyle().layers.forEach(function (thisLayer) {
-        if (thisLayer.type == "symbol") {
-          map.setLayoutProperty(thisLayer.id, "text-field", [
-            "get",
-            "name_" + "en",
-          ]);
-        }
-      });
+function setLang(lng) {
+  // Clip to first two letters of the language.
+  if (lng && lng.length > 1) {
+    let proposedLng = lng.slice(0, 2);
+    // Don't set the lang if it's not the supported languages.
+    if (SUPPORTED_LANGS.indexOf(proposedLng) != -1) {
+      LANG = proposedLng;
+    }
+  }
 
-      // Redraw the prefectures table
+  // toggle picker
+  toggleLangPicker();
+
+  // set i18n framework lang
+  i18next.changeLanguage(LANG).then(() => {
+    localize("html");
+    // Update the map
+    map.getStyle().layers.forEach(function (thisLayer) {
+      if (thisLayer.type == "symbol") {
+        map.setLayoutProperty(thisLayer.id, "text-field", [
+          "get",
+          // "name_" + LANG,
+          "name_en",
+        ]);
+      }
+    });
+
+    // Set HTML language tag
+    document.documentElement.setAttribute("lang", LANG);
+
+    // Redraw all components that need rerendering to be localized the prefectures table
+    if (!document.body.classList.contains("embed-mode")) {
       if (document.getElementById("prefectures-table")) {
         drawPrefectureTable(ddb.prefectures, ddb.totals);
       }
@@ -1219,14 +1255,44 @@ function initDataTranslate() {
         drawTravelRestrictions();
       }
 
-      // Toggle the lang picker
-      document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
-        el.style.display = "inline";
-      });
-      document.querySelector("a[data-lang-picker=" + LANG + "]").style.display =
-        "none";
-    });
+      drawTrendChart(ddb.trend);
+
+      drawPrefectureTrajectoryChart(ddb.prefectures);
+    }
+    updateTooltipLang();
   });
+}
+
+function updateTooltipLang() {
+  // Destroy current tooltips
+  if (Array.isArray(tippyInstances)) {
+    tippyInstances.forEach((instance) => instance.destroy());
+  }
+
+  // Set tooltip content to current language
+  document.querySelectorAll(`[data-tippy-i18n]`).forEach((node) => {
+    const i18nKey = node.getAttribute("data-tippy-i18n");
+    const dataTippyContent = i18next.t(i18nKey);
+    node.setAttribute("data-tippy-content", dataTippyContent);
+  });
+
+  // Activate tooltips
+  tippyInstances = tippy("[data-tippy-content]");
+}
+
+function toggleLangPicker() {
+  // Toggle the lang picker
+  if (document.querySelectorAll("a[data-lang-picker]")) {
+    document.querySelectorAll("a[data-lang-picker]").forEach(function (el) {
+      el.style.display = "inline";
+    });
+    let currentLangPicker = document.querySelector(
+      "a[data-lang-picker=" + LANG + "]"
+    );
+    if (currentLangPicker) {
+      currentLangPicker.style.display = "none";
+    }
+  }
 }
 
 function loadDataOnPage() {
@@ -1263,6 +1329,7 @@ function loadDataOnPage() {
     }
 
     whenMapAndDataReady();
+    updateTooltipLang();
   });
 }
 
@@ -1280,11 +1347,16 @@ function whenMapAndDataReady() {
   drawMapPrefectures(pageDraws);
 }
 
-window.onload = function () {
-  // Enable tooltips
-  tippy("[data-tippy-content]");
+const startReloadTimer = () => {
+  let reloadInterval = 3;
+  setTimeout(() => location.reload(), reloadInterval * 60 * 60 * 1000);
+};
 
+window.onload = function () {
+  startReloadTimer();
   initDataTranslate();
+  // Set HTML language tag
+  document.documentElement.setAttribute("lang", LANG);
   drawMap();
 
   map.once("style.load", function (e) {
