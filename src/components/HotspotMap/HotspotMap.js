@@ -5,7 +5,7 @@ import { MAPBOX_ACCES_TOKEN } from "../../data/constants";
 const drawHotspotMap = (lang) => {
   mapboxgl.accessToken = MAPBOX_ACCES_TOKEN;
   var map = new mapboxgl.Map({
-    container: "map-container",
+    container: "hotspot-map-container",
     style: "mapbox://styles/mapbox/outdoors-v11",
     center: {
       lng: 76.2926027,
