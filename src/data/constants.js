@@ -7,6 +7,9 @@ export const COLOR_CONFIRMED = "rgb(244,67,54)";
 export const COLOR_RECOVERED = "rgb(25,118,210)";
 export const COLOR_DECEASED = "rgb(55,71,79)";
 
+export const MAPBOX_ACCESS_TOKEN =
+  "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
+
 export const COLOR_TESTED = "rgb(164,173,192)";
 export const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 export const COLOR_TESTED_TOTAL_GRAPH = "rgb(244,69,41)";
