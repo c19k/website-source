@@ -74,7 +74,7 @@ const drawHotspotMap = (lang) => {
       if (feature) {
         var label = feature.properties.label;
         if (lang == "ml") {
-          var label = feature.properties.labelMl;
+          label = feature.properties.labelMl;
         }
         var district = feature.properties.district;
         var type = feature.properties.type;

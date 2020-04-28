@@ -817,9 +817,9 @@ function drawPrefectureTable(prefectures, totals) {
         <td class="prefecture">${prefStr}</td>
         <td class="trend"><div id="${pref.name}-trend"></div></td>
         <td class="count">${pref.confirmed} ${incrementString}</td>
+        <td class="count">${pref.active || ""}</td>
         <td class="count">${pref.recovered ? pref.recovered : ""}</td>
         <td class="count">${pref.deceased ? pref.deceased : ""}</td>
-        <td class="count">${pref.active || ""}</td>
         </tr>`;
       drawPrefectureTrend(
         `#${pref.name}-trend`,
@@ -841,11 +841,11 @@ function drawPrefectureTable(prefectures, totals) {
         <td>${i18next.t("total")}</td>
         <td class="trend"></td>
         <td class="count">${totals.confirmed}</td>
-        <td class="count">${totals.recovered}</td>
-        <td class="count">${totals.deceased}</td>
         <td class="count">${
           totals.confirmed - totals.recovered - totals.deceased
         }</td>
+        <td class="count">${totals.recovered}</td>
+        <td class="count">${totals.deceased}</td>
         </tr>`;
 }
 
@@ -1258,6 +1258,7 @@ function setLang(lng) {
       }
 
       drawTrendChart(ddb.trend);
+      hotspotMap = drawHotspotMap(LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
     }
