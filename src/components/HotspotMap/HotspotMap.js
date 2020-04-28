@@ -25,7 +25,7 @@ const drawHotspotMap = (lang) => {
   map.on("load", function () {
     map.addSource("hotspots", {
       type: "geojson",
-      data: "http://data.covid19kerala.info/hotspot_data/latest.json",
+      data: "https://data.covid19kerala.info/hotspot_data/latest.json",
     });
 
     map.addLayer({
