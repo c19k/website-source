@@ -1,9 +1,9 @@
 import i18next from "i18next";
 
-import { MAPBOX_ACCES_TOKEN } from "../../data/constants";
+import { MAPBOX_ACCESS_TOKEN } from "../../data/constants";
 
 const drawHotspotMap = (lang) => {
-  mapboxgl.accessToken = MAPBOX_ACCES_TOKEN;
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
   var map = new mapboxgl.Map({
     container: "hotspot-map-container",
     style: "mapbox://styles/mapbox/outdoors-v11",
@@ -77,7 +77,7 @@ const drawHotspotMap = (lang) => {
         var type = feature.properties.type;
         var listedOn = feature.properties.listedOn;
 
-        html = `<h3>${label}</h3>
+        var html = `<h3>${label}</h3>
               Type : ${type}<br />
               District : ${district}<br />
               Listed on : ${listedOn}`;
@@ -88,7 +88,7 @@ const drawHotspotMap = (lang) => {
     });
   });
 
-  return hotspotMap;
+  // return hotspotMap;
 };
 
 export default drawHotspotMap;
