@@ -18,10 +18,12 @@ import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
+import drawHotspotMap from "./components/HotspotMap";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
 let dailyIncreaseChart = null;
+let hotspotMap = null;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
@@ -1358,6 +1360,7 @@ window.onload = function () {
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
   drawMap();
+  hotspotMap = drawHotspotMap(LANG);
 
   map.once("style.load", function (e) {
     styleLoaded = true;
