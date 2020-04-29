@@ -30,6 +30,8 @@ module.exports = {
         "!LICENSE",
         "!README.md",
         "!sitemap.xml",
+        "!hotspots",
+        "!hotspots/**/*",
       ],
     }),
     new HtmlWebpackPlugin({

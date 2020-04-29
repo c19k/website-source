@@ -18,10 +18,12 @@ import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
+import drawHotspotMap from "./components/HotspotMap";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
 let dailyIncreaseChart = null;
+let hotspotMap = null;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
@@ -815,9 +817,9 @@ function drawPrefectureTable(prefectures, totals) {
         <td class="prefecture">${prefStr}</td>
         <td class="trend"><div id="${pref.name}-trend"></div></td>
         <td class="count">${pref.confirmed} ${incrementString}</td>
+        <td class="count">${pref.active || ""}</td>
         <td class="count">${pref.recovered ? pref.recovered : ""}</td>
         <td class="count">${pref.deceased ? pref.deceased : ""}</td>
-        <td class="count">${pref.active || ""}</td>
         </tr>`;
       drawPrefectureTrend(
         `#${pref.name}-trend`,
@@ -839,11 +841,11 @@ function drawPrefectureTable(prefectures, totals) {
         <td>${i18next.t("total")}</td>
         <td class="trend"></td>
         <td class="count">${totals.confirmed}</td>
-        <td class="count">${totals.recovered}</td>
-        <td class="count">${totals.deceased}</td>
         <td class="count">${
           totals.confirmed - totals.recovered - totals.deceased
         }</td>
+        <td class="count">${totals.recovered}</td>
+        <td class="count">${totals.deceased}</td>
         </tr>`;
 }
 
@@ -940,11 +942,11 @@ function drawAgeTrendChart(age) {
   var options = {
     series: [
       {
-        name: "Male",
+        name: i18next.t("Male"),
         data: male,
       },
       {
-        name: "Female",
+        name: i18next.t("Female"),
         data: female,
       },
     ],
@@ -975,7 +977,7 @@ function drawAgeTrendChart(age) {
           text: 'Age Group'
         },*/
     subtitle: {
-      text: "Avaiting details for " + totalUnspecified + " patients",
+      text: i18next.t("Awaiting details for") + " : " + totalUnspecified,
       align: "right",
     },
     xaxis: {
@@ -986,12 +988,12 @@ function drawAgeTrendChart(age) {
         },
       },
       title: {
-        text: "Age Group",
+        text: i18next.t("Age Group"),
       },
     },
     yaxis: {
       title: {
-        text: "Number of patients",
+        text: i18next.t("Number of patients"),
       },
     },
     tooltip: {
@@ -1026,7 +1028,7 @@ function drawGenderChart(gender) {
       width: 400,
       type: "pie",
     },
-    labels: ["Female", "Male", "Unspecified"],
+    labels: [i18next.t("Female"), i18next.t("Male"), i18next.t("Unspecified")],
     responsive: [
       {
         breakpoint: 480,
@@ -1256,8 +1258,17 @@ function setLang(lng) {
       }
 
       drawTrendChart(ddb.trend);
+      hotspotMap = drawHotspotMap(LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
+      drawGenderChart(ddb.gender);
+      drawAgeTrendChart(ddb.age);
+
+      dailyIncreaseChart = drawDailyIncreaseChart(
+        ddb.trend,
+        dailyIncreaseChart,
+        LANG
+      );
     }
     updateTooltipLang();
   });
@@ -1358,6 +1369,7 @@ window.onload = function () {
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
   drawMap();
+  hotspotMap = drawHotspotMap(LANG);
 
   map.once("style.load", function (e) {
     styleLoaded = true;
