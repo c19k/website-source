@@ -51,5 +51,12 @@
   "Tested": "Tested",
   "Confirmed": "Confirmed",
   "Recovered": "Recovered",
-  "Hotspots Map": "Hotspots Map"
+  "Hotspots Map": "Hotspots Map",
+  "Number of patients": "Number of patients",
+  "Awaiting details for": "Awaiting details of patients",
+  "Number of patients": "Number of patients",
+  "Age Group": "Age Group",
+  "Male": "Male",
+  "Female": "Female",
+  "7 Day Average": "7 Day Average"
 }

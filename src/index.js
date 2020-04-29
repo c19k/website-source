@@ -942,11 +942,11 @@ function drawAgeTrendChart(age) {
   var options = {
     series: [
       {
-        name: "Male",
+        name: i18next.t("Male"),
         data: male,
       },
       {
-        name: "Female",
+        name: i18next.t("Female"),
         data: female,
       },
     ],
@@ -977,7 +977,7 @@ function drawAgeTrendChart(age) {
           text: 'Age Group'
         },*/
     subtitle: {
-      text: "Avaiting details for " + totalUnspecified + " patients",
+      text: i18next.t("Awaiting details for") + " : " + totalUnspecified,
       align: "right",
     },
     xaxis: {
@@ -988,12 +988,12 @@ function drawAgeTrendChart(age) {
         },
       },
       title: {
-        text: "Age Group",
+        text: i18next.t("Age Group"),
       },
     },
     yaxis: {
       title: {
-        text: "Number of patients",
+        text: i18next.t("Number of patients"),
       },
     },
     tooltip: {
@@ -1028,7 +1028,7 @@ function drawGenderChart(gender) {
       width: 400,
       type: "pie",
     },
-    labels: ["Female", "Male", "Unspecified"],
+    labels: [i18next.t("Female"), i18next.t("Male"), i18next.t("Unspecified")],
     responsive: [
       {
         breakpoint: 480,
@@ -1261,6 +1261,14 @@ function setLang(lng) {
       hotspotMap = drawHotspotMap(LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
+      drawGenderChart(ddb.gender);
+      drawAgeTrendChart(ddb.age);
+
+      dailyIncreaseChart = drawDailyIncreaseChart(
+        ddb.trend,
+        dailyIncreaseChart,
+        LANG
+      );
     }
     updateTooltipLang();
   });

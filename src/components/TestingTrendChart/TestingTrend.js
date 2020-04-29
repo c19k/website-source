@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import * as c3 from "c3";
-// import i18next from "i18next";
+import i18next from "i18next";
 import last from "lodash/last";
 import sum from "lodash/sum";
 

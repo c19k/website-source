@@ -53,5 +53,15 @@
   "Tested": "പരിശോധന",
   "Confirmed": "സ്ഥിരീകരണം",
   "Recovered": "സുഖപ്പെട്ടവർ",
-  "Hotspots Map": "ഹോട്ട് സ്പോട്ട് ഭൂപടം"
+  "Hotspots Map": "ഹോട്ട് സ്പോട്ട് ഭൂപടം",
+  "Number of patients": "രോഗികളുടെ എണ്ണം",
+  "Awaiting details for": "വിവരം ലഭിക്കാനുള്ള രോഗികൾ",
+  "Number of patients": "രോഗികളുടെ എണ്ണം",
+  "Age Group": "ഏജ് ഗ്രൂപ്പ്",
+  "Male": "പുരുഷന്മാർ",
+  "Female": "സ്ത്രീകൾ",
+  "7 Day Average": "ഒരാഴ്ചയിലെ ശരാശരി",
+  "Trend Daily": "ദിവസേനയുള്ള ട്രെൻഡ്",
+  "Trend Weekly": "ആഴ്ചയിലെ ട്രെൻഡ്",
+  "Daily": "ദിനംപ്രതി"
 }
