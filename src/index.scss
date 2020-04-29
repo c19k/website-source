@@ -321,3 +321,13 @@ body.embed {
   .embed-show { display: block; }
   span.embed-show { display: inline; }
 }
+
+.touchscreen-only {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  div {
+    display: block;
+  }
+}
