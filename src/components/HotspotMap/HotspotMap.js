@@ -16,7 +16,7 @@ const drawHotspotMap = (lang) => {
 
   map.addControl(
     new mapboxgl.NavigationControl({
-      showCompass: true,
+      showCompass: false,
       showZoom: true,
       zoomControl: true,
     })
@@ -87,6 +87,20 @@ const drawHotspotMap = (lang) => {
         popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
       } else {
         popup.remove();
+      }
+    });
+
+    map.dragPan.disable();
+    map.scrollZoom.disable();
+
+    map.on("touchstart", (event) => {
+      const e = event.originalEvent;
+      if (e && "touches" in e) {
+        if (e.touches.length > 1) {
+          this.map.dragPan.enable();
+        } else {
+          this.map.dragPan.disable();
+        }
       }
     });
   });
