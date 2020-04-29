@@ -19,7 +19,7 @@ const drawHotspotMap = (lang) => {
     ],*/
     zoom: 6.5,
     minZoom: 4,
-    maxZoom: 11,
+    maxZoom: 10,
   });
 
   map.addControl(
