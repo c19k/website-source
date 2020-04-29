@@ -4,6 +4,7 @@ import { MAPBOX_ACCESS_TOKEN } from "../../data/constants";
 
 const drawHotspotMap = (lang) => {
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
   var map = new mapboxgl.Map({
     container: "hotspot-map-container",
     style: "mapbox://styles/mapbox/outdoors-v11",
@@ -11,7 +12,13 @@ const drawHotspotMap = (lang) => {
       lng: 76.2926027,
       lat: 10.6321557,
     },
+    /*maxBounds: [
+      [73.523941, 6.869530], // SW
+      [79.660925, 14.813981] // NE
+    ],*/
     zoom: 6.5,
+    minZoom: 4,
+    maxZoom: 11,
   });
 
   map.addControl(
@@ -45,7 +52,7 @@ const drawHotspotMap = (lang) => {
       type: "circle",
       source: "hotspots",
       paint: {
-        "circle-radius": 6,
+        "circle-radius": 5,
         "circle-color": "#B42222",
       },
       filter: ["all", ["==", "$type", "Point"], ["!=", "type", "Other"]],
@@ -90,8 +97,8 @@ const drawHotspotMap = (lang) => {
       }
     });
 
-    map.dragPan.disable();
-    map.scrollZoom.disable();
+    // map.dragPan.disable();
+    // map.scrollZoom.disable();
 
     map.on("touchstart", (event) => {
       const e = event.originalEvent;
