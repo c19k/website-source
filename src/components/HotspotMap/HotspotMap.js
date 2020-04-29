@@ -1,6 +1,7 @@
 import i18next from "i18next";
 
 import { MAPBOX_ACCESS_TOKEN } from "../../data/constants";
+import MultiTouch from "./MultiTouch";
 
 const drawHotspotMap = (lang) => {
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
@@ -97,19 +98,9 @@ const drawHotspotMap = (lang) => {
       }
     });
 
-    // map.dragPan.disable();
-    // map.scrollZoom.disable();
-
-    /*map.on("touchstart", (event) => {
-      const e = event.originalEvent;
-      if (e && "touches" in e) {
-        if (e.touches.length > 1) {
-          this.map.dragPan.enable();
-        } else {
-          this.map.dragPan.disable();
-        }
-      }
-    });*/
+    //Disable single touch pan in mobile devices so that scrolling is intuitive
+    //To pan and zoom, use 2 fingers
+    map.addControl(new MultiTouch());
   });
 
   // return hotspotMap;
