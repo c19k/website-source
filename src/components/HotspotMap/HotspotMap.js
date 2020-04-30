@@ -119,12 +119,14 @@ const drawHotspotMap = (lang) => {
       filter: ["all", ["==", "$type", "Point"], ["==", "type", "Other"]],
     });
 
-    // enumerate ids of the layers
+    // Add toggle buttons for map layers. Make sure visibility property
+    // is set to visible for each layers
     var toggleableLayers = [
       { label: i18next.t("Affected LGS"), layerId: "hotspot-boundary" },
       { label: i18next.t("Hotspots"), layerId: "hotspot-points" },
       { label: i18next.t("Hospitals"), layerId: "other-points" },
     ];
+
     addLayerToggles(map, toggleableLayers);
 
     const popup = new mapboxgl.Popup({
