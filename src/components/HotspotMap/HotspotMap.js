@@ -3,6 +3,48 @@ import i18next from "i18next";
 import { MAPBOX_ACCESS_TOKEN } from "../../data/constants";
 import MultiTouch from "./MultiTouch";
 
+//To add a layer toggler to a map.
+//toggleableLayers is an array of format [{label:"<toggle button label>", layerId : "<id of the layer to toggle>""}]
+const addLayerToggles = (map, toggleableLayers) => {
+  if (!toggleableLayers.length) {
+    return;
+  }
+  var toggler = document.getElementById("hotspot-map-menu");
+  toggler.innerHTML = "";
+
+  // set up the corresponding toggle button for each layer
+  for (var i = 0; i < toggleableLayers.length; i++) {
+    var label = toggleableLayers[i].label;
+    var layerId = toggleableLayers[i].layerId;
+
+    var link = document.createElement("a");
+    link.href = "#";
+    link.className = "active";
+    link.textContent = label;
+    link.setAttribute("layerId", layerId);
+
+    link.onclick = function (e) {
+      var clickedLayer = this.getAttribute("layerId");
+      console.log(clickedLayer);
+      e.preventDefault();
+      e.stopPropagation();
+
+      var visibility = map.getLayoutProperty(clickedLayer, "visibility");
+
+      // toggle layer visibility by changing the layout object's visibility property
+      if (visibility === "visible") {
+        map.setLayoutProperty(clickedLayer, "visibility", "none");
+        this.className = "";
+      } else {
+        this.className = "active";
+        map.setLayoutProperty(clickedLayer, "visibility", "visible");
+      }
+    };
+    toggler.appendChild(link);
+  }
+  toggler.style.visibility = "visible";
+};
+
 const drawHotspotMap = (lang) => {
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
@@ -40,6 +82,9 @@ const drawHotspotMap = (lang) => {
       id: "hotspot-boundary",
       type: "fill",
       source: "hotspots",
+      layout: {
+        visibility: "visible",
+      },
       paint: {
         "fill-color": "#B42222",
         "fill-opacity": 0.3,
@@ -52,6 +97,9 @@ const drawHotspotMap = (lang) => {
       id: "hotspot-points",
       type: "circle",
       source: "hotspots",
+      layout: {
+        visibility: "visible",
+      },
       paint: {
         "circle-radius": 5,
         "circle-color": "#B42222",
@@ -66,9 +114,18 @@ const drawHotspotMap = (lang) => {
       layout: {
         "icon-image": "hospital-15",
         "icon-allow-overlap": true,
+        visibility: "visible",
       },
       filter: ["all", ["==", "$type", "Point"], ["==", "type", "Other"]],
     });
+
+    // enumerate ids of the layers
+    var toggleableLayers = [
+      { label: i18next.t("Affected LGS"), layerId: "hotspot-boundary" },
+      { label: i18next.t("Hotspots"), layerId: "hotspot-points" },
+      { label: i18next.t("Hospitals"), layerId: "other-points" },
+    ];
+    addLayerToggles(map, toggleableLayers);
 
     const popup = new mapboxgl.Popup({
       closeButton: false,
