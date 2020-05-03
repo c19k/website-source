@@ -3,20 +3,21 @@ class MapboxGLButtonControl {
     className = "",
     title = "",
     eventHandler = evtHndlr,
-    layerId = "",
+    layerIds = "",
   }) {
     this._className = className;
     this._title = title;
     this._eventHandler = eventHandler;
-    this._layerId = layerId;
+    this._layerIds = layerIds;
   }
 
   onAdd(map) {
     this._btn = document.createElement("button");
-    this._btn.className = "mapboxgl-ctrl-icon" + " " + this._className;
+    this._btn.className = "mapboxgl-toggle-icon" + " " + this._className;
     this._btn.type = "button";
     this._btn.title = this._title;
-    this._btn.setAttribute("layerId", this._layerId);
+    this._btn.setAttribute("layerIds", this._layerIds);
+    this._btn.innerHTML = this._title ? this._title : "";
 
     this._btn.onclick = this._eventHandler;
 
