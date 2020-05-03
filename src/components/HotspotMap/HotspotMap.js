@@ -42,7 +42,7 @@ const addLayerToggles = (map, toggleableLayers) => {
   }
 };
 
-const drawHotspotMap = (lang) => {
+const drawHotspotMap = (districts, lang) => {
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
   var map = new mapboxgl.Map({
@@ -73,6 +73,26 @@ const drawHotspotMap = (lang) => {
     map.addSource("hotspots", {
       type: "geojson",
       data: "https://data.covid19kerala.info/hotspot_data/latest.json",
+    });
+
+    map.addSource("districts", {
+      type: "geojson",
+      data: "/static/districts.geojson",
+    });
+
+    map.addLayer({
+      id: "districts-boundaries",
+      type: "line",
+      source: "districts",
+      layout: {
+        visibility: "visible",
+      },
+      paint: {
+        "line-width": 0.5,
+        "line-color": "#000000",
+        "line-opacity": 1,
+      },
+      filter: ["==", "$type", "Polygon"],
     });
 
     map.addLayer({
@@ -120,14 +140,16 @@ const drawHotspotMap = (lang) => {
     // is set to visible for each layers
     var toggleableLayers = [
       {
-        label: i18next.t("Affected LGS"),
+        label: i18next.t("Hotspots"),
         layerIds: ["hotspot-boundary", "hotspot-points"],
       },
-      { label: i18next.t("Hotspots"), layerIds: "hotspot-points" },
-      { label: i18next.t("Hospitals"), layerIds: "other-points" },
+      {
+        label: i18next.t("District Boundaries"),
+        layerIds: "districts-boundaries",
+      },
     ];
 
-    //addLayerToggles(map, toggleableLayers);
+    addLayerToggles(map, toggleableLayers);
 
     const popup = new mapboxgl.Popup({
       closeButton: false,
