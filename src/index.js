@@ -1269,7 +1269,7 @@ function setLang(lng) {
       }
 
       drawTrendChart(ddb.trend);
-      hotspotMap = drawHotspotMap(LANG);
+      hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawGenderChart(ddb.gender);
@@ -1396,7 +1396,7 @@ window.onload = function () {
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
   drawMap();
-  hotspotMap = drawHotspotMap(LANG);
+  hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
   map.once("style.load", function (e) {
     styleLoaded = true;
