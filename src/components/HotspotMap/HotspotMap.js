@@ -5,7 +5,7 @@ import MultiTouch from "./MultiTouch";
 import MapboxGLButtonControl from "./MapboxGLButtonControl";
 
 //To add a layer toggler to a map.
-//toggleableLayers is an array of format [{label:"<toggle button label>", layerId : "<id of the layer to toggle>""}]
+//toggleableLayers is an array of format [{label:"<toggle button label>", layerIds : ["<layer id1>", "<layer id12>"...]}]
 const addLayerToggles = (map, toggleableLayers) => {
   if (!toggleableLayers.length) {
     return;
@@ -13,23 +13,29 @@ const addLayerToggles = (map, toggleableLayers) => {
   // set up the corresponding toggle button for each layer
   for (var i = 0; i < toggleableLayers.length; i++) {
     var label = toggleableLayers[i].label;
-    var layerId = toggleableLayers[i].layerId;
+    var layerIds = toggleableLayers[i].layerIds;
+    if (Array.isArray(layerIds)) {
+      layerIds = layerIds.join(";");
+    }
 
     var toggleEvent = function (e) {
-      var clickedLayer = this.getAttribute("layerId");
-      var visibility = map.getLayoutProperty(clickedLayer, "visibility");
-      // toggle layer visibility by changing the layout object's visibility property
-      if (visibility === "visible") {
-        map.setLayoutProperty(clickedLayer, "visibility", "none");
-      } else {
-        map.setLayoutProperty(clickedLayer, "visibility", "visible");
-      }
+      var clickedLayersList = this.getAttribute("layerIds");
+      var clickedLayersArray = clickedLayersList.split(";");
+      clickedLayersArray.forEach((layer) => {
+        var visibility = map.getLayoutProperty(layer, "visibility");
+        // toggle layer visibility by changing the layout object's visibility property
+        if (visibility === "visible") {
+          map.setLayoutProperty(layer, "visibility", "none");
+        } else {
+          map.setLayoutProperty(layer, "visibility", "visible");
+        }
+      });
     };
 
     const toggleButton = new MapboxGLButtonControl({
-      className: "mapbox-gl-toggle-" + layerId,
+      className: "mapbox-gl-toggle-btn",
       title: label,
-      layerId: layerId,
+      layerIds: layerIds,
       eventHandler: toggleEvent,
     });
     map.addControl(toggleButton, "bottom-left");
@@ -113,9 +119,12 @@ const drawHotspotMap = (lang) => {
     // Add toggle buttons for map layers. Make sure visibility property
     // is set to visible for each layers
     var toggleableLayers = [
-      { label: i18next.t("Affected LGS"), layerId: "hotspot-boundary" },
-      { label: i18next.t("Hotspots"), layerId: "hotspot-points" },
-      { label: i18next.t("Hospitals"), layerId: "other-points" },
+      {
+        label: i18next.t("Affected LGS"),
+        layerIds: ["hotspot-boundary", "hotspot-points"],
+      },
+      { label: i18next.t("Hotspots"), layerIds: "hotspot-points" },
+      { label: i18next.t("Hospitals"), layerIds: "other-points" },
     ];
 
     addLayerToggles(map, toggleableLayers);
