@@ -70,16 +70,19 @@ const drawHotspotMap = (districts, lang) => {
   );
 
   map.on("load", function () {
+    // Hotspots from JSON API
     map.addSource("hotspots", {
       type: "geojson",
       data: "https://data.covid19kerala.info/hotspot_data/latest.json",
     });
 
+    // Discricts GeoJson
     map.addSource("districts", {
       type: "geojson",
       data: "/static/districts.geojson",
     });
 
+    // Boundaries to districts
     map.addLayer({
       id: "districts-boundaries",
       type: "line",
@@ -95,6 +98,7 @@ const drawHotspotMap = (districts, lang) => {
       filter: ["==", "$type", "Polygon"],
     });
 
+    // Hotspot LSG Boundaries
     map.addLayer({
       id: "hotspot-boundary",
       type: "fill",
@@ -110,6 +114,7 @@ const drawHotspotMap = (districts, lang) => {
       filter: ["==", "$type", "Polygon"],
     });
 
+    // Points to center of hotspot LSG
     map.addLayer({
       id: "hotspot-points",
       type: "circle",
@@ -124,6 +129,7 @@ const drawHotspotMap = (districts, lang) => {
       filter: ["all", ["==", "$type", "Point"], ["!=", "type", "Other"]],
     });
 
+    // Hotspots other than LSGs
     map.addLayer({
       id: "other-points",
       type: "symbol",
@@ -151,6 +157,7 @@ const drawHotspotMap = (districts, lang) => {
 
     addLayerToggles(map, toggleableLayers);
 
+    // Hover Popup
     const popup = new mapboxgl.Popup({
       closeButton: false,
       closeOnClick: false,
