@@ -54,6 +54,7 @@ export const LANG_CONFIG = {
 
 // Global vars
 let ddb = {
+  isSiteUpdating: false,
   prefectures: undefined,
   trend: undefined,
   totals: {
@@ -1284,6 +1285,13 @@ function setLang(lng) {
   });
 }
 
+function drawSiteUpdating(isUpdating) {
+  if (isUpdating) {
+    document.getElementById("data-update-warning-container").style.visibility =
+      "visible";
+  }
+}
+
 function updateTooltipLang() {
   // Destroy current tooltips
   if (Array.isArray(tippyInstances)) {
@@ -1315,6 +1323,12 @@ function toggleLangPicker() {
     }
   }
 }
+function checkIsSiteUpdating(dailyStats) {
+  let latestDayStats = dailyStats[dailyStats.length - 1];
+  return latestDayStats.status && latestDayStats.status == "Reviewing"
+    ? true
+    : false;
+}
 
 function loadDataOnPage() {
   loadData(function (data) {
@@ -1330,8 +1344,11 @@ function loadDataOnPage() {
     ddb.age = jsonData.age;
     ddb.gender = jsonData.gender;
 
+    ddb.isSiteUpdating = checkIsSiteUpdating(jsonData.daily);
+
     drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
+      drawSiteUpdating(ddb.isSiteUpdating);
       drawLastUpdated(ddb.lastUpdated);
       drawPageTitleCount(ddb.totals.confirmed);
       drawPrefectureTable(ddb.prefectures, ddb.totals);
