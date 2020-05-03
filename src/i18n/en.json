@@ -54,12 +54,12 @@
   "Hotspots Map": "Hotspots Map",
   "Number of patients": "Number of patients",
   "Awaiting details for": "Awaiting details of patients",
-  "Number of patients": "Number of patients",
   "Age Group": "Age Group",
   "Male": "Male",
   "Female": "Female",
   "7 Day Average": "7 Day Average",
   "Affected LGS": "Affected LGS",
   "Hotspots": "Hotspots",
-  "Hospitals": "Hospitals"
+  "Hospitals": "Hospitals",
+  "data-update-warning-message": "Data being updated—numbers may change on the fly. Apologies."
 }
