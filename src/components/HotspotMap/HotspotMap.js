@@ -127,7 +127,7 @@ const drawHotspotMap = (lang) => {
       { label: i18next.t("Hospitals"), layerIds: "other-points" },
     ];
 
-    addLayerToggles(map, toggleableLayers);
+    //addLayerToggles(map, toggleableLayers);
 
     const popup = new mapboxgl.Popup({
       closeButton: false,
