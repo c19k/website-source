@@ -323,7 +323,17 @@ function calculateTotals(daily) {
       totalsDiff[totalKey] = latest[rowKey] - dayBefore[rowKey];
     }
 
-    if (totalsDiff[totalKey] <= 0 && twoDaysBefore && twoDaysBefore[rowKey]) {
+    /*
+      if latest day's status is not Finalised yet and the difference in current key is <=0, 
+      Compare with data of two days before. This prevents showing 0 diffs 
+      in case of data in spreadsheet is not updated with current day yet
+    */
+    if (
+      latest.status !== "Finalised" &&
+      totalsDiff[totalKey] <= 0 &&
+      twoDaysBefore &&
+      twoDaysBefore[rowKey]
+    ) {
       totalsDiff[totalKey] = latest[rowKey] - twoDaysBefore[rowKey];
     }
 
