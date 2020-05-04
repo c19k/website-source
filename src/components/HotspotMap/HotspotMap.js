@@ -123,6 +123,33 @@ const drawDistrcitZones = (map, districtsData) => {
     },
     firstSymbolId
   );
+
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+  });
+
+  map.on("mousemove", function (e) {
+    const feature = map.queryRenderedFeatures(e.point, {
+      layers: ["zone-layer"],
+    })[0];
+    if (feature) {
+      const thisDistrict = districtsData.filter((p) => {
+        return p.name === feature.properties.DISTRICT;
+      });
+      const name = thisDistrict[0].name;
+      const zone = thisDistrict[0].zone;
+      const zoneUpdatedOn = thisDistrict[0].zoneUpdatedOn;
+      const html = `<h3>${i18next.t(name)}</h3><strong>${i18next.t(
+        "Zone"
+      )}: ${i18next.t(zone)}</strong><br />${i18next.t(
+        "Zone Updated On"
+      )}: ${zoneUpdatedOn}`;
+      popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
+    } else {
+      popup.remove();
+    }
+  });
 };
 
 const drawHotspotMap = (districtsData, lang) => {
