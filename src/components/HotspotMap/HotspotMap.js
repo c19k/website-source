@@ -143,6 +143,9 @@ const drawHotspotMap = (districtsData, lang) => {
     maxZoom: 10,
   });
 
+  map.dragRotate.disable();
+  map.touchZoomRotate.disableRotation();
+
   map.addControl(
     new mapboxgl.NavigationControl({
       showCompass: false,
@@ -175,7 +178,7 @@ const drawHotspotMap = (districtsData, lang) => {
       paint: {
         "line-width": 0.5,
         "line-color": "#000000",
-        "line-opacity": 1,
+        "line-opacity": 0.8,
       },
       filter: ["==", "$type", "Polygon"],
     });
