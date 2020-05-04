@@ -61,5 +61,12 @@
   "Affected LGS": "Affected LGS",
   "Hotspots": "Hotspots",
   "Hospitals": "Hospitals",
-  "data-update-warning-message": "Data being updated—numbers may change on the fly. Apologies."
+  "data-update-warning-message": "Data being updated—numbers may change on the fly. Apologies.",
+  "Zones": "Zones",
+  "Zone": "Zone",
+  "District Boundaries": "Districts",
+  "Red": "Red",
+  "Orange": "Orange",
+  "Green": "Green",
+  "Zone Updated On": "Updated On"
 }
