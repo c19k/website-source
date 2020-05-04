@@ -1269,7 +1269,7 @@ function setLang(lng) {
       }
 
       drawTrendChart(ddb.trend);
-      hotspotMap = drawHotspotMap(ddb, LANG);
+      hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawGenderChart(ddb.gender);
