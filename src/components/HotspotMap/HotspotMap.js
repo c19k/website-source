@@ -42,9 +42,91 @@ const addLayerToggles = (map, toggleableLayers) => {
   }
 };
 
-const drawHotspotMap = (districts, lang) => {
-  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+/**
+ * drawDistrcitZones
+ */
+const drawDistrcitZones = (map, districtsData) => {
+  // Find the index of the first symbol layer
+  // in the map style so we can draw the
+  // prefecture colors behind it
 
+  var firstSymbolId;
+  var layers = map.getStyle().layers;
+  for (var i = 0; i < layers.length; i++) {
+    if (layers[i].type === "symbol") {
+      firstSymbolId = layers[i].id;
+      break;
+    }
+  }
+
+  // Start the Mapbox search expression
+  let zonePaint = ["match", ["get", "DISTRICT"]];
+
+  // Go through all district to identify zones
+  districtsData.map(function (district) {
+    let zone = district.zone;
+    if (zone) {
+      zonePaint.push(district.name);
+      if (zone == "Green") {
+        // Green Zone
+        zonePaint.push("rgb(0,128,0)");
+      } else if (zone == "Orange") {
+        // Orange Zone
+        zonePaint.push("rgb(255,165,0)");
+      } else if (zone == "Red") {
+        // Red Zone
+        zonePaint.push("rgb(255,0,0)");
+      }
+    }
+  });
+
+  // Add a final value to the list for the default color
+  zonePaint.push("rgba(0,0,0,0)");
+
+  map.addSource("districts-zones", {
+    type: "geojson",
+    data: "/static/districts.geojson",
+  });
+
+  // Add the prefecture color layer to the map
+  map.addLayer(
+    {
+      id: "zone-layer",
+      type: "fill",
+      source: "districts-zones",
+      layout: {
+        visibility: "none",
+      },
+      paint: {
+        "fill-color": zonePaint,
+        "fill-opacity": 0.5,
+      },
+    },
+    firstSymbolId
+  );
+
+  // Add another layer with type "line"
+  // to provide a styled district border
+  let distBorderLayer = map.addLayer(
+    {
+      id: "zone-outline-layer",
+      type: "line",
+      source: "districts-zones",
+      layout: {
+        visibility: "none",
+      },
+      paint: {
+        "line-width": 0.5,
+        "line-color": "#c0c0c0",
+        "line-opacity": 0.5,
+      },
+    },
+    firstSymbolId
+  );
+};
+
+const drawHotspotMap = (districtsData, lang) => {
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
   var map = new mapboxgl.Map({
     container: "hotspot-map-container",
     style: "mapbox://styles/mapbox/outdoors-v11",
@@ -76,7 +158,7 @@ const drawHotspotMap = (districts, lang) => {
       data: "https://data.covid19kerala.info/hotspot_data/latest.json",
     });
 
-    // Discricts GeoJson
+    // Distrricts GeoJson
     map.addSource("districts", {
       type: "geojson",
       data: "/static/districts.geojson",
@@ -153,6 +235,10 @@ const drawHotspotMap = (districts, lang) => {
         label: i18next.t("District Boundaries"),
         layerIds: "districts-boundaries",
       },
+      {
+        label: i18next.t("Zones"),
+        layerIds: ["zone-layer", "zone-outline-layer"],
+      },
     ];
 
     addLayerToggles(map, toggleableLayers);
@@ -189,6 +275,8 @@ const drawHotspotMap = (districts, lang) => {
     //Disable single touch pan in mobile devices so that scrolling is intuitive
     //To pan and zoom, use 2 fingers
     map.addControl(new MultiTouch());
+
+    drawDistrcitZones(map, districtsData);
   });
 
   // return hotspotMap;

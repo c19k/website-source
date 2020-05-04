@@ -1269,7 +1269,7 @@ function setLang(lng) {
       }
 
       drawTrendChart(ddb.trend);
-      hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
+      hotspotMap = drawHotspotMap(ddb, LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawGenderChart(ddb.gender);
@@ -1383,6 +1383,7 @@ function whenMapAndDataReady() {
   }
 
   drawMapPrefectures(pageDraws);
+  hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 }
 
 const startReloadTimer = () => {
@@ -1396,7 +1397,6 @@ window.onload = function () {
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
   drawMap();
-  hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
   map.once("style.load", function (e) {
     styleLoaded = true;
