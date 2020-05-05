@@ -338,6 +338,20 @@ body.embed {
   height: 35px !important;
   padding : 2px !important;
 }
+.mapboxgl-toggle-icon {
+  width: 100px !important;
+  height: 35px !important;
+  padding: 2px !important;
+}
+
+.mapbox-gl-toggle-btn{
+  border-radius: 4px;
+}
+
+.mapbox-gl-toggle-btn-active{
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
 
 .data-update-warning{
   color: orange;

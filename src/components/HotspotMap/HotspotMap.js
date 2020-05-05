@@ -14,11 +14,18 @@ const addLayerToggles = (map, toggleableLayers) => {
   for (var i = 0; i < toggleableLayers.length; i++) {
     var label = toggleableLayers[i].label;
     var layerIds = toggleableLayers[i].layerIds;
+
+    var initialVisibility =
+      toggleableLayers[i].initialVisibility !== undefined
+        ? toggleableLayers[i].initialVisibility
+        : true;
+
     if (Array.isArray(layerIds)) {
       layerIds = layerIds.join(";");
     }
 
     var toggleEvent = function (e) {
+      this.blur();
       var clickedLayersList = this.getAttribute("layerIds");
       var clickedLayersArray = clickedLayersList.split(";");
       clickedLayersArray.forEach((layer) => {
@@ -26,14 +33,20 @@ const addLayerToggles = (map, toggleableLayers) => {
         // toggle layer visibility by changing the layout object's visibility property
         if (visibility === "visible") {
           map.setLayoutProperty(layer, "visibility", "none");
+          this.classList.remove("mapbox-gl-toggle-btn-active");
+          this.classList.add("mapbox-gl-toggle-btn");
         } else {
           map.setLayoutProperty(layer, "visibility", "visible");
+          this.classList.add("mapbox-gl-toggle-btn-active");
+          this.classList.remove("mapbox-gl-toggle-btn");
         }
       });
     };
-
+    var toggleBtnClassName = initialVisibility
+      ? "mapbox-gl-toggle-btn-active"
+      : "mapbox-gl-toggle-btn";
     const toggleButton = new MapboxGLButtonControl({
-      className: "mapbox-gl-toggle-btn",
+      className: toggleBtnClassName,
       title: label,
       layerIds: layerIds,
       eventHandler: toggleEvent,
@@ -268,6 +281,7 @@ const drawHotspotMap = (districtsData, lang) => {
       {
         label: i18next.t("Zones"),
         layerIds: ["zone-layer", "zone-outline-layer"],
+        initialVisibility: false,
       },
     ];
 
