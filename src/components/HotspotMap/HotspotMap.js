@@ -305,11 +305,16 @@ const drawHotspotMap = (districtsData, lang) => {
         var district = feature.properties.district;
         var type = feature.properties.type;
         var listedOn = feature.properties.listedOn;
+        var notes = feature.properties.notes;
 
         var html = `<h3>${label}</h3>
               Type : ${type}<br />
               District : ${district}<br />
               Listed on : ${listedOn}`;
+
+        if (feature.properties.notes) {
+          html = html + `<br />Notes : ${notes}`;
+        }
         popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
       } else {
         popup.remove();
