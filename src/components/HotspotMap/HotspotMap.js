@@ -73,7 +73,7 @@ const drawDistrcitZones = (map, districtsData) => {
   }
 
   // Start the Mapbox search expression
-  let zonePaint = ["match", ["get", "DISTRICT"]];
+  let zonePaint = ["match", ["get", "district"]];
 
   // Go through all district to identify zones
   districtsData.map(function (district) {
@@ -148,7 +148,7 @@ const drawDistrcitZones = (map, districtsData) => {
     })[0];
     if (feature) {
       const thisDistrict = districtsData.filter((p) => {
-        return p.name === feature.properties.DISTRICT;
+        return p.name === feature.properties.district;
       });
       const name = thisDistrict[0].name;
       const zone = thisDistrict[0].zone;
