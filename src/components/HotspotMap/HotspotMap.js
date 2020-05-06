@@ -73,7 +73,7 @@ const drawDistrcitZones = (map, districtsData) => {
   }
 
   // Start the Mapbox search expression
-  let zonePaint = ["match", ["get", "DISTRICT"]];
+  let zonePaint = ["match", ["get", "district"]];
 
   // Go through all district to identify zones
   districtsData.map(function (district) {
@@ -148,7 +148,7 @@ const drawDistrcitZones = (map, districtsData) => {
     })[0];
     if (feature) {
       const thisDistrict = districtsData.filter((p) => {
-        return p.name === feature.properties.DISTRICT;
+        return p.name === feature.properties.district;
       });
       const name = thisDistrict[0].name;
       const zone = thisDistrict[0].zone;
@@ -305,11 +305,16 @@ const drawHotspotMap = (districtsData, lang) => {
         var district = feature.properties.district;
         var type = feature.properties.type;
         var listedOn = feature.properties.listedOn;
+        var notes = feature.properties.notes;
 
         var html = `<h3>${label}</h3>
               Type : ${type}<br />
               District : ${district}<br />
               Listed on : ${listedOn}`;
+
+        if (feature.properties.notes) {
+          html = html + `<br />Notes : ${notes}`;
+        }
         popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
       } else {
         popup.remove();
