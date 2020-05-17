@@ -19,6 +19,7 @@ import languageResources, { LANGUAGES } from "./i18n";
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 import drawHotspotMap from "./components/HotspotMap";
+import drawObservationTable from "./components/ObservationTable";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
@@ -1264,6 +1265,10 @@ function setLang(lng) {
         drawPrefectureTable(ddb.prefectures, ddb.totals);
       }
 
+      if (document.getElementById("observation-table")) {
+        drawObservationTable(ddb.underObservationData);
+      }
+
       if (document.getElementById("travel-restrictions")) {
         drawTravelRestrictions();
       }
@@ -1346,12 +1351,15 @@ function loadDataOnPage() {
 
     ddb.isSiteUpdating = checkIsSiteUpdating(jsonData.daily);
 
+    ddb.underObservationData = jsonData.underObservation;
+
     drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
       drawSiteUpdating(ddb.isSiteUpdating);
       drawLastUpdated(ddb.lastUpdated);
       drawPageTitleCount(ddb.totals.confirmed);
       drawPrefectureTable(ddb.prefectures, ddb.totals);
+      drawObservationTable(ddb.underObservationData);
       drawTravelRestrictions();
       drawTrendChart(ddb.trend);
       drawDailyIncreaseChart(ddb.trend);
