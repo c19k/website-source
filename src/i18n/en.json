@@ -68,5 +68,8 @@
   "Red": "Red",
   "Orange": "Orange",
   "Green": "Green",
-  "Zone Updated On": "Updated On"
+  "Zone Updated On": "Updated On",
+  "observation-data": "People Under Observation",
+  "at-hospital": "At hospital",
+  "at-home": "At home"
 }

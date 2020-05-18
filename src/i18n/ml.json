@@ -26,7 +26,7 @@
   "confirmed-case-trajectories-by-prefecture": "ജില്ല തിരിച്ചുള്ള രോഗവ്യാപന ട്രാജക്ടറി (10 രോഗികളിലധികം )",
   "traveling-into-japan": "Traveling into Japan",
   "provisional": "Provisional",
-  "total": "Total",
+  "total": "ആകെ",
   "testing-trend": "പരിശോധന ഗതി",
   "Patients—Age breakup": "രോഗികൾ—പ്രായാടിസ്ഥാനത്തിൽ",
   "Patients—Gender breakup": "രോഗികൾ—ലിംഗാടിസ്ഥാനത്തിൽ",
@@ -73,5 +73,8 @@
   "Red": "റെഡ്",
   "Orange": "ഓറഞ്ച്",
   "Green": "ഗ്രീൻ",
-  "Zone Updated On": "പുതുക്കിയത്"
+  "Zone Updated On": "പുതുക്കിയത്",
+  "observation-data": "നിരീക്ഷണത്തിൽ ഉള്ളവർ",
+  "at-hospital": "ആശുപത്രിയിൽ",
+  "at-home": "വീട്ടിൽ"
 }
