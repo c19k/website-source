@@ -278,11 +278,6 @@ const drawHotspotMap = (districtsData, lang) => {
         label: i18next.t("District Boundaries"),
         layerIds: "districts-boundaries",
       },
-      {
-        label: i18next.t("Zones"),
-        layerIds: ["zone-layer", "zone-outline-layer"],
-        initialVisibility: false,
-      },
     ];
 
     addLayerToggles(map, toggleableLayers);
@@ -324,8 +319,6 @@ const drawHotspotMap = (districtsData, lang) => {
     //Disable single touch pan in mobile devices so that scrolling is intuitive
     //To pan and zoom, use 2 fingers
     map.addControl(new MultiTouch());
-
-    drawDistrcitZones(map, districtsData);
   });
 
   // return hotspotMap;
