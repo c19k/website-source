@@ -28,7 +28,7 @@ function drawObservationTable(observationData) {
   underObservationArray = orderBy(
     underObservationArray,
     ["peopleunderobservation"],
-    ["asc"]
+    ["desc"]
   );
 
   dataTable.innerHTML = "";
