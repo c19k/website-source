@@ -71,5 +71,7 @@
   "Zone Updated On": "Updated On",
   "observation-data": "People Under Observation",
   "at-hospital": "At hospital",
-  "at-home": "At home"
+  "at-home": "At home",
+  "map-discaimer": "Boundaries are for reference only. Accuracy is not warranted.",
+  "UnspecifiedGender": "Unspecified"
 }

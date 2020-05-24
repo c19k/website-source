@@ -933,6 +933,8 @@ function drawKpis(totals, totalsDiff) {
     totalsDiff.confirmed - totalsDiff.recovered - totalsDiff.deceased
   );
 }
+//To overcome apexchart not getting rerendered when translation happens
+var ageTrendChart = false;
 
 function drawAgeTrendChart(age) {
   let female = [];
@@ -1024,14 +1026,17 @@ function drawAgeTrendChart(age) {
       offsetX: 40,
     },
   };
+  if (ageTrendChart !== false) {
+    ageTrendChart.destroy();
+  }
 
-  var chart = new ApexCharts(
+  ageTrendChart = new ApexCharts(
     document.querySelector("#age-trend-chart"),
     options
   );
-  chart.render();
+  ageTrendChart.render();
 }
-
+var genderChart = false;
 function drawGenderChart(gender) {
   var options = {
     series: [gender.female, gender.male, gender.unspecified],
@@ -1040,7 +1045,11 @@ function drawGenderChart(gender) {
       width: 400,
       type: "pie",
     },
-    labels: [i18next.t("Female"), i18next.t("Male"), i18next.t("Unspecified")],
+    labels: [
+      i18next.t("Female"),
+      i18next.t("Male"),
+      i18next.t("UnspecifiedGender"),
+    ],
     responsive: [
       {
         breakpoint: 480,
@@ -1055,9 +1064,14 @@ function drawGenderChart(gender) {
       },
     ],
   };
-
-  var chart = new ApexCharts(document.querySelector("#gender-chart"), options);
-  chart.render();
+  if (genderChart !== false) {
+    genderChart.destroy();
+  }
+  genderChart = new ApexCharts(
+    document.querySelector("#gender-chart"),
+    options
+  );
+  genderChart.render();
 }
 
 /**
