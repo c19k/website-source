@@ -45,7 +45,7 @@
   "Thiruvananthapuram": "തിരുവനന്തപുരം",
   "Thrissur": "തൃശ്ശൂർ",
   "Wayanad": "വയനാട്",
-  "Unspecified": "വ്യക്തമാക്കാത്ത",
+  "Unspecified": "വ്യക്തമല്ലാത്തവർ",
   "Active": "സജീവം",
   "Hospitalised": "ആശുപത്രിയിൽ",
   "Critical": "ഗുരുതരം",
@@ -76,5 +76,7 @@
   "Zone Updated On": "പുതുക്കിയത്",
   "observation-data": "നിരീക്ഷണത്തിൽ ഉള്ളവർ",
   "at-hospital": "ആശുപത്രിയിൽ",
-  "at-home": "വീട്ടിൽ"
+  "at-home": "വീട്ടിൽ",
+  "map-discaimer": "മാപ്പിന്റെ അതിർത്തികൾ സൂചന മാത്രം. കൃത്യത സ്വയം ഉറപ്പ് വരുത്തുക",
+  "UnspecifiedGender": "വിവരം ലഭ്യമല്ലാത്തവർ"
 }
