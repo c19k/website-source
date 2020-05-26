@@ -1177,6 +1177,8 @@ function drawMapPrefectures(pageDraws) {
     let maxCases = Math.max(...prefecturesActives);
     let minCases = Math.min(...prefecturesActives);
 
+    let caseScale = scale(cases, minCases, maxCases, 1, 9);
+
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
 
