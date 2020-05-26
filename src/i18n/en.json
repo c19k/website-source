@@ -75,7 +75,7 @@
   "map-discaimer": "Boundaries are for reference only. Accuracy is not warranted.",
   "UnspecifiedGender": "Unspecified",
   "description-kpi": "Items shown here are based on DHS bulletin everyday. Numbers in the bracket indicate changes from the previous day",
-  "description-hotspots-map": "The geographic areas marked here are based on the list of Hotspots declared by GoK everyday. The map is just for indication only. Accuracy and authenticity are provisional",
+  "description-hotspots-map": "The geographic areas marked here are based on the list of Hotspots declared by Government of Kerala everyday. The map is just for indication only. Accuracy and authenticity are provisional",
   "description-district-trend-map": "The map shows district-wise treand in positive cases. Place your mouse/finger to get the data about each district.",
   "description-trend-chart": "The graphs shows cumulative numbers of patients everyday.",
   "description-daily-increase": "The graph displays new positive cases reported everyday and its trend-line",
@@ -83,10 +83,10 @@
   "description-patients—age-breakup": "The chart displays the age group of patients and the gender split-up in each group.",
   "description-patients—gender-breakup": "The pie chart shows the gender proportion of patients.",
   "description-prefecture-trajectory": "This graphs shows the cumulative number of patients every day in each district with more than ten cases",
-  "description-prefecture-data": "This table shows the disctrict-wise cumulative data of positive cases, active cases, recoveries, deaths, and also the trend diagram for each district",
+  "description-prefecture-data": "This table shows the district-wise cumulative data of positive cases, active cases, recoveries, deaths, and also the trend diagram for each district",
   "description-observation-data": "",
   "description-db": "Anonymized datasets from this dashboard project are periodically published and archived under Open Data Commons Attribution License v1.0 (ODC-BY 1.0). You can freely download and reuse them from",
-  "description-paper": "A preprint describing the basic philosophy and objectives of this dashboard is published at",
+  "description-paper": "An article describing the underlying philosophy and objectives of this dashboard is available at",
   "link-here": "here",
   "citation-instruction": "If you have used datasets from Covid19kerala.info in your article, publication, or any other scholarly work, we would appreciate citations to our preprint and/or dataset."
 }
