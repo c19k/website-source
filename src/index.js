@@ -1146,6 +1146,19 @@ function drawMapPrefectures(pageDraws) {
   // Start the Mapbox search expression
   let prefecturePaint = ["match", ["get", "DISTRICT"]];
 
+  // Generate an array of prefectures cases
+  var prefecturesActives = [];
+
+  // pushing values of prefecture cases to the cases array
+  ddb.prefectures.map(function (prefecture) {
+    let cases = parseInt(
+      (prefecture.active =
+        prefecture.confirmed -
+        ((prefecture.recovered || 0) + (prefecture.deceased || 0)))
+    );
+    prefecturesActives.push(cases);
+  });
+
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
     let cases = parseInt(
