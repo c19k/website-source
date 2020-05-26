@@ -1159,6 +1159,13 @@ function drawMapPrefectures(pageDraws) {
     prefecturesActives.push(cases);
   });
 
+  // Map a given value to scale
+  const scale = (value, inMin, inMax, outMin, outMax) => {
+    return Math.floor(
+      ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+    );
+  };
+
   // Go through all prefectures looking for cases
   ddb.prefectures.map(function (prefecture) {
     let cases = parseInt(
