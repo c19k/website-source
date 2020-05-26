@@ -1173,22 +1173,40 @@ function drawMapPrefectures(pageDraws) {
         prefecture.confirmed -
         ((prefecture.recovered || 0) + (prefecture.deceased || 0)))
     );
+
+    let maxCases = Math.max(...prefecturesActives);
+    let minCases = Math.min(...prefecturesActives);
+
     if (cases > 0) {
       prefecturePaint.push(prefecture.name);
 
-      if (cases <= 5) {
-        // 1-5 cases
-        prefecturePaint.push("rgb(253,234,203)");
-      } else if (cases <= 10) {
-        // 6-10 cases
-        prefecturePaint.push("rgb(251,155,127)");
-      } else if (cases <= 50) {
-        // 11-50 cases
-        prefecturePaint.push("rgb(244,67,54)");
-      } else {
-        // 50+ cases
-        prefecturePaint.push("rgb(186,0,13)");
-      }
+      //Bestpractice 7-class OrRd scale, kept for futur references
+      var colorScaleSeven = [
+        "rgb(0,0,0)",
+        "rgb(254,240,217)",
+        "rgb(253,212,158)",
+        "rgb(253,187,132)",
+        "rgb(252,141,89)",
+        "rgb(239,101,72)",
+        "rgb(215,48,31)",
+        "rgb(153,0,0)",
+      ];
+
+      //9-class OrRd for distinguish districts on Kerala map, not the best cartographic choice
+      var colorScaleNine = [
+        "rgb(0,0,0)",
+        "rgb(255,247,236)",
+        "rgb(254,232,200)",
+        "rgb(253,212,158)",
+        "rgb(253,187,132)",
+        "rgb(252,141,89)",
+        "rgb(239,101,72)",
+        "rgb(215,48,31)",
+        "rgb(179,0,0)",
+        "rgb(127,0,0)",
+      ];
+
+      prefecturePaint.push(colorScaleNine[caseScale]);
     }
   });
 
