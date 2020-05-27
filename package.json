@@ -14,7 +14,7 @@
     "deploy-firebase": "npx webpack --config webpack.prod.js && firebase deploy"
   },
   "dependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.10.1",
     "@types/date-fns": "^2.6.0",
     "apexcharts": "^3.17.0",
     "c3": "^0.7.15",
