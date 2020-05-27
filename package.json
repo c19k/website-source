@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/core": "^7.7.7",
     "@types/date-fns": "^2.6.0",
-    "apexcharts": "^3.17.0",
+    "apexcharts": "^3.19.2",
     "c3": "^0.7.15",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
