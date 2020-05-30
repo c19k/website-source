@@ -20,6 +20,7 @@ import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 import drawHotspotMap from "./components/HotspotMap";
 import drawObservationTable from "./components/ObservationTable";
+import drawPrefectureTable from "./components/DistrictTable";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
@@ -71,155 +72,6 @@ let ddb = {
     deceased: 0,
     tested: 0,
     critical: 0,
-  },
-  travelRestrictions: {
-    japan: {
-      banned: [
-        // refer to the keys under "countries" in the i18n files for names
-        {
-          name: "andorra",
-          emoji: "🇦🇩",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "austria",
-          emoji: "🇦🇹",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "belgium",
-          emoji: "🇧🇪",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "china",
-          emoji: "🇨🇳",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "estonia",
-          emoji: "🇪🇪",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "france",
-          emoji: "🇫🇷",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "germany",
-          emoji: "🇩🇪",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "iceland",
-          emoji: "🇮🇸",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "iran",
-          emoji: "🇮🇷",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "ireland",
-          emoji: "🇮🇪",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "italy",
-          emoji: "🇮🇹",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "korea",
-          emoji: "🇰🇷",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "liechtenstein",
-          emoji: "🇱🇮",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "luxembourg",
-          emoji: "🇱🇺",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "malta",
-          emoji: "🇲🇹",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "monaco",
-          emoji: "🇲🇨",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "netherlands",
-          emoji: "🇳🇱",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "norway",
-          emoji: "🇳🇴",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "portugal",
-          emoji: "🇵🇹",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "sanmarino",
-          emoji: "🇸🇲",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "Slovenia",
-          nameJa: "スロベニア",
-          emoji: "🇸🇮",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "spain",
-          emoji: "🇪🇸",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "sweden",
-          emoji: "🇸🇪",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "switzerland",
-          emoji: "🇨🇭",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "vatican",
-          emoji: "🇻🇦",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-        {
-          name: "westerdam",
-          emoji: "🛳",
-          link: "http://www.moj.go.jp/content/001316999.pdf",
-        },
-      ],
-      visaRequired: [],
-      selfQuarantine: [],
-      other: [],
-    },
-    foreignBorders: [
-      {
-        banned: [],
-        visaRequired: [],
-        selfQuarantine: [],
-        other: [],
-      },
-    ],
   },
 };
 let map = undefined;
@@ -561,75 +413,6 @@ function drawTrendChart(sheetTrend) {
   });
 }
 
-function drawPrefectureTrend(elementId, seriesData, maxConfirmedIncrease) {
-  let yMax = maxConfirmedIncrease;
-  let prefectureMax = _.max(seriesData);
-  if (prefectureMax / maxConfirmedIncrease < 0.1) {
-    yMax = prefectureMax * 5; // artificially scale up low values to make it look ok.
-  }
-
-  const period = 30; // days
-  let last30days = _.takeRight(seriesData, period);
-  var options = {
-    series: [{ data: last30days }],
-    chart: {
-      type: "area",
-      height: 30,
-      sparkline: { enabled: true },
-      animations: { enabled: false },
-    },
-    colors: [COLOR_CONFIRMED],
-    /*plotOptions: { bar: { columnWidth: "95%" } },*/
-    xaxis: { crosshairs: { width: 1 } },
-    yaxis: { max: yMax },
-    stroke: {
-      show: true,
-      curve: "smooth",
-      lineCap: "butt",
-      colors: undefined,
-      width: 0.75,
-      dashArray: 0,
-    },
-    tooltip: {
-      fixed: { enabled: false },
-      x: { show: false },
-      y: {
-        formatter: function (
-          value,
-          { series, seriesIndex, dataPointIndex, w }
-        ) {
-          let daysBeforeToday = period - dataPointIndex - 1;
-          let dateString = moment()
-            .subtract(daysBeforeToday, "days")
-            .format("MM/DD");
-          return `${dateString}: ${value}`;
-        },
-        title: {
-          formatter: (series) => {
-            return "";
-          },
-        },
-      },
-      marker: { show: false },
-    },
-  };
-
-  // Need an artificial delay for the html element to attach.
-  setTimeout(function () {
-    try {
-      let chartElem = document.querySelector(elementId);
-      if (chartElem) {
-        // TODO(liquidx): So many places at the moment where HTML elements don't attach synchronously.
-        var chart = new ApexCharts(document.querySelector(elementId), options);
-        chart.render();
-      }
-    } catch (err) {
-      // Silently fail if there's an error when creating the chart.
-      // TODO(liquidx): Figure out what is going on.
-    }
-  }, 1000);
-}
-
 function drawPrefectureTrajectoryChart(prefectures) {
   const minimumConfirmed = 10;
   const filteredPrefectures = _.filter(prefectures, function (prefecture) {
@@ -740,151 +523,7 @@ function drawPrefectureTrajectoryChart(prefectures) {
   });
 }
 
-function drawPrefectureTable(prefectures, totals) {
-  // Draw the Cases By Prefecture table
-  let dataTable = document.querySelector("#prefectures-table tbody");
-  let dataTableFoot = document.querySelector("#prefectures-table tfoot");
-  let unspecifiedRow = "";
-  let portOfEntryRow = "";
-
-  // Abort if dataTable or dataTableFoot is not accessible.
-  if (!dataTable || !dataTableFoot) {
-    console.error("Unable to find #prefecture-table");
-    return;
-  }
-
-  // Remove the loading cell
-  dataTable.innerHTML = "";
-
-  // Work out the largest daily increase
-  let maxConfirmedIncrease = _.max(
-    _.map(prefectures, (pref) => {
-      return _.max(pref.dailyConfirmedCount);
-    })
-  );
-
-  // Parse values so we can sort
-  _.map(prefectures, function (pref) {
-    pref.confirmed = pref.confirmed ? parseInt(pref.confirmed) : 0;
-    pref.recovered = pref.recovered ? parseInt(pref.recovered) : 0;
-    // TODO change to deceased
-    pref.deceased = pref.deaths ? parseInt(pref.deaths) : 0;
-    pref.active =
-      pref.confirmed - ((pref.recovered || 0) + (pref.deceased || 0));
-  });
-
-  // Iterate through and render table rows
-  _.orderBy(prefectures, "confirmed", "desc").map(function (pref) {
-    if (!pref.confirmed && !pref.recovered && !pref.deceased) {
-      return;
-    }
-
-    let prefStr;
-    if (LANG == "en") {
-      prefStr = pref.name;
-    } else {
-      prefStr = pref.name_ja;
-    }
-
-    let increment =
-      pref.dailyConfirmedCount[pref.dailyConfirmedCount.length - 1];
-    let incrementString = "";
-    if (increment > 0) {
-      incrementString = `<span class='increment'>(+${increment})</span>`;
-    }
-
-    if (pref.name == "Unspecified") {
-      // Save the "Unspecified" row for the end of the table
-      unspecifiedRow = `<tr>
-        <td class="prefecture">${prefStr}</td>
-        <td class="trend"><div id="Unspecified-trend"></div></td>
-        <td class="count">${pref.confirmed} ${incrementString}</td>
-        <td class="count">${pref.recovered ? pref.recovered : 0}</td>
-        <td class="count">${pref.deceased ? pref.deceased : 0}</td>
-        <td class="count">${pref.active || ""}</td>
-        </tr>`;
-      drawPrefectureTrend(
-        `#Unspecified-trend`,
-        pref.dailyConfirmedCount,
-        maxConfirmedIncrease
-      );
-    } else if (pref.name == "Port Quarantine" || pref.name == "Port of Entry") {
-      portOfEntryRow = `<tr>
-        <td class="prefecture" data-ja="空港検疫">Port of Entry</td>
-        <td class="trend"><div id="PortOfEntry-trend"></div></td>
-        <td class="count">${pref.confirmed} ${incrementString}</td>
-        <td class="count">${pref.recovered ? pref.recovered : 0}</td>
-        <td class="count">${pref.deceased ? pref.deceased : 0}</td>
-        <td class="count">${pref.active || ""}</td>
-        </tr>`;
-      drawPrefectureTrend(
-        `#PortOfEntry-trend`,
-        pref.dailyConfirmedCount,
-        maxConfirmedIncrease
-      );
-    } else if (pref.name == "Total") {
-      // Skip
-    } else {
-      dataTable.innerHTML += `<tr>
-        <td class="prefecture">${prefStr}</td>
-        <td class="trend"><div id="${pref.name}-trend"></div></td>
-        <td class="count">${pref.confirmed} ${incrementString}</td>
-        <td class="count">${pref.active || ""}</td>
-        <td class="count">${pref.recovered ? pref.recovered : ""}</td>
-        <td class="count">${pref.deceased ? pref.deceased : ""}</td>
-        </tr>`;
-      drawPrefectureTrend(
-        `#${pref.name}-trend`,
-        pref.dailyConfirmedCount,
-        maxConfirmedIncrease
-      );
-    }
-    return true;
-  });
-
-  dataTable.innerHTML = dataTable.innerHTML + portOfEntryRow + unspecifiedRow;
-
-  let totalStr = "Total";
-  if (LANG == "ml") {
-    totalStr = "ആകെ ";
-  }
-
-  dataTableFoot.innerHTML = `<tr class='totals'>
-        <td>${i18next.t("total")}</td>
-        <td class="trend"></td>
-        <td class="count">${totals.confirmed}</td>
-        <td class="count">${
-          totals.confirmed - totals.recovered - totals.deceased
-        }</td>
-        <td class="count">${totals.recovered}</td>
-        <td class="count">${totals.deceased}</td>
-        </tr>`;
-}
-
-function drawTravelRestrictions() {
-  travelRestrictionsHelper(
-    "#banned-entry",
-    ddb.travelRestrictions.japan.banned
-  );
-  travelRestrictionsHelper(
-    "#visa-required",
-    ddb.travelRestrictions.japan.visaRequired
-  );
-  travelRestrictionsHelper(
-    "#self-quarantine",
-    ddb.travelRestrictions.japan.selfQuarantine
-  );
-  travelRestrictionsHelper(
-    "#other-restrictions",
-    ddb.travelRestrictions.japan.other
-  );
-
-  /*travelRestrictionsHelper('#foreign-banned-entry', ddb.travelRestrictions.foreignBorders.banned);
-  travelRestrictionsHelper('#foreign-visa-required', ddb.travelRestrictions.foreignBorders.visaRequired);
-  travelRestrictionsHelper('#foreign-self-quarantine', ddb.travelRestrictions.foreignBorders.selfQuarantine);
-  travelRestrictionsHelper('#foreign-other-restrictions', ddb.travelRestrictions.foreignBorders.other);
-  */
-}
+function drawTravelRestrictions() {}
 
 function travelRestrictionsHelper(elementId, countries) {
   let countryList = [];
@@ -1316,15 +955,11 @@ function setLang(lng) {
     // Redraw all components that need rerendering to be localized the prefectures table
     if (!document.body.classList.contains("embed-mode")) {
       if (document.getElementById("prefectures-table")) {
-        drawPrefectureTable(ddb.prefectures, ddb.totals);
+        drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
       }
 
       if (document.getElementById("observation-table")) {
         drawObservationTable(ddb.underObservationData);
-      }
-
-      if (document.getElementById("travel-restrictions")) {
-        drawTravelRestrictions();
       }
 
       drawTrendChart(ddb.trend);
@@ -1412,9 +1047,8 @@ function loadDataOnPage() {
       drawSiteUpdating(ddb.isSiteUpdating);
       drawLastUpdated(ddb.lastUpdated);
       drawPageTitleCount(ddb.totals.confirmed);
-      drawPrefectureTable(ddb.prefectures, ddb.totals);
+      drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
       drawObservationTable(ddb.underObservationData);
-      drawTravelRestrictions();
       drawTrendChart(ddb.trend);
       drawDailyIncreaseChart(ddb.trend);
       drawPrefectureTrajectoryChart(ddb.prefectures);
