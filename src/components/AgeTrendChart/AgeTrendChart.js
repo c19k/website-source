@@ -18,7 +18,7 @@ function showSummary(
   totalFemale,
   totalGenderUnspecified
 ) {
-  let label = `${i18next.t("Awaiting details for")}  : ${totalUnspecified}
+  let label = `${i18next.t("Awaiting age details for")}  : ${totalUnspecified}
     <br/>
     ${i18next.t("Male")} : ${totalMale} 
     &nbsp;&nbsp;  ${i18next.t("Female")} : ${totalFemale} 
@@ -49,6 +49,11 @@ function drawAgeTrendChart(age) {
       totalUnspecified = ageGroup.total;
     }
   }
+  let grandTotal = totalMale + totalFemale + totalGenderUnspecified;
+  let yTicks = [];
+  for (let i = 50; i < grandTotal + 50; i = i + 50) {
+    yTicks.push(i);
+  }
   var totals = [];
 
   function showLastLabel() {
@@ -65,6 +70,12 @@ function drawAgeTrendChart(age) {
       .select(".c3-chart-texts")
       .selectAll(".c3-target-" + last)
       .style("display", "block"); // show last
+    d3.select("#age-trend-chart")
+      .select(".c3-chart-texts")
+      .selectAll(".c3-target-" + last)
+      .selectAll(".c3-texts-" + last)
+      .selectAll(".c3-text")
+      .style("fill", "#DE0E1F");
   }
 
   var chart = c3.generate({
@@ -121,6 +132,9 @@ function drawAgeTrendChart(age) {
         label: {
           text: i18next.t("Number of patients"),
           position: "outer-top",
+        },
+        tick: {
+          values: yTicks,
         },
       },
     },
