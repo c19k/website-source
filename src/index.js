@@ -21,6 +21,7 @@ import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
 import drawHotspotMap from "./components/HotspotMap";
 import drawObservationTable from "./components/ObservationTable";
 import drawPrefectureTable from "./components/DistrictTable";
+import drawAgeTrendChart from "./components/AgeTrendChart";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
@@ -572,109 +573,7 @@ function drawKpis(totals, totalsDiff) {
     totalsDiff.confirmed - totalsDiff.recovered - totalsDiff.deceased
   );
 }
-//To overcome apexchart not getting rerendered when translation happens
-var ageTrendChart = false;
 
-function drawAgeTrendChart(age) {
-  let female = [];
-  let male = [];
-  let ageGroups = [];
-  var totalUnspecified;
-  for (let ageGroup of age) {
-    if (ageGroup.ageGroup != "Unspecified") {
-      female.push(ageGroup.female);
-      male.push(ageGroup.male);
-      ageGroups.push(ageGroup.ageGroup);
-    }
-
-    if (ageGroup.ageGroup == "Unspecified") {
-      totalUnspecified = ageGroup.total;
-    }
-  }
-
-  var options = {
-    series: [
-      {
-        name: i18next.t("Male"),
-        data: male,
-      },
-      {
-        name: i18next.t("Female"),
-        data: female,
-      },
-    ],
-    colors: ["#f5935d", "#a58e9e"],
-    chart: {
-      type: "bar",
-      height: 400,
-      stacked: true,
-      toolbar: {
-        show: false,
-      },
-
-      zoom: {
-        enabled: false,
-      },
-      download: false,
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-      },
-    },
-    stroke: {
-      width: 0.5,
-      colors: ["#fff"],
-    },
-    /*title: {
-          text: 'Age Group'
-        },*/
-    subtitle: {
-      text: i18next.t("Awaiting details for") + " : " + totalUnspecified,
-      align: "right",
-    },
-    xaxis: {
-      categories: ageGroups,
-      labels: {
-        formatter: function (val) {
-          return val;
-        },
-      },
-      title: {
-        text: i18next.t("Age Group"),
-      },
-    },
-    yaxis: {
-      title: {
-        text: i18next.t("Number of patients"),
-      },
-    },
-    tooltip: {
-      y: {
-        formatter: function (val) {
-          return val;
-        },
-      },
-    },
-    fill: {
-      opacity: 1,
-    },
-    legend: {
-      position: "top",
-      horizontalAlign: "left",
-      offsetX: 40,
-    },
-  };
-  if (ageTrendChart !== false) {
-    ageTrendChart.destroy();
-  }
-
-  ageTrendChart = new ApexCharts(
-    document.querySelector("#age-trend-chart"),
-    options
-  );
-  ageTrendChart.render();
-}
 var genderChart = false;
 function drawGenderChart(gender) {
   var options = {
@@ -966,7 +865,7 @@ function setLang(lng) {
       hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
       drawPrefectureTrajectoryChart(ddb.prefectures);
-      drawGenderChart(ddb.gender);
+      //drawGenderChart(ddb.gender);
       drawAgeTrendChart(ddb.age);
 
       dailyIncreaseChart = drawDailyIncreaseChart(
@@ -1053,7 +952,7 @@ function loadDataOnPage() {
       drawDailyIncreaseChart(ddb.trend);
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
-      drawGenderChart(ddb.gender);
+      // drawGenderChart(ddb.gender);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
       dailyIncreaseChart = drawDailyIncreaseChart(
         ddb.trend,
