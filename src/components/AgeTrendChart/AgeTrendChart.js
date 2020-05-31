@@ -12,9 +12,19 @@ import moment from "moment";
 // Localization deps
 import i18next from "i18next";
 
-function showUnspecifiedLabel(count) {
-  let label = i18next.t("Awaiting details for") + " : " + count;
-  document.getElementById("unspecified-count").innerHTML = label;
+function showSummary(
+  totalUnspecified,
+  totalMale,
+  totalFemale,
+  totalGenderUnspecified
+) {
+  let label = `${i18next.t("Awaiting details for")}  : ${totalUnspecified}
+    <br/>
+    ${i18next.t("Male")} : ${totalMale} 
+    &nbsp;&nbsp;  ${i18next.t("Female")} : ${totalFemale} 
+    &nbsp;&nbsp; ${i18next.t("UnspecifiedGender")} : ${totalGenderUnspecified}
+  `;
+  document.getElementById("age-trend-count-summary").innerHTML = label;
 }
 
 function drawAgeTrendChart(age) {
@@ -22,7 +32,13 @@ function drawAgeTrendChart(age) {
   let male = [];
   let ageGroups = [];
   var totalUnspecified;
+  var totalMale = 0;
+  var totalFemale = 0;
+  var totalGenderUnspecified = 0;
   for (let ageGroup of age) {
+    totalMale += ageGroup.male;
+    totalFemale += ageGroup.female;
+    totalGenderUnspecified += ageGroup.unspecified;
     if (ageGroup.ageGroup != "Unspecified") {
       female.push(ageGroup.female);
       male.push(ageGroup.male);
@@ -71,6 +87,10 @@ function drawAgeTrendChart(age) {
         [i18next.t("Female"), ...female],
         [i18next.t("Male"), ...male],
       ],
+      colors: {
+        [i18next.t("Female")]: "#1976D3",
+        [i18next.t("Male")]: "#A5ADC1",
+      },
       labels: {
         format: function (v, id, i, j) {
           if (isNaN(totals[i])) totals[i] = 0;
@@ -114,7 +134,7 @@ function drawAgeTrendChart(age) {
     },
   });
   showLastLabel();
-  showUnspecifiedLabel(totalUnspecified);
+  showSummary(totalUnspecified, totalMale, totalFemale, totalGenderUnspecified);
 }
 
 export default drawAgeTrendChart;
