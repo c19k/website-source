@@ -30,7 +30,7 @@ let hotspotMap = null;
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
-const PREFECTURE_JSON_PATH = "static/prefectures.geojson";
+const PREFECTURE_JSON_PATH = "static/districts.geojson";
 const JSON_PATH = "https://data.covid19kerala.info/summary/latest.json";
 const TIME_FORMAT = "YYYY-MM-DD";
 const COLOR_ACTIVE = "rgb(238,161,48)";
