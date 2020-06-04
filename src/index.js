@@ -263,7 +263,7 @@ function drawMap() {
       const deaths = thisDistrict[0].deaths;
       const recovered = thisDistrict[0].recovered;
       const html = `<h3>${i18next.t(
-        feature.properties.DISTRICT
+        feature.properties.district
       )}</h3><strong>${i18next.t(
         "Active"
       )}: ${active}</strong><br />${i18next.t(
@@ -643,7 +643,7 @@ function drawMapPrefectures(pageDraws) {
   }
 
   // Start the Mapbox search expression
-  let prefecturePaint = ["match", ["get", "DISTRICT"]];
+  let prefecturePaint = ["match", ["get", "district"]];
 
   // Generate an array of prefectures cases
   var prefecturesActives = [];
