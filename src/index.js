@@ -7,7 +7,6 @@ import _ from "lodash";
 import tippy from "tippy.js";
 import * as d3 from "d3";
 import * as c3 from "c3";
-import ApexCharts from "apexcharts";
 import moment from "moment";
 
 // Localization deps
