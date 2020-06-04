@@ -198,7 +198,7 @@ const drawHotspotMap = (districtsData, lang) => {
     // Hotspots from JSON API
     map.addSource("hotspots", {
       type: "geojson",
-      data: "https://data.covid19kerala.info/hotspot_data/latest.json",
+      data: "https://hotspot-api.ngh.staging.n1sh.com/hotspots/latest.json",
     });
 
     // Distrricts GeoJson
