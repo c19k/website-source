@@ -1,3 +1,3 @@
-import drawAgeTrendChart from "./AgeTrendChart";
+import drawGenderChart from "./GenderChart";
 
-export default drawAgeTrendChart;
+export default GenderChart;
