@@ -252,7 +252,7 @@ function drawMap() {
     })[0];
     if (feature) {
       const thisDistrict = ddb.prefectures.filter((p) => {
-        return p.name === feature.properties.DISTRICT;
+        return p.name === feature.properties.district;
       });
       const active = parseInt(
         (thisDistrict[0].active =
