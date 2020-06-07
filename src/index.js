@@ -544,7 +544,7 @@ function travelRestrictionsHelper(elementId, countries) {
 
 function drawKpis(totals, totalsDiff) {
   // Draw the KPI values
-
+  console.log(totals);
   function setKpi(key, value) {
     document.querySelector("#kpi-" + key + " .value").innerHTML = value;
   }
@@ -566,11 +566,8 @@ function drawKpis(totals, totalsDiff) {
   setKpiDiff("hosptilised", totalsDiff.hosptilised);
   setKpi("tested", totals.tested);
   setKpiDiff("tested", totalsDiff.tested);
-  setKpi("active", totals.confirmed - totals.recovered - totals.deceased);
-  setKpiDiff(
-    "active",
-    totalsDiff.confirmed - totalsDiff.recovered - totalsDiff.deceased
-  );
+  setKpi("active", totals.active);
+  setKpiDiff("active", totalsDiff.active);
 }
 
 /**
