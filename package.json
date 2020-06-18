@@ -28,7 +28,7 @@
     "i18next-browser-languagedetector": "^4.2.0",
     "loc-i18next": "^0.1.4",
     "lodash": "^4.17.15",
-    "moment": "^2.26.0",
+    "moment": "^2.27.0",
     "tippy.js": "^6.2.3",
     "whatwg-fetch": "^3.0.0"
   },
