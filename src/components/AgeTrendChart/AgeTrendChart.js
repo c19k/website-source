@@ -50,7 +50,7 @@ function drawAgeTrendChart(age) {
   }
   let grandTotal = totalMale + totalFemale + totalGenderUnspecified;
   let yTicks = [];
-  for (let i = 50; i < grandTotal + 50; i = i + 50) {
+  for (let i = 200; i < grandTotal + 200; i = i + 200) {
     yTicks.push(i);
   }
   var totals = [];
