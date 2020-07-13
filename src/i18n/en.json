@@ -89,5 +89,9 @@
   "description-db": "Anonymized datasets from this dashboard project are periodically published and archived under Open Data Commons Attribution License v1.0 (ODC-BY 1.0). You can freely download and reuse them from",
   "description-paper": "An article describing the underlying philosophy and objectives of this dashboard is available at",
   "link-here": "here",
-  "citation-instruction": "Appropriate citations of our preprint and/or dataset on your project, reports, and other publications is highly appreciated."
+  "citation-instruction": "Appropriate citations of our preprint and/or dataset on your project, reports, and other publications is highly appreciated.",
+  "daily-contact-cases": "Contact Cases By Day",
+  "description-contact-cases": "The graph displays contact cases and imported cases reported everyday and its trend - line",
+  "contact-cases": "Contact Cases",
+  "imported-cases": "Imported Cases"
 }

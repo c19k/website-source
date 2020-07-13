@@ -22,6 +22,7 @@ import drawObservationTable from "./components/ObservationTable";
 import drawPrefectureTable from "./components/DistrictTable";
 import drawAgeTrendChart from "./components/AgeTrendChart";
 import drawTrendChart from "./components/OutbreakSpreadChart";
+import drawimportedAndContachCasesChart from "./components/ImportedContactChart";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
@@ -693,6 +694,8 @@ function setLang(lng) {
         dailyIncreaseChart,
         LANG
       );
+
+      drawimportedAndContachCasesChart(ddb.trend);
     }
     updateTooltipLang();
   });
@@ -778,6 +781,7 @@ function loadDataOnPage() {
         dailyIncreaseChart,
         LANG
       );
+      drawimportedAndContachCasesChart(ddb.trend);
     }
 
     whenMapAndDataReady();
