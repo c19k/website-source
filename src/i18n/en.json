@@ -90,8 +90,8 @@
   "description-paper": "An article describing the underlying philosophy and objectives of this dashboard is available at",
   "link-here": "here",
   "citation-instruction": "Appropriate citations of our preprint and/or dataset on your project, reports, and other publications is highly appreciated.",
-  "daily-contact-cases": "Contact Cases By Day",
-  "description-contact-cases": "The graph displays contact cases and imported cases reported everyday and its trend - line",
-  "contact-cases": "Contact Cases",
-  "imported-cases": "Imported Cases"
+  "daily-contact-cases": "Contact Patients By Day",
+  "description-contact-cases": "The graph displays contact patients count and import patients count reported everyday and its trend line",
+  "contact-cases": "Contact Patients",
+  "imported-cases": "Import Patients"
 }
