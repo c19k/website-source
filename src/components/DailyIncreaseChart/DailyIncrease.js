@@ -31,7 +31,12 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
     const row = sheetTrend[i];
     cols.Date.push(row.date);
     cols.Confirmed.push(row.confirmed);
-    cols.ConfirmedAvg.push(row.confirmedAvg7d);
+    // cols.ConfirmedAvg.push(row.confirmedAvg7d);
+    if (i < sheetTrend.length - 1) {
+      // Omit the last data point since it's provisional
+      // and will always point downwards for the average.
+      cols.ConfirmedAvg.push(row.confirmedAvg7d);
+    }
   }
 
   if (dailyIncreaseChart) {
