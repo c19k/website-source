@@ -85,7 +85,7 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
     },
     bar: {
       width: {
-        ratio: 0.8,
+        ratio: 0.6,
       },
     },
     axis: {
