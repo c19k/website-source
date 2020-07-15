@@ -8,6 +8,8 @@ import {
   COLOR_TESTED,
   COLOR_TESTED_DAILY,
   TIME_PERIOD,
+  COLOR_RED,
+  COLOR_ORANGE,
   COLOR_TESTED_TOTAL_GRAPH,
 } from "../../data/constants";
 
@@ -80,16 +82,17 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
         "Tested Total": COLOR_TESTED_TOTAL_GRAPH,
         "Tested Daily": (color, d) => {
           if (d && d.index === cols.Date.length - 2) {
-            return COLOR_TESTED_DAILY;
+            return COLOR_ORANGE;
           } else {
-            return COLOR_TESTED;
+            return COLOR_RED;
           }
         },
       },
       columns: [cols.TestedDaily, cols.TestedTotal],
-      type: "bar",
+      // type: "bar",
       types: {
-        "Tested Total": "line",
+        "Tested Total": "area",
+        "Tested Daily": "line",
       },
       regions: {
         [cols.TestedDaily[0]]: [
@@ -181,7 +184,7 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
       },
     },
     legend: {
-      hide: true,
+      hide: false,
     },
   });
   return testingTrendChart;
