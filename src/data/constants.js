@@ -11,8 +11,8 @@ export const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
 
 export const COLOR_TESTED = "rgb(164,173,192)";
-export const COLOR_TESTED_DAILY = "rgb(209,214,223)";
-export const COLOR_TESTED_TOTAL_GRAPH = "rgb(244,69,41)";
+export const COLOR_TESTED_DAILY = "rgb(244,69,41)";
+export const COLOR_TESTED_TOTAL_GRAPH = "rgb(209,214,223)";
 
 export const CHART_TIME_PERIOD = 50;
 

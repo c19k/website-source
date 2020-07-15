@@ -373,6 +373,9 @@ function drawPrefectureTrajectoryChart(prefectures) {
       },
       names: nameMap,
     },
+    point: {
+      r: 0,
+    },
     grid: {
       x: {
         show: true,

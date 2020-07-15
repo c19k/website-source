@@ -65,6 +65,9 @@ function drawimportedAndContachCasesChart(trendData) {
         [i18next.t("imported-cases")]: "#A5ADC1",
       },
     },
+    point: {
+      r: 2,
+    },
     axis: {
       x: {
         type: "timeseries",
