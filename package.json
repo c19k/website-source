@@ -1,7 +1,13 @@
 {
   "name": "covid2019-kerala",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "server.js",
+  "homepage": "https://covid19kerala.info/",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/c19k/website-source.git"
+  },
   "engines": {
     "node": "10.x"
   },
@@ -27,7 +33,7 @@
     "i18next": "^19.6.0",
     "i18next-browser-languagedetector": "^5.0.0",
     "loc-i18next": "^0.1.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "tippy.js": "^6.2.3",
     "whatwg-fetch": "^3.0.0"
