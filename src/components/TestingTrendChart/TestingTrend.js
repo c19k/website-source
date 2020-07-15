@@ -30,7 +30,7 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
     cols.Date.push(row.date);
 
     if (cols.TestedTotal.length > 1) {
-      // Skip the frist value
+      // Skip the first value
 
       let prevTotal = last(cols.TestedTotal);
       let thisDailyVal = row.testedCumulative - prevTotal;
