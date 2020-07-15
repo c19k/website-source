@@ -35,7 +35,7 @@
     "loc-i18next": "^0.1.4",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
-    "tippy.js": "^6.2.3",
+    "tippy.js": "^6.2.5",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
