@@ -101,6 +101,10 @@ const drawTestingTrendChart = (sheetTrend, testingTrendChart) => {
         "Tested Total": "y2",
       },
     },
+    point: {
+      // show: false,
+      r: 0,
+    },
     bar: {
       width: {
         ratio: 0.8,
