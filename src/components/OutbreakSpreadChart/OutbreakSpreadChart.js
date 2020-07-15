@@ -98,7 +98,12 @@ function drawTrendChart(sheetTrend, LANG) {
       pattern: [COLOR_CONFIRMED, COLOR_ACTIVE, COLOR_RECOVERED, COLOR_DECEASED],
     },
     point: {
-      r: 3,
+      // r: 2,
+      show: false,
+    },
+    zoom: {
+      enabled: false,
+      // type: 'drag',
     },
     axis: {
       x: {
