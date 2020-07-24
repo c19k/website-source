@@ -30,7 +30,7 @@
     "d3": "^5.16.0",
     "date-fns": "^2.14.0",
     "express": "^4.17.1",
-    "i18next": "^19.6.0",
+    "i18next": "^19.6.3",
     "i18next-browser-languagedetector": "^5.0.0",
     "loc-i18next": "^0.1.4",
     "lodash": "^4.17.19",
