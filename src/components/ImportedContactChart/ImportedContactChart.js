@@ -86,6 +86,7 @@ function drawimportedAndContachCasesChart(trendData) {
     },
     padding: {
       bottom: 10,
+      right: 100,
     },
     grid: {
       y: {

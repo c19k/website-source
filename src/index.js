@@ -33,7 +33,8 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
 const PREFECTURE_JSON_PATH = "static/districts.geojson";
 const JSON_PATH = "https://data.covid19kerala.info/summary/latest.json";
-const TIME_FORMAT = "YYYY-MM-DD";
+const DATE_FORMAT = "YYYY-MM-DD";
+const TIME_FORMAT = "YYYY-MM-DD h:mm:ssA";
 const COLOR_TESTED = "rgb(164,173,192)";
 const COLOR_TESTED_DAILY = "rgb(209,214,223)";
 const COLOR_INCREASE = "rgb(163,172,191)";
@@ -464,6 +465,8 @@ function drawLastUpdated(lastUpdated) {
     ml: lastUpdatedMoment.clone().locale("ml").fromNow(),
   };
 
+  const absoluteTime = lastUpdatedMoment.clone().format(TIME_FORMAT);
+
   display.textContent = relativeTime[LANG];
   display.setAttribute("title", lastUpdated);
   i18next.addResource(
@@ -479,6 +482,10 @@ function drawLastUpdated(lastUpdated) {
     relativeTime["ml"]
   );
   display.setAttribute("data-i18n", "last-updated-time");
+
+  document.getElementsByClassName("last-updated").forEach((lastUpdatedP) => {
+    lastUpdatedP.innerHTML = `${i18next.t("last-updated")} ${absoluteTime}`;
+  });
 }
 
 function drawPageTitleCount(confirmed) {
@@ -699,6 +706,8 @@ function setLang(lng) {
       );
 
       drawimportedAndContachCasesChart(ddb.trend);
+
+      drawLastUpdated(ddb.lastUpdated);
     }
     updateTooltipLang();
   });
