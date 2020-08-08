@@ -248,7 +248,7 @@ const drawHotspotMap = (districtsData, lang) => {
         visibility: "visible",
       },
       paint: {
-        "circle-radius": 5,
+        "circle-radius": 2,
         "circle-color": "#B42222",
       },
       filter: ["all", ["==", "$type", "Point"], ["!=", "type", "Other"]],
