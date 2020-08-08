@@ -127,6 +127,9 @@ function drawAgeTrendChart(age) {
           text: i18next.t("Number of patients"),
           position: "outer-top",
         },
+        tick: {
+          count: 1,
+        },
       },
     },
     padding: {
@@ -134,7 +137,7 @@ function drawAgeTrendChart(age) {
     },
     grid: {
       y: {
-        show: true,
+        show: false,
       },
     },
   });
