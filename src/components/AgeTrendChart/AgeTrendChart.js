@@ -48,11 +48,6 @@ function drawAgeTrendChart(age) {
       totalUnspecified = ageGroup.total;
     }
   }
-  let grandTotal = totalMale + totalFemale + totalGenderUnspecified;
-  let yTicks = [];
-  for (let i = 200; i < grandTotal + 200; i = i + 200) {
-    yTicks.push(i);
-  }
   var totals = [];
 
   function showLastLabel() {
@@ -131,9 +126,6 @@ function drawAgeTrendChart(age) {
         label: {
           text: i18next.t("Number of patients"),
           position: "outer-top",
-        },
-        tick: {
-          values: yTicks,
         },
       },
     },

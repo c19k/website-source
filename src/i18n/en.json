@@ -93,5 +93,7 @@
   "daily-contact-cases": "Contact Patients By Day",
   "description-contact-cases": "The graph displays contact patients count and import patients count reported everyday and its trend line",
   "contact-cases": "Contact Patients",
-  "imported-cases": "Import Patients"
+  "imported-cases": "Import Patients",
+  "bad-weather-warning": "In spite of our best efforts, there may be delay in updates due to the ongoing rains and power failures. Stay safe.",
+  "contact-us": "Contact Us : coddkorg [AT] gmail.com"
 }
