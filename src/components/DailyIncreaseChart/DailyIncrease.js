@@ -103,7 +103,9 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
       },
       y: {
         tick: {
-          values: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+          culling: {
+            max: 10, // the number of tick texts will be adjusted to less than this value
+          },
         },
       },
     },
