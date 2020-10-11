@@ -28,6 +28,7 @@ function drawimportedAndContachCasesChart(trendData) {
   let dates = [];
   let contactCases = [];
   let importedCases = [];
+  let noHistoryCases = [];
   for (let i = 0; i < trendData.length; i++) {
     let currentDateData = trendData[i];
     let date = currentDateData.date;
@@ -39,6 +40,7 @@ function drawimportedAndContachCasesChart(trendData) {
 
     let currentDayImportedCases = safeParseInt(currentDateData.importedCases);
     let currentDayContactCases = safeParseInt(currentDateData.contactCases);
+    let currentDayNoHistoryCases = safeParseInt(currentDateData.noHistoryCases);
 
     //skip the entry if data for the present date is not
     if (i == trendData.length - 1) {
@@ -49,6 +51,7 @@ function drawimportedAndContachCasesChart(trendData) {
     dates.push(date);
     contactCases.push(currentDayContactCases);
     importedCases.push(currentDayImportedCases);
+    noHistoryCases.push(currentDayNoHistoryCases);
   }
 
   var chart = c3.generate({
@@ -59,10 +62,12 @@ function drawimportedAndContachCasesChart(trendData) {
         ["x", ...dates],
         [i18next.t("contact-cases"), ...contactCases],
         [i18next.t("imported-cases"), ...importedCases],
+        [i18next.t("no-history-cases"), ...noHistoryCases],
       ],
       colors: {
-        [i18next.t("contact-cases")]: "#F44335",
+        [i18next.t("contact-cases")]: "#1876D3",
         [i18next.t("imported-cases")]: "#A5ADC1",
+        [i18next.t("no-history-cases")]: "#F44335",
       },
     },
     point: {
