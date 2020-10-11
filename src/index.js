@@ -33,6 +33,7 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
 const PREFECTURE_JSON_PATH = "static/districts.geojson";
 const JSON_PATH = "https://data.covid19kerala.info/summary/latest.json";
+const KPI_JSON_PATH = "https://data.covid19kerala.info/kpi/latest.json";
 const DATE_FORMAT = "YYYY-MM-DD";
 const TIME_FORMAT = "YYYY-MM-DD h:mm:ssA";
 const COLOR_TESTED = "rgb(164,173,192)";
@@ -776,7 +777,7 @@ function loadDataOnPage() {
 
     ddb.underObservationData = jsonData.underObservation;
 
-    drawKpis(ddb.totals, ddb.totalsDiff);
+    //drawKpis(ddb.totals, ddb.totalsDiff);
     if (!document.body.classList.contains("embed-mode")) {
       drawSiteUpdating(ddb.isSiteUpdating);
       drawLastUpdated(ddb.lastUpdated);
@@ -821,13 +822,32 @@ const startReloadTimer = () => {
   setTimeout(() => location.reload(), reloadInterval * 60 * 60 * 1000);
 };
 
-window.onload = function () {
+let kpiDelay = 0;
+const fetchAndUpdateKpi = async () => {
+  try {
+    let kpiResponse = await fetch(KPI_JSON_PATH);
+    let kpiJson = await kpiResponse.json();
+    drawKpis(kpiJson.totals, kpiJson.totalsDiff);
+    if (kpiJson.updated) {
+      drawLastUpdated(kpiJson.updated);
+    }
+  } catch (err) {
+    kpiDelay += 2000;
+    setTimeout(() => {
+      fetchAndUpdateKpi();
+    }, kpiDelay);
+    // exponential backoff.
+    console.log(err);
+  }
+};
+
+window.onload = async function () {
   startReloadTimer();
   initDataTranslate();
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
+  await fetchAndUpdateKpi();
   drawMap();
-
   map.once("style.load", function (e) {
     styleLoaded = true;
     whenMapAndDataReady();
