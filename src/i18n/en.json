@@ -95,5 +95,6 @@
   "contact-cases": "Contact Patients",
   "imported-cases": "Import Patients",
   "bad-weather-warning": "In spite of our best efforts, there may be delay in updates due to the ongoing rains and power failures. Stay safe.",
-  "contact-us": "Contact Us : coddkorg [AT] gmail.com"
+  "contact-us": "Contact Us : coddkorg [AT] gmail.com",
+  "no-history-cases": "Cases with no history"
 }
