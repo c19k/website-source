@@ -670,15 +670,17 @@ function setLang(lng) {
   i18next.changeLanguage(LANG).then(() => {
     localize("html");
     // Update the map
-    map.getStyle().layers.forEach(function (thisLayer) {
-      if (thisLayer.type == "symbol") {
-        map.setLayoutProperty(thisLayer.id, "text-field", [
-          "get",
-          // "name_" + LANG,
-          "name_en",
-        ]);
-      }
-    });
+    if (map && map.getStyle()) {
+      map.getStyle().layers.forEach(function (thisLayer) {
+        if (thisLayer.type == "symbol") {
+          map.setLayoutProperty(thisLayer.id, "text-field", [
+            "get",
+            // "name_" + LANG,
+            "name_en",
+          ]);
+        }
+      });
+    }
 
     // Set HTML language tag
     document.documentElement.setAttribute("lang", LANG);
@@ -796,7 +798,11 @@ function loadDataOnPage() {
       );
       drawimportedAndContachCasesChart(ddb.trend);
     }
-
+    drawMap();
+    map.once("style.load", function (e) {
+      styleLoaded = true;
+      whenMapAndDataReady();
+    });
     whenMapAndDataReady();
     updateTooltipLang();
   });
@@ -847,11 +853,6 @@ window.onload = async function () {
   // Set HTML language tag
   document.documentElement.setAttribute("lang", LANG);
   await fetchAndUpdateKpi();
-  drawMap();
-  map.once("style.load", function (e) {
-    styleLoaded = true;
-    whenMapAndDataReady();
-  });
 
   loadDataOnPage();
 
