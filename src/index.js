@@ -835,10 +835,13 @@ window.onload = function () {
 
   loadDataOnPage();
 
+  /*
+    Commenting out auto refresh to mprove performance
   // Reload data every INTERVAL
   const FIVE_MINUTES_IN_MS = 300000;
   setInterval(function () {
     pageDraws++;
     loadDataOnPage();
   }, FIVE_MINUTES_IN_MS);
+  */
 };
