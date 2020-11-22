@@ -96,5 +96,10 @@
   "imported-cases": "Import Patients",
   "bad-weather-warning": "In spite of our best efforts, there may be delay in updates due to the ongoing rains and power failures. Stay safe.",
   "contact-us": "Contact Us : coddkorg [AT] gmail.com",
-  "no-history-cases": "Patients with No History"
+  "no-history-cases": "Patients with No History",
+  "test-positivity-rate": "Test Positivity Rate",
+  "Test Positivity": "Positive test %",
+  "Date": "Date",
+  "Positive tests": "Positive",
+  "Total tests": "Total"
 }
