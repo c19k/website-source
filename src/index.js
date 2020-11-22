@@ -23,9 +23,11 @@ import drawPrefectureTable from "./components/DistrictTable";
 import drawAgeTrendChart from "./components/AgeTrendChart";
 import drawTrendChart from "./components/OutbreakSpreadChart";
 import drawimportedAndContachCasesChart from "./components/ImportedContactChart";
+import drawTestPositivityChart from "./components/TestPositivityChart";
 
 // Keep reference to current chart in order to clean up when redrawing.
 let testingTrendChart = null;
+let testPositivityChart = null;
 let dailyIncreaseChart = null;
 let hotspotMap = null;
 
@@ -710,6 +712,11 @@ function setLang(lng) {
 
       drawimportedAndContachCasesChart(ddb.trend);
 
+      testPositivityChart = drawTestPositivityChart(
+        ddb.trend,
+        testPositivityChart
+      );
+
       drawLastUpdated(ddb.lastUpdated);
     }
     updateTooltipLang();
@@ -791,6 +798,11 @@ function loadDataOnPage() {
       drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
+      testPositivityChart = drawTestPositivityChart(
+        ddb.trend,
+        testPositivityChart
+      );
+
       dailyIncreaseChart = drawDailyIncreaseChart(
         ddb.trend,
         dailyIncreaseChart,
