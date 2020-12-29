@@ -24,7 +24,7 @@
     "@babel/runtime": "^7.11.2",
     "@fnando/sparkline": "^0.3.10",
     "@types/date-fns": "^2.6.0",
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.23.1",
     "c3": "^0.7.18",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
