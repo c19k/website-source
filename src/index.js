@@ -697,10 +697,10 @@ function setLang(lng) {
         drawObservationTable(ddb.underObservationData);
       }
 
-      drawTrendChart(ddb.trend, LANG);
+      // drawTrendChart(ddb.trend, LANG);
       hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
-      drawPrefectureTrajectoryChart(ddb.prefectures);
+      // drawPrefectureTrajectoryChart(ddb.prefectures);
 
       drawAgeTrendChart(ddb.age);
 
@@ -795,7 +795,7 @@ function loadDataOnPage() {
       drawObservationTable(ddb.underObservationData);
       drawTrendChart(ddb.trend, LANG);
       drawDailyIncreaseChart(ddb.trend);
-      drawPrefectureTrajectoryChart(ddb.prefectures);
+      // drawPrefectureTrajectoryChart(ddb.prefectures);
       drawAgeTrendChart(ddb.age);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
       testPositivityChart = drawTestPositivityChart(
