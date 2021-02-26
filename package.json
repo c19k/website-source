@@ -20,7 +20,7 @@
     "deploy-firebase": "npx webpack --config webpack.prod.js && firebase deploy"
   },
   "dependencies": {
-    "@babel/core": "^7.13.0",
+    "@babel/core": "^7.13.1",
     "@babel/runtime": "^7.13.7",
     "@fnando/sparkline": "^0.3.10",
     "@types/date-fns": "^2.6.0",
