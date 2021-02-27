@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const { ContextExclusionPlugin } = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -49,7 +50,7 @@ module.exports = {
       { from: 'CNAME', to: '.', flatten: false }
     ]), */
     new CopyPlugin({
-      patterns: [{ from: "static/**", to: ".", flatten: false }],
+      patterns: [{ from: "static/**", to: "." }],
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",

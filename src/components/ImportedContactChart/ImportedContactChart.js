@@ -1,13 +1,14 @@
 // Injects required polyfills for IE11
 import "core-js/stable";
 import "whatwg-fetch";
-import { format } from "date-fns";
-import { enUS } from "date-fns/locale";
+/* import { format } from "date-fns";
+import { enUS } from "date-fns/locale"; */
 // Add all non-polyfill deps below.
 import _ from "lodash";
 
-import moment from "moment";
+// import moment from "moment";
 import * as c3 from "c3";
+import dayjs from "dayjs";
 
 // Localization deps
 import i18next from "i18next";
@@ -24,7 +25,7 @@ const safeParseInt = (v) => {
 const startDate = "2020-03-19";
 
 function drawimportedAndContachCasesChart(trendData) {
-  let dateLocale = enUS;
+  let dateLocale = "en";
   let dates = [];
   let contactCases = [];
   let importedCases = [];
@@ -32,7 +33,7 @@ function drawimportedAndContachCasesChart(trendData) {
   for (let i = 0; i < trendData.length; i++) {
     let currentDateData = trendData[i];
     let date = currentDateData.date;
-    let dateMoment = moment(date);
+    let dateMoment = dayjs(date);
 
     if (!dateMoment.isAfter(startDate)) {
       continue;

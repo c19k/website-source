@@ -11,7 +11,6 @@ function drawObservationTable(observationData) {
     console.error("Unable to find #observation-table");
     return;
   }
-
   let dates = Object.keys(observationData);
   dates.sort();
   let latest = dates[dates.length - 1];
