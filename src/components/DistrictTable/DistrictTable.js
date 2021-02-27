@@ -5,11 +5,12 @@ import "whatwg-fetch";
 // Add all non-polyfill deps below.
 import _ from "lodash";
 
-import moment from "moment";
+// import moment from "moment";
 import sparkline from "@fnando/sparkline";
 
 // Localization deps
 import i18next from "i18next";
+import dayjs from "dayjs";
 
 function drawPrefectureTrend(elementId, seriesData, maxConfirmedIncrease) {
   let yMax = maxConfirmedIncrease;
@@ -42,7 +43,7 @@ function drawPrefectureTrend(elementId, seriesData, maxConfirmedIncrease) {
       let dataPointIndex = datapoint.index;
       let dataPointValue = datapoint.value;
       let daysBeforeToday = period - dataPointIndex - 1;
-      let dateString = moment()
+      let dateString = dayjs()
         .subtract(daysBeforeToday, "days")
         .format("MM/DD");
       tooltip.hidden = false;

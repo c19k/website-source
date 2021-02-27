@@ -7,7 +7,17 @@ import _ from "lodash";
 import tippy from "tippy.js";
 import * as d3 from "d3";
 import * as c3 from "c3";
-import moment from "moment";
+
+// Goodbye momentJS welcome dayJS
+// import moment from "moment";
+var dayjs = require("dayjs");
+require("dayjs/locale/ml");
+var utc = require("dayjs/plugin/utc");
+dayjs.extend(utc);
+var customParseFormat = require("dayjs/plugin/customParseFormat");
+dayjs.extend(customParseFormat);
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 // Localization deps
 import i18next from "i18next";
@@ -17,7 +27,7 @@ import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
-import drawHotspotMap from "./components/HotspotMap";
+// import drawHotspotMap from "./components/HotspotMap";
 import drawObservationTable from "./components/ObservationTable";
 import drawPrefectureTable from "./components/DistrictTable";
 import drawAgeTrendChart from "./components/AgeTrendChart";
@@ -31,8 +41,7 @@ let testPositivityChart = null;
 let dailyIncreaseChart = null;
 let hotspotMap = null;
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw";
+// mapboxgl.accessToken = ("pk.eyJ1IjoiamVldmFudGhhbmFsIiwiYSI6ImNrOGI3Y2UwZzA5ZTIzZm8zaHBoc3k5bmYifQ.u_IlM2qUJmPReoqA54Qqhw");
 const PREFECTURE_JSON_PATH = "static/districts.geojson";
 const JSON_PATH = "https://data.covid19kerala.info/summary/latest.json";
 const KPI_JSON_PATH = "https://data.covid19kerala.info/kpi/latest.json";
@@ -53,6 +62,8 @@ export const LANG_CONFIG = {
     order: ["querystring", "cookie", "navigator"],
     caches: ["cookie"],
     cookieMinutes: 60 * 24 * 365,
+    // optional set cookie options, reference:[MDN Set-Cookie docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
+    cookieOptions: { path: "/", sameSite: "strict" },
   },
   resources: languageResources,
 };
@@ -181,8 +192,8 @@ function calculateTotals(daily) {
     }
 
     /*
-      if latest day's status is not Finalised yet and the difference in current key is <=0, 
-      Compare with data of two days before. This prevents showing 0 diffs 
+      if latest day's status is not Finalised yet and the difference in current key is <=0,
+      Compare with data of two days before. This prevents showing 0 diffs
       in case of data in spreadsheet is not updated with current day yet
     */
     if (
@@ -454,7 +465,7 @@ function drawLastUpdated(lastUpdated) {
   // TODO we should be parsing the datlastUpdatede, but I
   // don't trust the user input on the sheet
   // console.log(lastUpdated.slice(0, -4))
-  const lastUpdatedMoment = moment(
+  const lastUpdatedMoment = dayjs(
     lastUpdated, //lastUpdated.slice(0, -4)
     "YYYY-MM-DD HH:mm"
   ).utcOffset(330, true); // IST offset
@@ -692,13 +703,12 @@ function setLang(lng) {
       if (document.getElementById("prefectures-table")) {
         drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
       }
-
       if (document.getElementById("observation-table")) {
         drawObservationTable(ddb.underObservationData);
       }
 
       // drawTrendChart(ddb.trend, LANG);
-      hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
+      // hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
       // drawPrefectureTrajectoryChart(ddb.prefectures);
 
@@ -810,11 +820,11 @@ function loadDataOnPage() {
       );
       drawimportedAndContachCasesChart(ddb.trend);
     }
-    drawMap();
-    map.once("style.load", function (e) {
+    // drawMap();
+    /* map.once("style.load", function (e) {
       styleLoaded = true;
       whenMapAndDataReady();
-    });
+    }); */
     whenMapAndDataReady();
     updateTooltipLang();
   });
@@ -831,8 +841,8 @@ function whenMapAndDataReady() {
     return;
   }
 
-  drawMapPrefectures(pageDraws);
-  hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
+  // drawMapPrefectures(pageDraws);
+  // hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 }
 
 const startReloadTimer = () => {

@@ -1,7 +1,8 @@
 import * as c3 from "c3";
 import i18next from "i18next";
-import { format } from "date-fns";
-import { enUS, ml } from "date-fns/locale";
+/* import { format } from "date-fns";
+import { enUS, ml } from "date-fns/locale"; */
+import dayjs from "dayjs";
 
 import {
   COLOR_TESTED,
@@ -11,7 +12,7 @@ import {
 } from "../../data/constants";
 
 const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
-  let dateLocale = enUS;
+  let dateLocale = "en";
   /*if (lang == "ja") {
     dateLocale = ml;
   }*/
@@ -94,10 +95,7 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
           format: (x) => {
             // x+1 because the list is prefixed with the label
             const xDate = new Date(cols.Date[x + 1]);
-            return format(xDate, "MMM d", {
-              locale: dateLocale,
-              addSuffix: true,
-            });
+            return dayjs(xDate).format("MMM d");
           },
         },
       },

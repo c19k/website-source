@@ -14,7 +14,7 @@ import {
 } from "../../data/constants";
 
 const drawTestPositivityChart = (sheetTrend, testPositivityChart) => {
-  console.log(sheetTrend);
+  // console.log(sheetTrend);
   const cols = {
     Date: [i18next.t("Date")],
     PositivityDaily: [i18next.t("Test Positivity")],

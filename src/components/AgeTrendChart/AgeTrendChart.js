@@ -6,7 +6,6 @@ import "whatwg-fetch";
 import _ from "lodash";
 import * as d3 from "d3";
 import * as c3 from "c3";
-import moment from "moment";
 
 // Localization deps
 import i18next from "i18next";
@@ -19,8 +18,8 @@ function showSummary(
 ) {
   let label = `${i18next.t("Awaiting age details for")}  : ${totalUnspecified}
     <br/>
-    ${i18next.t("Male")} : ${totalMale} 
-    &nbsp;&nbsp;  ${i18next.t("Female")} : ${totalFemale} 
+    ${i18next.t("Male")} : ${totalMale}
+    &nbsp;&nbsp;  ${i18next.t("Female")} : ${totalFemale}
     &nbsp;&nbsp; ${i18next.t("UnspecifiedGender")} : ${totalGenderUnspecified}
   `;
   document.getElementById("age-trend-count-summary").innerHTML = label;

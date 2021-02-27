@@ -10,7 +10,7 @@ module.exports = function (api) {
         "@babel/preset-env",
         {
           useBuiltIns: "entry",
-          targets: { chrome: "58", ie: "11" },
+          modules: "auto",
         },
       ],
     ],
