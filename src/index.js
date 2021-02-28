@@ -27,10 +27,12 @@ import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
+
 // import drawHotspotMap from "./components/HotspotMap";
-import drawObservationTable from "./components/ObservationTable";
-import drawPrefectureTable from "./components/DistrictTable";
-import drawAgeTrendChart from "./components/AgeTrendChart";
+// import drawObservationTable from "./components/ObservationTable";
+// import drawPrefectureTable from "./components/DistrictTable";
+// import drawAgeTrendChart from "./components/AgeTrendChart";
+
 import drawTrendChart from "./components/OutbreakSpreadChart";
 import drawimportedAndContachCasesChart from "./components/ImportedContactChart";
 import drawTestPositivityChart from "./components/TestPositivityChart";
@@ -427,7 +429,11 @@ function travelRestrictionsHelper(elementId, countries) {
 function drawKpis(totals, totalsDiff) {
   // Draw the KPI values
   function setKpi(key, value) {
-    document.querySelector("#kpi-" + key + " .value").innerHTML = value;
+    document.querySelector(
+      "#kpi-" + key + " .value"
+    ).innerHTML = new Intl.NumberFormat("en-IN", {
+      maximumSignificantDigits: 3,
+    }).format(value);
   }
   function setKpiDiff(key, value) {
     let diffDir = value >= 0 ? "+" : "";
@@ -700,19 +706,20 @@ function setLang(lng) {
 
     // Redraw all components that need rerendering to be localized the prefectures table
     if (!document.body.classList.contains("embed-mode")) {
-      if (document.getElementById("prefectures-table")) {
+      /*       if (document.getElementById("prefectures-table")) {
         drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
       }
-      if (document.getElementById("observation-table")) {
+       */
+      /* if (document.getElementById("observation-table")) {
         drawObservationTable(ddb.underObservationData);
       }
-
+ */
       // drawTrendChart(ddb.trend, LANG);
       // hotspotMap = drawHotspotMap(ddb.prefectures, LANG);
 
       // drawPrefectureTrajectoryChart(ddb.prefectures);
 
-      drawAgeTrendChart(ddb.age);
+      // drawAgeTrendChart(ddb.age);
 
       dailyIncreaseChart = drawDailyIncreaseChart(
         ddb.trend,
@@ -801,12 +808,12 @@ function loadDataOnPage() {
       drawSiteUpdating(ddb.isSiteUpdating);
       drawLastUpdated(ddb.lastUpdated);
       drawPageTitleCount(ddb.totals.confirmed);
-      drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
-      drawObservationTable(ddb.underObservationData);
+      // drawPrefectureTable(ddb.prefectures, ddb.totals, LANG);
+      // drawObservationTable(ddb.underObservationData);
       drawTrendChart(ddb.trend, LANG);
       drawDailyIncreaseChart(ddb.trend);
       // drawPrefectureTrajectoryChart(ddb.prefectures);
-      drawAgeTrendChart(ddb.age);
+      // drawAgeTrendChart(ddb.age);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
       testPositivityChart = drawTestPositivityChart(
         ddb.trend,
