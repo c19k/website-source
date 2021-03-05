@@ -431,9 +431,7 @@ function drawKpis(totals, totalsDiff) {
   function setKpi(key, value) {
     document.querySelector(
       "#kpi-" + key + " .value"
-    ).innerHTML = new Intl.NumberFormat("en-IN", {
-      maximumSignificantDigits: 3,
-    }).format(value);
+    ).innerHTML = new Intl.NumberFormat("en-IN").format(value);
   }
   function setKpiDiff(key, value) {
     let diffDir = value >= 0 ? "+" : "";
