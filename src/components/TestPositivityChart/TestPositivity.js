@@ -14,7 +14,7 @@ import {
 } from "../../data/constants";
 
 const drawTestPositivityChart = (sheetTrend, testPositivityChart) => {
-  // console.log(sheetTrend);
+  //console.log(sheetTrend);
   const cols = {
     Date: [i18next.t("Date")],
     PositivityDaily: [i18next.t("Test Positivity")],
@@ -45,6 +45,9 @@ const drawTestPositivityChart = (sheetTrend, testPositivityChart) => {
       let positivityToday = ((thisDailyConfirmed / thisDailyVal) * 100).toFixed(
         2
       );
+      if (positivityToday < 0) {
+        positivityToday = 0;
+      }
       cols.PositivityDaily.push(positivityToday);
       testedTotal.push(row.testedCumulative);
       labels.push(
