@@ -95,7 +95,7 @@ const drawDailyIncreaseChart = (sheetTrend, dailyIncreaseChart, lang) => {
           format: (x) => {
             // x+1 because the list is prefixed with the label
             const xDate = new Date(cols.Date[x + 1]);
-            return dayjs(xDate).format("MMM d");
+            return dayjs(xDate).format("MMM D");
           },
         },
       },
