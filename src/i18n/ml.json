@@ -107,5 +107,10 @@
   "Test Positivity": "പോസിറ്റിവ് ടെസ്റ്റ് %",
   "Date": "തീയ്യതി",
   "Positive tests": "പോസിറ്റിവ്",
-  "Total tests": "ആകെ"
+  "Total tests": "ആകെ",
+  "VaccinatedTotal": "ആകെ നൽകിയ ഡോസുകൾ",
+  "VaccinatedFirstDose": "ആദ്യ ഡോസ്",
+  "VaccinatedSecondDose": "രണ്ടാമത്തെ ഡോസ്",
+  "daily-vaccination": "ദിനം പ്രതിയുള്ള വാക്‌സിനേഷൻ",
+  "description-vaccination": "ഈ ഗ്രാഫിൽ ആകെ നൽകിയ വാക്സിൻ ഡോസുകളും ദിനം പ്രതിയുള്ള ആദ്യ-രണ്ടാം ഡോസുകളുടെ എണ്ണവും നൽകിയിരിക്കുന്നു"
 }

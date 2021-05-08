@@ -101,5 +101,10 @@
   "Test Positivity": "Positive test %",
   "Date": "Date",
   "Positive tests": "Positive",
-  "Total tests": "Total"
+  "Total tests": "Total",
+  "VaccinatedTotal": "Total Vaccine Doses Administered",
+  "VaccinatedFirstDose": "First dose",
+  "VaccinatedSecondDose": "Second dose",
+  "daily-vaccination": "Day-wise vaccination count",
+  "description-vaccination": "The graphs displays the daily dose wise vaccination count and the total vaccination doses administered"
 }

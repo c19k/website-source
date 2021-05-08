@@ -27,6 +27,7 @@ import languageResources, { LANGUAGES } from "./i18n";
 
 import drawTestingTrendChart from "./components/TestingTrendChart";
 import drawDailyIncreaseChart from "./components/DailyIncreaseChart";
+import drawVaccinationChart from "./components/VaccinationChart";
 
 // import drawHotspotMap from "./components/HotspotMap";
 // import drawObservationTable from "./components/ObservationTable";
@@ -724,7 +725,7 @@ function setLang(lng) {
         dailyIncreaseChart,
         LANG
       );
-
+      drawVaccinationChart(ddb.trend);
       drawimportedAndContachCasesChart(ddb.trend);
 
       testPositivityChart = drawTestPositivityChart(
@@ -810,6 +811,7 @@ function loadDataOnPage() {
       // drawObservationTable(ddb.underObservationData);
       drawTrendChart(ddb.trend, LANG);
       drawDailyIncreaseChart(ddb.trend);
+      drawVaccinationChart(ddb.trend);
       // drawPrefectureTrajectoryChart(ddb.prefectures);
       // drawAgeTrendChart(ddb.age);
       testingTrendChart = drawTestingTrendChart(ddb.trend, testingTrendChart);
